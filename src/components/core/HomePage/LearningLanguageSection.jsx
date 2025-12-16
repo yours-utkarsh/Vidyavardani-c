@@ -13,7 +13,7 @@ const LearningLanguageSection = () => {
       Your Swiss Knife for 
       <HighlightText text={" learning any language"} ></HighlightText>
     </div>
-    
+
     <div className="">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, voluptatum dolores voluptate molestiae amet eaque veritatis quisquam ea facere sint! Quae error dolor nam commodi optio voluptatibus nulla inventore minima.
     </div>
@@ -35,6 +35,7 @@ const LearningLanguageSection = () => {
       />
       
     </div>
+    
 
     </div>
    </div>

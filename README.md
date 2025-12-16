@@ -1,31 +1,43 @@
-# React & Tailwind CSS Starter Pack
+# Vidyavardani - EdTech Platform
 
-This is a starter pack for creating React projects with Tailwind CSS configured. It uses React version **18.2** and Tailwind CSS version **3.2**.
+Vidyavardani is a comprehensive education technology platform built to empower teachers to create and sell courses while helping students discover relevant courses to upskill. It bridges the gap between educators and learners.
 
-## Usage
+## Purpose
 
-This starter pack includes a basic setup for using **Tailwind CSS with React**. To start building your own components and styles, follow these steps:
+- **For Teachers**: Sell your expertise by creating and managing courses with structured curriculum
+- **For Students**: Find and enroll in quality courses to enhance your skills
 
-1. Clone the repository to your local machine.
-    ```sh
-    git clone https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git
-    ```
+## Key Features
 
-1. Install the required packages.
-    ```sh
-    cd react-tailwind-css-starter-pack
-    npm install
-    ```
+- 🎓 Course Creation & Management
+- 💰 Course Selling & Monetization
+- 📚 Curriculum Planning & Organization
+- 👨‍🏫 Teacher Authentication & Dashboard
+- 👨‍🎓 Student Authentication & Discovery
+- 💳 Secure Payment Processing
 
-1. Start the development server.
-    ```sh
-    npm start
-    ```
-1. Open the project in your browser at [`http://localhost:3000`](http://localhost:3000) to view your project.
-1. Create your React components and add your styles using Tailwind classes. You can also create new CSS files and import them into your components.
+## Tech Stack
 
-The project is set up to use `postcss-cli` to process your CSS files. You can add your own `tailwind.config.js` file to customize your Tailwind setup.
+- **Frontend**: React 18
+- **Backend**: Node.js & Express
+- **Database**: MongoDB
+- **Styling**: Tailwind CSS
+- **Media Storage**: Cloudinary
+- **Payment Gateway**: Razorpay
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Configure environment variables for Cloudinary and Razorpay
+4. Start the development server: `npm start`
+5. Visit `http://localhost:3000`
+
+## Target Users
+
+- Students seeking to learn and upskill
+- Teachers/Educators wanting to monetize their expertise
 
 ## Contributing
 
-Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
+Contributions are welcome! Please open issues or pull requests for suggestions and improvements.
