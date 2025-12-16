@@ -1,1 +1,15 @@
 /* write your css here */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.homepage_bg {
+  background-image: url("./asset/Image/bghome.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+
