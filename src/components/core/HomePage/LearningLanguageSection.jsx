@@ -3,6 +3,7 @@ import HighlightText from './HighlightText'
 import know_your_progress from "../../../asset/Image/Know_your_progress.png"
 import compare_with_others from "../../../asset/Image/Compare_with_others.png"
 import plan_your_lesson from "../../../asset/Image/Plan_your_lessons.png"
+import CTAButton from './Button'
 
 const LearningLanguageSection = () => {
   return (
@@ -35,7 +36,16 @@ const LearningLanguageSection = () => {
       />
       
     </div>
-    
+
+    <div className="">
+      <CTAButton
+      active={true} linkto={'./signup'}
+      >
+        <div>
+          Learn More
+        </div>
+      </CTAButton>
+    </div>
 
     </div>
    </div>
