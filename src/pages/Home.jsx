@@ -8,6 +8,8 @@ import CodeBlocks from "../components/core/HomePage/CodeBlocks";
 import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
 import TimeLineSection from "../components/core/HomePage/TimeLineSection";
 import Footer from "../components/common/Footer";
+import InstructorSection from "../components/core/HomePage/InstructorSection"
+import ExploreMore from "../components/core/HomePage/ExploreMore";
 
 const Home = () => {
   return (
@@ -121,6 +123,9 @@ const Home = () => {
             backgroundGradient={<div className="codeblock1 absolute"></div>}
           />
         </div>
+
+        <ExploreMore/>
+
       </div>
       {/* Section - 2 */}
 
@@ -167,6 +172,12 @@ The modern educational landscape dictates its own terms. Today, being a competit
       </div>
 
       {/* Section - 3 */}
+
+      <div className="">
+        <InstructorSection />
+        <h2> Review From Other </h2>
+      </div>
+
       {/* Section - 4 */}
       {/* Footer */}
       <Footer />
