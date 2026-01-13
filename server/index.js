@@ -13,30 +13,31 @@ require("dotenv").config();
 const cors = require("cors");
 const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
-// const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 // database connect
-// database.connectDB();
+database.connectDB();
 
-let isConnected = false;
-const {connectDB} = database;
+// use it while conection with vercel deployment
+// let isConnected = false;
+// const {connectDB} = database;
 
-// Middleware to ensure DB connection before handling requests
+// // Middleware to ensure DB connection before handling requests
 
-app.use((req, res, next) => {
-  if(!isConnected) {
-    connectDB().then(() => {
-      isConnected = true;
-      next();
-    }).catch((err) => {
-      console.error('Failed to connect to DB', err);
-      res.status(500).json({ success: false, message: 'Database connection error' });
-    });
-  } else {
-    next();
-  }
-}
-)
+// app.use((req, res, next) => {
+//   if(!isConnected) {
+//     connectDB().then(() => {
+//       isConnected = true;
+//       next();
+//     }).catch((err) => {
+//       console.error('Failed to connect to DB', err);
+//       res.status(500).json({ success: false, message: 'Database connection error' });
+//     });
+//   } else {
+//     next();
+//   }
+// }
+// )
 
 
 
@@ -69,9 +70,9 @@ app.get("/", (req, res) => {
   });
 });
 
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
-module.exports = app;
+// module.exports = app;
 
