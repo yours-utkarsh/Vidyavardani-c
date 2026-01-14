@@ -62,7 +62,7 @@ const TimeLineSection = () => {
             </div>
 
             <div className="">
-              <img src={timeLineImage}  />
+              <img src={timeLineImage} alt="Timeline representation" />
 
               <div className="">
                 <div className="">

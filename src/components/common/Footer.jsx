@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../asset/Logo/Logo-Full-Gradient.png";
 
 // Icons
-import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
 const Resources = [
