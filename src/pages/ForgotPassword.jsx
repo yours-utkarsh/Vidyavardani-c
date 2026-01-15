@@ -56,7 +56,7 @@ const ForgotPassword = () => {
             </form>
 
             <div>
-              <Link to="/login" >
+              <Link to="/login" onClick={() => setEmailSent(false)}>
               <p>Back To login</p>
               </Link>
             </div>
