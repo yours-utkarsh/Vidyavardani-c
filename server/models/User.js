@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
    token: {
       type: String,
     },
-    resetPasswordExpires: {
+    resetPasswordTokenExpires: {
       type: Date,
     },
   image: {

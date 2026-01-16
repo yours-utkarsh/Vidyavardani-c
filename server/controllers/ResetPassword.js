@@ -105,6 +105,8 @@ exports.resetPassword = async (req, res) => {
       { token: token },
       {
         password: hashedPassword,
+        token: null,
+        resetPasswordTokenExpires: null,
       },
       { new: true }
     );
