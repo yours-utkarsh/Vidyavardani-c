@@ -4,6 +4,7 @@ import Spinner from "../components/common/Spinner";
 import { useLocation } from "react-router-dom";
 import { IoEyeSharp } from "react-icons/io5";
 import { IoEyeOffSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 const UpdatePassword = () => {
 
     const dispatch = useDispatch();
@@ -53,9 +54,9 @@ const UpdatePassword = () => {
             <span onClick={() => setShowPassword((prev) => !prev)} >
               {
                 showPassword ?
-                <IoEyeOffSharp />
+                <IoEyeOffSharp  fontSize={24} />
                 :
-                <IoEyeSharp />
+                <IoEyeSharp  fontSize={24} />
               }
             </span>
 
@@ -72,13 +73,18 @@ const UpdatePassword = () => {
                <span onClick={() => setShowConfirmPassword((prev) => !prev)} >
               {
                 showConfirmPassword ?
-                <IoEyeOffSharp />
+                <IoEyeOffSharp fontSize={24} />
                 :
-                <IoEyeSharp />
+                <IoEyeSharp  fontSize={24} />
               }
             </span>
             </label>
           </form>
+           <div>
+                      <Link to="/login" onClick={() => setEmailSent(false)}>
+                        <p>Back To login</p>
+                      </Link>
+            </div>
         </div>
       )}
     </div>
