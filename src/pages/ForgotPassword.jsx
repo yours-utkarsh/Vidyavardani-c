@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Spinner from "../components/common/Spinner";
-import { getPasswordResetToken } from "../services/operations/authApi";
+import { getPasswordResetToken } from "../services/operations/authAPI";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
