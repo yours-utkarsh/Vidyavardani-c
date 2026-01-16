@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../components/common/Spinner";
+import { useLocation } from "react-router-dom";
 
 const UpdatePassword = () => {
+
+    const dispatch = useDispatch();
+    const location = useLocation();
+
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
@@ -17,6 +22,8 @@ const UpdatePassword = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const handleOnSubmit = ()
 
   return (
     <div>
