@@ -84,7 +84,7 @@ const UpdatePassword = () => {
             </label>
           </form>
            <div>
-                      <Link to="/login" onClick={() => setEmailSent(false)}>
+                      <Link to="/login" >
                         <p>Back To login</p>
                       </Link>
             </div>
