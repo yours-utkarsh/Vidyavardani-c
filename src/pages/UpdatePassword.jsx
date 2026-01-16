@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../components/common/Spinner";
 import { useLocation } from "react-router-dom";
-
+import { IoEyeSharp } from "react-icons/io5";
+import { IoEyeOffSharp } from "react-icons/io5";
 const UpdatePassword = () => {
 
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const UpdatePassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { loading } = useSelector((state) => state.auth);
+  const {password ,confirmPassword } = formData;
 
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
@@ -23,7 +25,11 @@ const UpdatePassword = () => {
     }));
   };
 
-  const handleOnSubmit = ()
+  const handleOnSubmit = (e) =>{
+    e.preventDefault();
+    const token  = location.pathname.slice('/').at(-1);
+    dispatch(resetPassword(password, confirmPassword , token))
+  }
 
   return (
     <div>
@@ -43,16 +49,34 @@ const UpdatePassword = () => {
                 value={password}
                 onChange={handleOnChange}
               />
+
+            <span onClick={() => setShowPassword((prev) => !prev)} >
+              {
+                showPassword ?
+                <IoEyeOffSharp />
+                :
+                <IoEyeSharp />
+              }
+            </span>
+
             </label>
             <label htmlFor="">
               <p>Confirm Password</p>
               <input
                 required
                 type={showConfirmPassword ? "text" : "password"}
-                name="password"
-                value={password}
+                name="confirmPassword"
+                value={confirmPassword}
                 onChange={handleOnChange}
               />
+               <span onClick={() => setShowConfirmPassword((prev) => !prev)} >
+              {
+                showConfirmPassword ?
+                <IoEyeOffSharp />
+                :
+                <IoEyeSharp />
+              }
+            </span>
             </label>
           </form>
         </div>
