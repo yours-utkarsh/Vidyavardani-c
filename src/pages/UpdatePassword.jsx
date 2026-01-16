@@ -5,6 +5,9 @@ import { useLocation } from "react-router-dom";
 import { IoEyeSharp } from "react-icons/io5";
 import { IoEyeOffSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { resetPassword } from "../services/operations/authAPI";
+
+
 const UpdatePassword = () => {
 
     const dispatch = useDispatch();

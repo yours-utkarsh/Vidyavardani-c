@@ -1,8 +1,8 @@
 import toast from "react-hot-toast";
 import {apiConnector} from "../apiconnector"
 import {setLoading} from "../../slices/authSlice"
-
 import {endpoints} from "../apis"
+
 export function getPasswordResetToken(email , setEmailSent)
 {
     return async (dispatch)=>{
@@ -23,5 +23,25 @@ export function getPasswordResetToken(email , setEmailSent)
             toast.error("Could not send password reset email")
         }
         dispatch(setLoading(false))
+    }
+}
+
+export function resetPassword(password , confirmPassword , token){
+    return async (dispatch) =>{
+        dispatch(setLoading(true));
+        try{
+            const response = await apiConnector("POST" , endpoints.RESETPASSWORD_API , {password , confirmPassword , token})
+            console.log("RESET password response " , response)
+            if(!response.data.success){
+                throw new Error(response.data.message);
+                
+            }
+
+            toast.success("Password has been reset successfully")
+        }
+        catch(error){
+             toast.error("Password reset failed")
+        }
+        dispatch(setLoading(false));
     }
 }
