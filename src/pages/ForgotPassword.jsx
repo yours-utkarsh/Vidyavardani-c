@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Spinner from "../components/common/Spinner";
+import { getPasswordResetToken } from "../services/operations/authApi";
+
 const ForgotPassword = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const { loading } = useSelector((state) => state.auth);
   const [emailSent, setEmailSent] = useState(false);
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getPasswordResetToken(email, setEmailSent));
+  };
 
   return (
     <div>
@@ -23,7 +31,7 @@ const ForgotPassword = () => {
               : `We have sent the reset email to ${email}`}
           </p>
 
-          <form>
+          <form onSubmit={handleOnSubmit}>
             {!emailSent && (
               <label>
                 <p>Email Address</p>
