@@ -2,6 +2,33 @@ import toast from "react-hot-toast";
 import {apiConnector} from "../apiconnector"
 import {setLoading} from "../../slices/authSlice"
 import {endpoints} from "../apis"
+import { Navigate } from "react-router-dom";
+
+const {
+SENDOTP_API,
+SIGNUP_API,
+} = endpoints
+
+export function sendOtp(email, navigate){
+    return async (dispatch)=>{
+        dispatch(setLoading(true))
+
+        try{
+            const response = await apiConnector("POST", SENDOTP_API , {email})
+            if(!response.data.success){
+                throw new Error(response.data.message);
+                
+            }
+            toast.success("OTP sent successfully")
+            navigate("/verify-email")
+        }
+        catch{
+            toast.error("OTP send failed")
+        }
+
+        dispatch(setLoading(false));
+    }
+}
 
 export function getPasswordResetToken(email , setEmailSent)
 {
