@@ -11,7 +11,6 @@ const VerifyEmail = () => {
   const [otp, setOtp] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
   useEffect(
     ()=>{
       if(!signupData){

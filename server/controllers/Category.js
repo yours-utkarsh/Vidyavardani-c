@@ -33,13 +33,13 @@ exports.createCategory = async (req, res) =>{
 // error :- yahan parcalling function aur variable name same hai jo error la skate hain
 exports.showAllCategories = async (req, res) => {
     try{
-        const showAllCategories = await Category.find({} , 
+        const categories = await Category.find({} , 
             {name: true,
             description:true,}
         )
         res.status(200).json({
             success:true,
-            data : showAllCategories,
+            data : categories,
         })
     }
     catch(error){

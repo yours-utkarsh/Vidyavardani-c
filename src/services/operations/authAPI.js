@@ -2,7 +2,6 @@ import toast from "react-hot-toast";
 import { apiConnector } from "../apiconnector";
 import { setLoading } from "../../slices/authSlice";
 import { endpoints } from "../apis";
-import { Navigate } from "react-router-dom";
 
 const { SENDOTP_API, SIGNUP_API } = endpoints;
 
