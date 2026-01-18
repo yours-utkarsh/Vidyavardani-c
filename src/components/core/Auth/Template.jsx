@@ -1,10 +1,12 @@
 import React from "react";
-import pattern from "../../../asset/Image/frame.png";
+import frameImg from "../../../asset/Image/frame.png";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import Spinner from "../../common/Spinner";
+import {  useSelector } from "react-redux";
 
 const Template = ({ title, description1, description2, image, formType }) => {
+    const {loading} = useSelector((state) => state.auth)
   return (
 <div>
 
