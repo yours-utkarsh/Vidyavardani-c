@@ -3,7 +3,7 @@ import { apiConnector } from "../apiconnector";
 import { setLoading } from "../../slices/authSlice";
 import { endpoints } from "../apis";
 
-const { SENDOTP_API, SIGNUP_API , LOGIN_API } = endpoints;
+const { SENDOTP_API, SIGNUP_API, LOGIN_API } = endpoints;
 
 export function sendOtp(email, navigate) {
   return async (dispatch) => {
@@ -47,47 +47,37 @@ export function signup(
         otp,
       });
 
-      if(!response.data.success){
+      if (!response.data.success) {
         throw new Error(response.data.message);
-        
       }
       toast.success("Signup successful");
-      navigate("/login")
-
+      navigate("/login");
     } catch (error) {
       toast.error("signup failed");
-      navigate("/signup")
+      navigate("/signup");
     }
 
     dispatch(setLoading(false));
   };
 }
 
-export function login(
-  email , 
-  password,
-  navigate
-){
-
-  return async (dispatch)=>
-  {
+export function login(email, password, navigate) {
+  return async (dispatch) => {
     dispatch(setLoading(true));
-    try{
-      const response = await apiConnector("POST" , LOGIN_API , (email , password))
+    try {
+      const response = await apiConnector("POST", LOGIN_API, (email, password));
 
-      if(!response.data.success){
-      throw new Error(response.data.message);
+      if (!response.data.success) {
+        throw new Error(response.data.message);
       }
-       toast.success("Signup successful");
-      navigate("/dashboard")
+      toast.success("Signup successful");
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error("login failed");
+      navigate("/login");
     }
-    catch(error){
- toast.error("login failed");
-  navigate("/login")
-    }
-    dispatch(setLoading(false))
-  }
-
+    dispatch(setLoading(false));
+  };
 }
 
 export function getPasswordResetToken(email, setEmailSent) {
