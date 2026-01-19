@@ -46,15 +46,7 @@ function App() {
    }
    />
 
-   <Route
-   path="forgot-password"
-   element={
-    <OpenRoute>
-     <ForgotPassword/>
-    </OpenRoute>
-   }
-   />
-
+  
    <Route
    path="reset-password/:id"
    element={
