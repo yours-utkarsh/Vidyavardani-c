@@ -63,15 +63,17 @@ const UpdatePassword = () => {
               >
               {
                 showPassword ?
-                <IoEyeOffSharp  fontSize={24} />
+                <IoEyeOffSharp  fontSize={24} fill="#AFB2BF" />
                 :
-                <IoEyeSharp  fontSize={24} />
+                <IoEyeSharp  fontSize={24} fill="#AFB2BF" />
               }
             </span>
 
             </label>
-            <label htmlFor="">
-              <p>Confirm Password</p>
+            <label className="relative mt-3 block">
+              <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+                Confirm New Password <sup className="text-pink-200">*</sup>
+              </p>
               <input
                 required
                 type={showConfirmPassword ? "text" : "password"}
