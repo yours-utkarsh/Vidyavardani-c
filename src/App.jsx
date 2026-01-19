@@ -9,6 +9,7 @@ import UpdatePassword from "./pages/UpdatePassword.jsx";
 import Error from "./pages/Error.jsx";
 import OpenRoute from "./components/core/Auth/OpenRoute.jsx";
 // import PrivateRoute from "./components/core/Auth/PrivateRoute.jsx";
+import VerifyEmail from "./pages/VerifyEmail.jsx";
 
 
 function App() {
@@ -67,7 +68,7 @@ function App() {
    path="verify-email"
    element={
     <OpenRoute>
-     <ForgotPassword/>
+     < VerifyEmail/>
     </OpenRoute>
    }
    />

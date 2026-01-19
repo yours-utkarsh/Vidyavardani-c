@@ -4,7 +4,7 @@ import Spinner from "../components/common/Spinner";
 import OTPInput from "react-otp-input";
 import { sendOtp, signup } from "../services/operations/authAPI";
 import { useNavigate } from "react-router-dom";
-import { setSignupData } from "../slices/authSlice";
+import { Link } from "react-router-dom";
 
 const VerifyEmail = () => {
   const { loading, signupData  } = useSelector((state) => state.auth);
@@ -28,8 +28,7 @@ const VerifyEmail = () => {
   lastName,
   email,
   password,
-  confirmPassword,
-  otp
+  confirmPassword
     } = signupData
 
     dispatch(signup( accountType,

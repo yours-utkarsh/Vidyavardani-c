@@ -1,10 +1,12 @@
 import React from "react";
-import { useDispatch, useNavigate } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { signup } from "../../../services/operations/authAPI";
+import { sendOtp } from "../../../services/operations/authAPI";
 import { setSignupData } from "../../../slices/authSlice";
 import { ACCOUNT_TYPE } from "../../../Util/constants";
+import { useNavigate } from "react-router-dom";
+import Tab from "../../common/Tab";
 
 
 const SignupForm = () => {
@@ -20,8 +22,9 @@ const SignupForm = () => {
             confirmPassword : "",
         })
     
-        const [accountType , setAccountType] = useState(STUDENT)
+        const [accountType , setAccountType] = useState(ACCOUNT_TYPE.STUDENT)
         const [showPassword , setShowPassword ] = useState(false)
+        const [showConfirmPassword , setShowConfirmPassword ] = useState(false)
     
         const {firstName , lastName , email , confirmPassword,  password} = formData
     
@@ -34,9 +37,21 @@ const SignupForm = () => {
     
        const handleOnSubmit = (e) => {
         e.preventDefault();
-        dispath(signup(firstName , lastName , email , confirmPassword,  password, navigate))
-
-
+        
+        // Store signup data in Redux
+        const signupData = {
+          accountType,
+          firstName,
+          lastName,
+          email,
+          password,
+          confirmPassword
+        };
+        
+        dispath(setSignupData(signupData));
+        
+        // Send OTP to email
+        dispath(sendOtp(email, navigate));
 
         setFormData(
           {
@@ -71,9 +86,10 @@ const SignupForm = () => {
     <div>
       {/* Tab  */}
       <Tab tabData={tabData}  field={accountType} setField={setAccountType} ></Tab>
-      <form action="" onSubmit={handleOnSubmit}>
+      <form action="" onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4" >
         {/* name  */}
-        <div>
+                <div className="flex gap-x-4">
+
           <label htmlFor="">
               <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               First Name <sup className="text-pink-200">*</sup>
@@ -85,6 +101,7 @@ const SignupForm = () => {
             value={firstName}
             onChange={handleOnChange}
             placeholder="Enter your first name"
+             className="form-style w-full"
             />
           </label>
 
@@ -100,6 +117,7 @@ const SignupForm = () => {
             value={lastName}
             onChange={handleOnChange}
             placeholder="Enter your last name"
+              className="form-style w-full"
             />
           </label>
         </div>
@@ -123,7 +141,8 @@ const SignupForm = () => {
 
         {/* password */}
 
-        <div>
+        <div className="flex gap-x-4">
+
           <label htmlFor="" className="relative">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Password <sup className="text-pink-200">*</sup>
@@ -147,11 +166,7 @@ const SignupForm = () => {
                 <AiOutlineEye fontSize={24} fill="#AFB2BF" />
               )}
             </span>
-            <Link to={"/forgot-password"}>
-              <p className="mt-1 ml-auto max-w-max text-xs text-blue-100">
-                Forgot Password
-              </p>
-            </Link>
+            
           </label>
 
 
@@ -162,7 +177,7 @@ const SignupForm = () => {
             <input
               type={showConfirmPassword ? "text" : "password"}
               required
-              name="password"
+              name="confirmPassword"
               value={confirmPassword}
               onChange={handleOnChange}
               placeholder="Enter your Password again"
@@ -172,7 +187,7 @@ const SignupForm = () => {
               onClick={() => setShowConfirmPassword((prev) => !prev)}
               className="absolute right-3 top-[38px] z-[10] cursor-pointer"
             >
-              {!showPassword ? (
+              {!showConfirmPassword ? (
                 <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
               ) : (
                 <AiOutlineEye fontSize={24} fill="#AFB2BF" />
@@ -181,6 +196,12 @@ const SignupForm = () => {
            
           </label>
         </div>
+         <button
+          type="submit"
+          className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+        >
+          Create Account
+        </button>
       </form>
     </div>
   );

@@ -68,13 +68,12 @@ exports.signUp = async (req, res) =>{
             password,
             confirmPassword,
             accountType,
-            contactNumber,
             otp
         } = req.body;
 
 
         // validation 
-        if(!firstName || !lastName || !email || !password || !confirmPassword || !accountType || !contactNumber || !otp){
+        if(!firstName || !lastName || !email || !password || !confirmPassword || !accountType  || !otp){
             return res.status(400).json({
                 success: false,
                 message: "All fields are required",
@@ -121,7 +120,6 @@ if (!response || response.otp !== otp) {
             gender: null,
             dateOfBirth: null,
             about: null,
-            contactNumber: contactNumber,
         });
 
          await profileDetails.save();

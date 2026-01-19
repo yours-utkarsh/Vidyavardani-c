@@ -52,7 +52,7 @@ export function signup(
         throw new Error(response.data.message);
       }
       toast.success("Signup successful");
-      navigate("/login");
+      navigate("/dashboard");
     } catch (error) {
       toast.error("signup failed");
       navigate("/signup");
