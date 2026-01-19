@@ -36,25 +36,31 @@ const UpdatePassword = () => {
   }
 
   return (
-    <div>
+  <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
       {loading ? (
         <Spinner></Spinner>
       ) : (
-        <div>
-          <h1>Choose New Password</h1>
-          <p>Almost done. Enter your new password & you are all set.</p>
+       <div className="max-w-[500px] p-4 lg:p-8">
+          <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-richblack-5">
+            Choose New Password</h1>
+           <p className="my-4 text-[1.125rem] leading-[1.625rem] text-richblack-100">
+            Almost done. Enter your new password & you are all set.</p>
           <form onSubmit={handleOnSubmit} >
-            <label htmlFor="">
-              <p>New Password</p>
+             <label className="relative">
+              <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">New Password <sup className="text-pink-200">*</sup></p>
               <input
                 required
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={password}
                 onChange={handleOnChange}
+                  className="form-style w-full !pr-10"
               />
 
-            <span onClick={() => setShowPassword((prev) => !prev)} >
+              <span
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+              >
               {
                 showPassword ?
                 <IoEyeOffSharp  fontSize={24} />
