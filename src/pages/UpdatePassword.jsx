@@ -6,6 +6,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import { IoEyeOffSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { resetPassword } from "../services/operations/authAPI";
+import { BiArrowBack } from "react-icons/bi";
 
 
 const UpdatePassword = () => {
@@ -81,23 +82,29 @@ const UpdatePassword = () => {
                 value={confirmPassword}
                 onChange={handleOnChange}
               />
-               <span onClick={() => setShowConfirmPassword((prev) => !prev)} >
+               <span onClick={() => setShowConfirmPassword((prev) => !prev)} 
+                 className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                >
               {
                 showConfirmPassword ?
-                <IoEyeOffSharp fontSize={24} />
+                <IoEyeOffSharp fontSize={24} fill="#AFB2BF" />
                 :
-                <IoEyeSharp  fontSize={24} />
+                <IoEyeSharp  fontSize={24} fill="#AFB2BF" />
               }
             </span>
             </label>
-           <button type="submit">
+           <button type="submit"
+            className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[12px] px-[12px] font-medium text-richblack-900"
+           >
             Reset Password
            </button>
 
           </form>
-           <div>
+            <div className="mt-6 flex items-center justify-between">
                       <Link to="/login" >
-                        <p>Back To login</p>
+                        <p className="flex items-center gap-x-2 text-richblack-5">
+                <BiArrowBack /> Back To Login
+              </p>
                       </Link>
             </div>
         </div>
