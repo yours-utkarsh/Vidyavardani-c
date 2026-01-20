@@ -1,24 +1,33 @@
-import React from 'react'
-import * as Icons from "react-icons/vsc"
-import { useDispatch } from 'react-redux'
-import { matchPath, useLocation } from 'react-router-dom'
+import React from "react";
+import * as Icons from "react-icons/vsc";
+import { matchPath, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const SidebarLink = ({link , iconName}) => {
 
-    const  Icon = Icons[iconName]
-    const location = useLocation()
-    const dispatch = useDispatch()
+const SidebarLink = ({ link, iconName }) => {
+  const Icon = Icons[iconName];
+  const location = useLocation();
 
-    const matchpath = (route) =>{
-    return matchPath({path: route}, location.pathname)
-    }
+
+  const matchRoute = (linkPath) => {
+    return matchPath({ path: linkPath }, location.pathname);
+  };
 
   return (
-    <div>
-        
-      
-    </div>
-  )
-}
+    <NavLink
+      to={link.path}
+      className={` relative flex gap-x-2 items-center text-sm font-medium px-3 md:px-8 py-2 cursor-pointer transition-all duration-200  ${matchRoute(link.path) ? "text-yellow-50 bg-yellow-800" : "text-richblack-300"}`}
+    >
+      <span
+        className={`absolute left-0 top-0 h-full w-[0.15rem] bg-yellow-50 ${matchRoute(link.path) ? " opacity-100 " : "opacity-0"}`}
+      ></span>
 
-export default SidebarLink
+      <div>
+        <Icon className="text-lg" />
+        <p className="hidden md:block uppercase tracking-wider">{link.name}</p>
+      </div>
+    </NavLink>
+  );
+};
+
+export default SidebarLink;

@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 import { useSelector } from "react-redux";
-import Spinner from "../components/common/Spinner";
-import  { sidebarLinks } from "../../../data/Dashboard-Link"
+import { sidebarLinks } from "../../../data/Dashboard-Link"; 
+import SidebarLink from "./SidebarLink";
+import Spinner from "../../common/Spinner";
 
 const Sidebar = () => {
-    const {  loading: authLoading } = useSelector((state) => state.auth);
-  const { user ,loading: profileLoading } = useSelector((state) => state.profile);
+  const { loading: authLoading } = useSelector((state) => state.auth);
+  const { user, loading: profileLoading } = useSelector(
+    (state) => state.profile,
+  );
 
   if (authLoading || profileLoading) {
     return <Spinner />;
@@ -16,20 +19,21 @@ const Sidebar = () => {
       <div>
         {/* links  */}
         <div>
-            {
-                sidebarLinks.map((link , index)=>{
-                    if(link.type && user?.accountType !== link.type  ) return null;
+          {sidebarLinks.map((link, index) => {
+            if (link.type && user?.accountType !== link.type) return null;
 
-                    return (
-                        <SidebarLink link={link.path} iconName={link.icon} ></SidebarLink>
-                    )
-
-                })
-            }
+            return (
+              <SidebarLink
+                key={link.id}
+                link={link.path}
+                iconName={link.icon}
+              ></SidebarLink>
+            );
+          })}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

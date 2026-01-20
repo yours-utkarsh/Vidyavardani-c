@@ -8,8 +8,10 @@ import ForgotPassword from "./pages/ForgotPassword.jsx";
 import UpdatePassword from "./pages/UpdatePassword.jsx";
 import Error from "./pages/Error.jsx";
 import OpenRoute from "./components/core/Auth/OpenRoute.jsx";
-// import PrivateRoute from "./components/core/Auth/PrivateRoute.jsx";
+import PrivateRoute from "./components/core/Auth/PrivateRoute.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import MyProfile from "./components/core/Dashboard/MyProfile.jsx";
 
 
 function App() {
@@ -64,6 +66,17 @@ function App() {
     </OpenRoute>
    }
    />
+  
+<Route
+element={
+  <PrivateRoute>
+    <Dashboard/>
+  </PrivateRoute>
+}
+>
+  <Route path="dashboard/my-profile" element={<MyProfile/>} />
+
+</Route>
 
 
    <Route path="*" element={<Error/>} />
