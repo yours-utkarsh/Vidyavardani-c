@@ -66,7 +66,7 @@ app.use("/api/v1/course", courseRoutes);
 app.get("/", (req, res) => {
   return res.status(200).json({
     success: true,
-    message: "Welcome to Learnify Backend",
+    message: "Welcome to Vidyavardani Backend",
   });
 });
 

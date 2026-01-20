@@ -137,7 +137,7 @@ if (!response || response.otp !== otp) {
          return res.status(200).json({
             success: true,
             message: "User created successfully",
-            data: user
+            user: user
         });
     }
     catch(error){
@@ -208,7 +208,7 @@ exports.login = async (req,res) =>{
         return res.status(200).json({
             success: true,
             message: "Login successful",
-            data: userData
+            user: userData
         });
     }
     catch(error){

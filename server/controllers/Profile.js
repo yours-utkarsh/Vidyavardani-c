@@ -121,7 +121,7 @@ exports.getAllUserDetails = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "User details fetched successfully",
-            data: userDetails,
+            user: userDetails,
         });
     } catch (error) {
         return res.status(500).json({
@@ -204,7 +204,7 @@ exports.updateDisplayPicture = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Display picture updated successfully",
-            data: updatedUser,
+            user: updatedUser,
         });
     } catch (error) {
         return res.status(500).json({

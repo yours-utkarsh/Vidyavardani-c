@@ -74,17 +74,18 @@ export function login(email, password, navigate) {
       }
       toast.success("Login successful");
 
-      dispatch(setToken(response.data.token))
+      dispatch(setToken(response.data.user.token))
 
-      const userImage = response?.data?.data?.image 
+      const userImage = response?.data?.user?.image 
       ?
       response?.data?.data?.image 
-      : `https://api.dicebear.com/6.x/initials/svg?seed=${response.data.data.firstName}${response.data.data.lastName}`
+      : `https://api.dicebear.com/6.x/initials/svg?seed=${response.data.user.firstName}${response.data.user.lastName}`
 
-      dispatch(setUser({...response.data.data , image: userImage}))
+      dispatch(setUser({...response.data.user , image: userImage}))
 
       // add token to local storage 
-      localStorage.setItem("token" , JSON.stringify(response.data.data.token))
+      localStorage.setItem("token" , JSON.stringify(response.data.user.token))
+      localStorage.setItem("user" , JSON.stringify(response.data.user))
 
 
       navigate("/dashboard");
