@@ -1,0 +1,6 @@
+1. Email mandatory section ⇒ I accidentally marked email as required in my signup schema, but on the frontend I forgot to send the email with the signup data. When I tried to log in, I got a "signup failed" error. I spent 45 minutes reading through my code and couldn't find the issue. Then I checked the schema and finally resolved the error.
+
+2. Localhost error ⇒ In Redux profileSlice, I marked the initial user state as null. When I logged in, my data saved to localStorage and displayed correctly, but it vanished on refresh. This happened because the initial state was null, so the code couldn't fetch data from localStorage. I fixed it by adding a condition during initialization: first check localStorage for data, display it if found, otherwise set it to null.
+
+3. Env file error ⇒ I accidently placed it inside the src folder and i got errors while calling apis from apis.js. i fixed it by placing the env file outside the src folder
+
