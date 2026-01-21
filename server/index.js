@@ -13,6 +13,7 @@ require("dotenv").config();
 const cors = require("cors");
 const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
+const os = require("os");
 const PORT = process.env.PORT || 4000;
 
 // database connect
@@ -49,7 +50,8 @@ app.use(cors());
 app.use(
   fileUpload({
     useTempFiles: true,
-    tempFileDir: "/tmp/",
+    // Use a cross-platform temporary directory
+    tempFileDir: os.tmpdir(),
   })
 );
 

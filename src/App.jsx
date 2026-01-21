@@ -12,6 +12,7 @@ import PrivateRoute from "./components/core/Auth/PrivateRoute.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import MyProfile from "./components/core/Dashboard/MyProfile.jsx";
+import Settings from "./components/core/Dashboard/Settings/Settings.jsx";
 
 
 function App() {
@@ -75,6 +76,7 @@ element={
 }
 >
   <Route path="dashboard/my-profile" element={<MyProfile/>} />
+  <Route path="dashboard/settings" element={<Settings/>} />
 
 </Route>
 

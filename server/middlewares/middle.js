@@ -6,9 +6,12 @@ const User = require("../models/User");
 
 exports.auth = async (req, res, next) => {
   try {
-    // fetch token from headers
-    const token =
-      req.cookies.token || req.body.token || req.header("Authorization").replace("Bearer ", "");
+    // fetch token from cookies/body/header (header may be missing)
+    const authHeader = req.header("Authorization") || "";
+    const bearerToken = authHeader.startsWith("Bearer ")
+      ? authHeader.slice("Bearer ".length)
+      : authHeader;
+    const token = (req.cookies && req.cookies.token) || (req.body && req.body.token) || bearerToken || null;
 
     // if token missing
     if (!token) {
