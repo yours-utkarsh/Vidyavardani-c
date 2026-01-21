@@ -12,7 +12,7 @@ const Sidebar = () => {
   const dispatch = useDispatch();
    const navigate = useNavigate();
    const [isModalOpen , setIsModalOpen] = useState(false)
-   
+
   const { loading: authLoading } = useSelector((state) => state.auth);
   const { user, loading: profileLoading } = useSelector(
     (state) => state.profile,
@@ -50,7 +50,7 @@ const Sidebar = () => {
         <div className="mx-auto my-6 h-[1px] w-10/12 bg-richblack-700"></div>
 
         <div>
-          <Sidebar
+          <SidebarLink
             data={{
               name: "Settings",
               path: "/dashboard/settings",

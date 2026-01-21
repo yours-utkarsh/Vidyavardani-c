@@ -5,3 +5,6 @@
 3. Env file error ⇒ I accidently placed it inside the src folder and i got errors while calling apis from apis.js. i fixed it by placing the env file outside the src folder
 
 4. useSatate and usenavigate error => accidentally i placed the usestate below all and give me error or warning to tell that the " React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?  r"
+
+5. Infinite loop and browser freez => i found that my browser get freez while accesing any particular route.I found that my browser is get stuck in a infinite loop in which one function is calling itself inside it.
+
