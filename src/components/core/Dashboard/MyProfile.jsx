@@ -18,7 +18,8 @@ const MyProfile = ({}) => {
 
       {/* first box  */}
       <div className="flex items-center justify-between rounded-md border border-richblack-700 bg-richblack-800 p-8 px-3 md:px-12">
-        <div className="flex flex-row gap-x-2 md:gap-x-4 items-center">
+
+        <div className="flex justify-between flex-row gap-x-2 md:gap-x-4 items-center">
           <img
             src={user?.image}
             alt={`profile- ${user?.firstName}`}
@@ -31,13 +32,16 @@ const MyProfile = ({}) => {
             <p className="text-sm text-richblack-300">{user?.email}</p>
           </div>
 
+          </div>
           <IconBtn
             customClasses={"hidden md:block"}
             text="Edit"
             onClickHandler={() => navigate("/dashboard/settings")}
             children={<RiEditBoxLine />}
           />
-        </div>
+        
+
+      </div>
 
         <div className="md:hidden">
           <IconBtn
@@ -68,7 +72,8 @@ const MyProfile = ({}) => {
               "Write something about yourself!"}
           </p>
         </div>
-      </div>
+
+      
 
       {/* second box */}
 
