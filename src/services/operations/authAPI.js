@@ -142,3 +142,17 @@ export function resetPassword(password, confirmPassword, token) {
     dispatch(setLoading(false));
   };
 }
+
+
+export function logout(navigate){
+  return async (dispatch)=>{ 
+    dispatch(setToken(null))
+    dispatch(setUser(null))
+    //  dispatch(resetCart()),
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    toast.success("Logout successfully")
+    navigate("/")
+  }
+}
+

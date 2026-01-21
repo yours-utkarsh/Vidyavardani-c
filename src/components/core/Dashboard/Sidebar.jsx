@@ -1,8 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { sidebarLinks } from "../../../data/Dashboard-Link";
 import SidebarLink from "./SidebarLink";
 import Spinner from "../../common/Spinner";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../../services/operations/authAPI";
+import { VscSignOut } from "react-icons/vsc";
 
 const Sidebar = () => {
   const { loading: authLoading } = useSelector((state) => state.auth);
@@ -13,6 +16,22 @@ const Sidebar = () => {
   if (authLoading || profileLoading) {
     return <Spinner />;
   }
+
+  const [isModalOpen , setIsModalOpen] = useState(false)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const modalData = {
+    text1: 'Are you sure?',
+    text2: 'You will be logged out of your account',
+    btn1Text: 'Logout',
+    btn2Text: 'Cancel',
+    btn1Handler : () => dispatch(logout(navigate)),
+    btn2Handler : () => setIsModalOpen(false),
+    closeModalHandler : () => setIsModalOpen(false)
+    
+  }
+
 
   return (
     <div className="bg-richblack-800 ">
@@ -36,10 +55,27 @@ const Sidebar = () => {
             }}
           />
         </div>
-        
-        
 
+        <div>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="flex gap-x-2 items-center text-sm font-medium px-3 md:px-8 py-2 text-richblack-300"
+          >
+            <VscSignOut className="text-lg" />
+            <span className="hidden md:block tracking-wider uppercase">
+              Logout
+            </span>
+          </button>
+        </div>
       </div>
+
+      {
+        isModalOpen && (
+          <ConfirmationModal
+           modalData={modalData}
+          />
+        )
+      }
     </div>
   );
 };
