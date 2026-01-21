@@ -6,8 +6,13 @@ import Spinner from "../../common/Spinner";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../../services/operations/authAPI";
 import { VscSignOut } from "react-icons/vsc";
+import ConfirmationModal from "../../common/ConfirmationModal";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+   const navigate = useNavigate();
+   const [isModalOpen , setIsModalOpen] = useState(false)
+   
   const { loading: authLoading } = useSelector((state) => state.auth);
   const { user, loading: profileLoading } = useSelector(
     (state) => state.profile,
@@ -17,9 +22,7 @@ const Sidebar = () => {
     return <Spinner />;
   }
 
-  const [isModalOpen , setIsModalOpen] = useState(false)
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+ 
 
   const modalData = {
     text1: 'Are you sure?',

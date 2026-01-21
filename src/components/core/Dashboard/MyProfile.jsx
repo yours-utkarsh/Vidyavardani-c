@@ -66,7 +66,7 @@ const MyProfile = () => {
           </div>
 
           <p
-            className={`${user?.profile?.about ? "text-richblack-5" : "text-richblack-400"} text-sm font-medium`}
+            className={`${user?.additionalDetails?.about ? "text-richblack-5" : "text-richblack-400"} text-sm font-medium`}
           >
             {user?.additionalDetails?.about ||
               "Write something about yourself!"}
@@ -108,7 +108,7 @@ const MyProfile = () => {
 
           <div className='w-full md:w-1/2'>
             <p className='mb-2 text-sm text-richblack-600'>Phone Number</p>
-            <p className={`text-sm font-medium ${user?.profile?.contactNumber ? 'text-richblack-5' : 'text-richblack-400'} `} >{user?.profile?.contactNumber ?? 'Add Contact Number'}</p>
+            <p className={`text-sm font-medium ${user?.additionalDetails?.contactNumber ? 'text-richblack-5' : 'text-richblack-400'} `} >{user?.additionalDetails?.contactNumber ?? 'Add Contact Number'}</p>
           </div>
         </div>
 
@@ -116,12 +116,12 @@ const MyProfile = () => {
         <div className='flex flex-col md:flex-row gap-y-5'>
           <div className='w-full md:w-1/2'>
             <p className='mb-2 text-sm text-richblack-600'>Gender</p>
-            <p className={`text-sm font-medium ${user?.profile?.gender ? 'text-richblack-5' : 'text-richblack-400'} `} >{user?.profile?.gender ?? 'Add Gender'}</p>
+            <p className={`text-sm font-medium ${user?.additionalDetails?.gender ? 'text-richblack-5' : 'text-richblack-400'} `} >{user?.additionalDetails?.gender ?? 'Add Gender'}</p>
           </div>
 
           <div className='w-full md:w-1/2'>
             <p className='mb-2 text-sm text-richblack-600'>Date of Birth</p>
-            <p className={`text-sm font-medium ${user?.profile?.dob ? 'text-richblack-5' : 'text-richblack-400'} `} >{user?.profile?.dob ? formattedDate(user?.profile?.dob) : 'Add Date of Birth'}</p>
+            <p className={`text-sm font-medium ${user?.additionalDetails?.dob ? 'text-richblack-5' : 'text-richblack-400'} `} >{user?.additionalDetails?.dob ? formattedDate(user?.additionalDetails?.dob) : 'Add Date of Birth'}</p>
           </div>
         </div>
       </div>
