@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { RiEditBoxLine } from "react-icons/ri";
 import { formattedDate } from "../../../Util/formattedDate";
 
-const MyProfile = ({}) => {
+const MyProfile = () => {
   const { user } = useSelector((state) => state.profile);
   const navigate = useNavigate();
 
