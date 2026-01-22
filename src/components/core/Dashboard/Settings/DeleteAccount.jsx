@@ -36,7 +36,12 @@ console.log(" Error Message Delete Account:", error.message )
             </p>
           </div>
 
-         
+          <button
+            type='button'
+            onClick={() => deletHandler()}
+            className='hidden md:block tracking-wider w-fit cursor-pointer italic bg-pink-700 py-1 px-3 rounded-md text-pink-200'>
+            I want to delete my account
+          </button>
         </div>
         
       </div>
