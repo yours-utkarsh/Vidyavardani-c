@@ -29,35 +29,8 @@ export default function ChangeProfilePicture() {
     }
   }
 
-  const previewFile = (file) => {
-    const reader = new FileReader()
-    
-    reader.readAsDataURL(file)
-    reader.onloadend = () => {
-      setPreviewSource(reader.result)
-    }
-  }
-
-  const handleFileUpload = () => {
-    try {
-      console.log("uploading...")
-      setLoading(true)
-      const formData = new FormData()
-      formData.append("displayPicture", imageFile)
-      dispatch(updateDisplayPicture(token, formData)).then(() => {
-        setLoading(false)
-      })
-    } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
-    }
-  }
-
-  useEffect(() => {
-    if (imageFile) {
-      previewFile(imageFile)
-    }
-  }, [imageFile])
-
+ 
+ 
 
   return (
 
