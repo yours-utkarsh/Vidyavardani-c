@@ -46,7 +46,14 @@ console.log(" Error Message Delete Account:", error.message )
         
       </div>
       {/* button  */}
-       
+        <div className='mt-5 grid place-items-center'>
+        <button
+          type='button'
+          onClick={() => deletHandler()}
+          className='md:hidden tracking-wider w-fit cursor-pointer italic bg-pink-700 py-1 px-3 rounded-md text-pink-200'>
+          I want to delete my account
+        </button>
+      </div>
 
       </div>
     
