@@ -31,6 +31,7 @@ export default function ChangeProfilePicture() {
 
   const previewFile = (file) => {
     const reader = new FileReader()
+    
     reader.readAsDataURL(file)
     reader.onloadend = () => {
       setPreviewSource(reader.result)

@@ -97,7 +97,7 @@ const Navbar = () => {
 
         {/* login/signup/dashboard  */}
 
-        <div className="hidden md:flex gap-x-4 items-center">
+        <div className="hidden md:flex gap-x-4 items-center text-white">
           {user && user?.accountType !== "Instructor" && (
             <Link to="/dashboard/cart" className="relative">
               <IoCartOutline />
