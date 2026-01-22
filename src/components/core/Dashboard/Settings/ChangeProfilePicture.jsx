@@ -31,6 +31,12 @@ export default function ChangeProfilePicture() {
 
  
  
+  useEffect(() => {
+    if (imageFile) {
+      previewFile(imageFile)
+    }
+  }, [imageFile])
+
 
   return (
 
