@@ -1,12 +1,12 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import {deleteProfile} from "../../../../services/operations/settingsAPI"
 
 const DeleteAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const {token} = useSelector((state) => state.auth)
 
  async function deletHandler(){
   try{
@@ -18,7 +18,7 @@ console.log(" Error Message Delete Account:", error.message )
  }
 
   return (
-    <div>
+    <div className='text-white'>
       <div>
 
       <div>
