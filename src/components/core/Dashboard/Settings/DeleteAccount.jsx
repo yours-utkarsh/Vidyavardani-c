@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import {deleteProfile} from "../../../../services/operations/settingsAPI"
+import { FiTrash2 } from 'react-icons/fi';
 
 const DeleteAccount = () => {
   const dispatch = useDispatch();
@@ -18,24 +19,32 @@ console.log(" Error Message Delete Account:", error.message )
  }
 
   return (
-    <div className='text-white'>
-      <div>
+     <div className=' mt-7 rounded-md border border-pink-700 bg-pink-900 p-8 px-5 md:px-12' >
+      
 
-      <div>
+     <div className='flex gap-x-5 ' >
+        <div className='grid place-items-center aspect-square h-14 w-14  rounded-full bg-pink-700' >
+         
+        </div>
 
+        <div className='flex flex-col space-y-2 ' >
+          <h2 className='text-lg font-semibold text-richblack-5 uppercase tracking-wider'>Delete Account</h2>
+          <div className='lg:w-full text-pink-25 space-y-1 lg:text-lg text-md tracking-wider' >
+            <p>Would you like to delete account?</p>
+            <p className='tracking-wider lg:text-base text-md'>
+              This account may contain paid courses. Deleting your account is permanent and will remove all the contain associated with it.
+            </p>
+          </div>
+
+         
+        </div>
+        
       </div>
-
       {/* button  */}
-      <div>
-        <button 
-        onClick={deletHandler}
-        >
-          I want to delete my account
-        </button>
-      </div>
+       
 
       </div>
-    </div>
+    
   )
 }
 
