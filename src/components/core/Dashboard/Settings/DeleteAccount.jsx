@@ -24,7 +24,7 @@ console.log(" Error Message Delete Account:", error.message )
 
      <div className='flex gap-x-5 ' >
         <div className='grid place-items-center aspect-square h-14 w-14  rounded-full bg-pink-700' >
-         
+          <FiTrash2 className='text-3xl text-pink-200' />
         </div>
 
         <div className='flex flex-col space-y-2 ' >
