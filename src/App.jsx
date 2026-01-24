@@ -13,6 +13,7 @@ import VerifyEmail from "./pages/VerifyEmail.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import MyProfile from "./components/core/Dashboard/MyProfile.jsx";
 import Settings from "./components/core/Dashboard/Settings/Settings.jsx";
+import About from "./pages/About.jsx";
 
 
 function App() {
@@ -22,6 +23,14 @@ function App() {
     <Routes>
    <Route path="/" element={<Home/>} />
    
+   <Route
+   path="about"
+   element={
+    <OpenRoute>
+     <About/>
+    </OpenRoute>
+   }
+   />
    <Route
    path="signup"
    element={
