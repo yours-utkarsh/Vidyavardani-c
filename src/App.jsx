@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import MyProfile from "./components/core/Dashboard/MyProfile.jsx";
 import Settings from "./components/core/Dashboard/Settings/Settings.jsx";
 import About from "./pages/About.jsx";
+import Contact from "./pages/Contact.jsx";
 
 
 function App() {
@@ -28,6 +29,14 @@ function App() {
    element={
     <OpenRoute>
      <About/>
+    </OpenRoute>
+   }
+   />
+   <Route
+   path="contact"
+   element={
+    <OpenRoute>
+     <Contact/>
     </OpenRoute>
    }
    />
