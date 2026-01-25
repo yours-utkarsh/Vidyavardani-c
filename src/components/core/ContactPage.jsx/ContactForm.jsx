@@ -103,7 +103,8 @@ const ContactForm = () => {
         <div>
           <label htmlFor="message">Message</label>
           <textarea
-           rows=
+           rows="7"
+           cols="30"
             name="message"
             id="message"
             placeholder="Enter your message "
@@ -120,7 +121,10 @@ const ContactForm = () => {
 
 
 
-
+          <button
+          >
+            Send Message
+          </button>
 
 
     </form>
