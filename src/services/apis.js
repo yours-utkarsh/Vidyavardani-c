@@ -70,7 +70,7 @@ export const catalogData = {
 
 // CATALOG PAGE DATA
 export const contactusEndpoint = {
-  CATALOGPAGEDATA_API: BASE_URL + "/api/v1/reach/contact",
+  CONTACT_US_API: BASE_URL + "/api/v1/reach/contact",
 };
 
 
