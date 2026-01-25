@@ -13,7 +13,7 @@ const Contact = () => {
           <ContactDetails />
         </div>
 
-        <div>
+         <div className="lg:w-[60%]">
           <ContactPageForm />
         </div>
       </div>
