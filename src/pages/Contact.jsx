@@ -18,6 +18,9 @@ const Contact = () => {
         </div>
       </div>
 
+      {/* Review Section */}
+
+
       {/* footer  */}
       <Footer />
     </div>
