@@ -10,8 +10,8 @@ const ContactForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors , isSubmitSuccessful }
-  } = useForm()
+    formState: { errors, isSubmitSuccessful },
+  } = useForm();
 
   const submitContactForm = async (data) => {
     try {
@@ -25,23 +25,64 @@ const ContactForm = () => {
   };
 
   useEffect(() => {
-    if(isSubmitSuccessful){
-        reset({
-            firstName : "",
-            lastName : "",
-            eamil : "",
-            message : "",
-            phoneNo : "",
-        })
+    if (isSubmitSuccessful) {
+      reset({
+        firstName: "",
+        lastName: "",
+        eamil: "",
+        message: "",
+        phoneNo: "",
+      });
     }
-
-  } , [reset , isSubmitSuccessful])
+  }, [reset, isSubmitSuccessful]);
 
   return (
-    <form action="">
-        
+    <form
+      className="flex flex-col gap-7"
+      onSubmit={handleSubmit(submitContactForm)}
+    >
+      {/* name  */}
+      <div>
+        {/* first name  */}
+        <div>
+          <label htmlFor="firstName">First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder="Enter your First Name"
+            className="form-style"
+            {...register("firstName", { required: true })}
+          />
+
+          {errors.firstName && (
+            <span className="-mt-1 text-[12px] text-yellow-100">
+              Please enter your name.
+            </span>
+          )}
+        </div>
+
+        {/* lastName  */}
+          <div>
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder="Enter your Last Name"
+            className="form-style"
+            {...register("lastName")}
+          />
+
+         
+        </div>
+      </div>
+      
+
+
+
     </form>
-  )
+  );
 };
 
 export default ContactForm;
