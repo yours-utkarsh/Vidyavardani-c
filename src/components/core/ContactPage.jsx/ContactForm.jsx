@@ -77,7 +77,49 @@ const ContactForm = () => {
          
         </div>
       </div>
-      
+
+       {/* email  */}
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your Email "
+            className="form-style"
+            {...register("email", { required: true })}
+          />
+
+          {errors.email && (
+            <span className="-mt-1 text-[12px] text-yellow-100">
+              Please enter email
+            </span>
+          )}
+        </div>
+
+
+
+          {/* email  */}
+        <div>
+          <label htmlFor="message">Message</label>
+          <textarea
+           rows=
+            name="message"
+            id="message"
+            placeholder="Enter your message "
+            className="form-style"
+            {...register("message", { required: true })}
+          />
+
+          {errors.message && (
+            <span className="-mt-1 text-[12px] text-yellow-100">
+              Please enter email
+            </span>
+          )}
+        </div>
+
+
+
 
 
 
