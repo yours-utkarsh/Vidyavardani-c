@@ -98,8 +98,23 @@ const ContactForm = () => {
         </div>
 
 
+        {/* Country Code  */}
+        
+        <div>
+          {/* code  */}
+          <div>
 
-          {/* email  */}
+          </div>
+
+          {/* field  */}
+          <div>
+
+          </div>
+        </div>
+
+
+
+          {/* message  */}
         <div>
           <label htmlFor="message" className="lable-style">Message</label>
           <textarea
@@ -114,10 +129,12 @@ const ContactForm = () => {
 
           {errors.message && (
             <span className="-mt-1 text-[12px] text-yellow-100">
-              Please enter email
+              Message
             </span>
           )}
         </div>
+
+
 
 
 
