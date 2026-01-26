@@ -43,10 +43,10 @@ const ContactForm = () => {
       onSubmit={handleSubmit(submitContactForm)}
     >
       {/* name  */}
-      <div>
+      <div className="flex flex-col gap-5 lg:flex-row">
         {/* first name  */}
-        <div>
-          <label htmlFor="firstName" className="lable-style">
+        <div className="flex flex-col gap-2 lg:w-[48%]">
+          <label htmlFor="firstname" className="lable-style">
             First Name
           </label>
           <input
@@ -66,8 +66,9 @@ const ContactForm = () => {
         </div>
 
         {/* lastName  */}
-        <div>
-          <label htmlFor="lastName">Last Name</label>
+       <div className="flex flex-col gap-2 lg:w-[48%]">
+          <label htmlFor="lastname" className="lable-style">
+            Last Name</label>
           <input
             type="text"
             name="lastName"
@@ -80,8 +81,8 @@ const ContactForm = () => {
       </div>
 
       {/* email  */}
-      <div>
-        <label htmlFor="email">Email</label>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="email" className="lable-style">Email</label>
         <input
           type="email"
           name="email"
@@ -100,14 +101,14 @@ const ContactForm = () => {
 
       {/* Country Code  */}
 
-      <div>
+      <div className="flex flex-col gap-2">
         <label htmlFor="phonenumber" className="lable-style">
           Phone Number
         </label>
 
-        <div>
+          <div className="flex gap-5">
           {/* code  */}
-          <div>
+         <div className="flex w-[81px] flex-col gap-2">
             <select
               type="text"
               
@@ -128,7 +129,7 @@ const ContactForm = () => {
           </div>
 
           {/* field  */}
-          <div>
+        <div className="flex w-[calc(100%-90px)] flex-col gap-2">
             <input
               text="number"
               name="phonenumber"
@@ -154,7 +155,7 @@ const ContactForm = () => {
       </div>
 
       {/* message  */}
-      <div>
+       <div className="flex flex-col gap-2">
         <label htmlFor="message" className="lable-style">
           Message
         </label>
