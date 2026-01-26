@@ -201,10 +201,16 @@ The modern educational landscape dictates its own terms. Today, being a competit
 
       {/* Section - 3 */}
 
-      <div className="">
+       <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
+        {/* Become a instructor section */}
         <InstructorSection />
-        <h2> Review From Other </h2>
-      </div>
+
+        {/* Reviws from Other Learner */}
+        {/* <h1 className="text-center text-4xl font-semibold mt-8">
+          Reviews From Other Learner
+        </h1>
+        <ReviewSlider /> */}
+        </div>
 
       {/* Section - 4 */}
       {/* Footer */}
