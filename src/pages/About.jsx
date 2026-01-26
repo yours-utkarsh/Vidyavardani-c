@@ -6,6 +6,8 @@ import Footer from "../components/common/Footer"
 import Quote from "../components/core/AboutPage/Quote"
 import HighlightText from "../components/core/HomePage/HighlightText"
 import StatsComponenet from "../components/core/AboutPage/stats"
+import LearningGrid from "../components/core/AboutPage/LearningGrid"
+import ContactFormSection from "../components/core/AboutPage/ContactFormSection"
 
 const About = () => {
   return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { apiConnector } from "../../../services/apiconnector";
 import { contactusEndpoint } from "../../../services/apis";
 import { useForm } from "react-hook-form";
-import { countryCode } from "../../../data/countrycode.json";
+import  countryCode from "../../../data/countrycode.json";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
