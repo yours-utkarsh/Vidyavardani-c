@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { apiConnector } from "../../../services/apiconnector";
 import { contactusEndpoint } from "../../../services/apis";
 import { useForm } from "react-hook-form";
-import {countryCode} from "../../../data/countrycode.json"
+import { countryCode } from "../../../data/countrycode.json";
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -46,7 +46,9 @@ const ContactForm = () => {
       <div>
         {/* first name  */}
         <div>
-          <label htmlFor="firstName" className="lable-style">First Name</label>
+          <label htmlFor="firstName" className="lable-style">
+            First Name
+          </label>
           <input
             type="text"
             name="firstName"
@@ -64,7 +66,7 @@ const ContactForm = () => {
         </div>
 
         {/* lastName  */}
-          <div>
+        <div>
           <label htmlFor="lastName">Last Name</label>
           <input
             type="text"
@@ -74,110 +76,114 @@ const ContactForm = () => {
             className="form-style"
             {...register("lastName")}
           />
-
-         
         </div>
       </div>
 
-       {/* email  */}
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter your Email "
-            className="form-style"
-            {...register("email", { required: true })}
-          />
+      {/* email  */}
+      <div>
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter your Email "
+          className="form-style"
+          {...register("email", { required: true })}
+        />
 
-          {errors.email && (
-            <span className="-mt-1 text-[12px] text-yellow-100">
-              Please enter email
-            </span>
-          )}
-        </div>
+        {errors.email && (
+          <span className="-mt-1 text-[12px] text-yellow-100">
+            Please enter email
+          </span>
+        )}
+      </div>
 
+      {/* Country Code  */}
 
-        {/* Country Code  */}
-        
+      <div>
+        <label htmlFor="phonenumber" className="lable-style">
+          Phone Number
+        </label>
+
         <div>
           {/* code  */}
-          <label htmlFor="phonenumber" className="lable-style" >
-            Phone Number
-          </label>
           <div>
-          <select
-          type="text"
-
-          {...register("countryCode" , {required: true})}
-          >
-            {
-              countryCode.map((item , key) => { 
+            <select
+              type="text"
+              
+              name="countryCode"
+              id="countryCode"
+              placeholder="Enter country Code name"
+              className="form-style"
+              {...register("countryCode", { required: true })}
+            >
+              {countryCode.map((item, key) => {
                 return (
-
-                  <option key ={key } value={item.code}>
+                  <option key={key} value={item.code}>
                     {item.code} - {item.country}
                   </option>
-
-                )
-
-                
-})
-            }
-          </select>
+                );
+              })}
+            </select>
           </div>
 
           {/* field  */}
           <div>
             <input
-            
+              text="number"
+              name="phonenumber"
+              id="phonenumber"
+              placeholder="12345 67890"
+              className="form-style"
+              {...register("phoneno", {
+                required: {
+                  value: true,
+                  message: "Please enter your phone number",
+                },
+                minLength: { value: 12, message: "Invalid Phone No." },
+                maxLength: { value: 10, message: "Invalid Phone No." },
+              })}
             />
-            {
-
-            }
           </div>
         </div>
+        {errors.phoneNo && (
+          <span className="-mt-1 text-[12px] text-yellow-100">
+            {errors.phoneNo.message}
+          </span>
+        )}
+      </div>
 
+      {/* message  */}
+      <div>
+        <label htmlFor="message" className="lable-style">
+          Message
+        </label>
+        <textarea
+          rows="7"
+          cols="30"
+          name="message"
+          id="message"
+          placeholder="Enter your message "
+          className="form-style"
+          {...register("message", { required: true })}
+        />
 
+        {errors.message && (
+          <span className="-mt-1 text-[12px] text-yellow-100">Message</span>
+        )}
+      </div>
 
-          {/* message  */}
-        <div>
-          <label htmlFor="message" className="lable-style">Message</label>
-          <textarea
-           rows="7"
-           cols="30"
-            name="message"
-            id="message"
-            placeholder="Enter your message "
-            className="form-style"
-            {...register("message", { required: true })}
-          />
-
-          {errors.message && (
-            <span className="-mt-1 text-[12px] text-yellow-100">
-              Message
-            </span>
-          )}
-        </div>
-
-
-
-
-
-          <button
-          disabled={loading}
-          type="submit"
-           className={`rounded-md bg-yellow-50 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
+      <button
+        disabled={loading}
+        type="submit"
+        className={`rounded-md bg-yellow-50 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
          ${
            !loading &&
            "transition-all duration-200 hover:scale-95 hover:shadow-none"
          }  disabled:bg-richblack-500 sm:text-[16px] `}
-          >
-            Send Message
-          </button>
-
-
+      >
+        Send Message
+      </button>
     </form>
   );
 };
