@@ -171,6 +171,32 @@ The modern educational landscape dictates its own terms. Today, being a competit
         <TimeLineSection />
         <LearningLanguageSection />
 
+        {/* View All Courses Section */}
+          <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-center gap-8 mt-16">
+            <div className="text-center">
+              <h2 className="text-4xl font-semibold mb-4">
+                Ready to Start Learning?
+              </h2>
+              <p className="text-lg text-richblack-300 mb-8">
+                Explore our comprehensive course catalog and begin your learning journey today
+              </p>
+              <div className="flex flex-row gap-7 justify-center">
+                <CTAButton active={true} linkto={"/courses"}>
+                  <div className="flex items-center gap-2">
+                    Browse All Courses
+                    <FaArrowRight />
+                  </div>
+                </CTAButton>
+                <CTAButton  active={false} linkto={"/signup"}>
+                <span className="text-white">
+
+                  Get Started Free
+                </span>
+                </CTAButton>
+              </div>
+            </div>
+          </div>
+
       </div>
 
       {/* Section - 3 */}
