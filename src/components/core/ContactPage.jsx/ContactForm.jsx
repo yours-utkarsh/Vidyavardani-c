@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { apiConnector } from "../../../services/apiconnector";
 import { contactusEndpoint } from "../../../services/apis";
 import { useForm } from "react-hook-form";
+import {countryCode} from "../../../data/countrycode.json"
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -102,13 +103,39 @@ const ContactForm = () => {
         
         <div>
           {/* code  */}
+          <label htmlFor="phonenumber" className="lable-style" >
+            Phone Number
+          </label>
           <div>
+          <select
+          type="text"
 
+          {...register("countryCode" , {required: true})}
+          >
+            {
+              countryCode.map((item , key) => { 
+                return (
+
+                  <option key ={key } value={item.code}>
+                    {item.code} - {item.country}
+                  </option>
+
+                )
+
+                
+})
+            }
+          </select>
           </div>
 
           {/* field  */}
           <div>
+            <input
+            
+            />
+            {
 
+            }
           </div>
         </div>
 
