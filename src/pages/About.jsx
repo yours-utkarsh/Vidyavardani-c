@@ -5,6 +5,7 @@ import BannerImage3 from "../asset/Image/aboutus3.webp"
 import Footer from "../components/common/Footer"
 import Quote from "../components/core/AboutPage/Quote"
 import HighlightText from "../components/core/HomePage/HighlightText"
+import StatsComponenet from "../components/core/AboutPage/stats"
 
 const About = () => {
   return (
