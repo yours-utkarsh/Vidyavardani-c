@@ -100,7 +100,8 @@ const About = () => {
       </section>
 
       <StatsComponenet />
-      <section className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-white">
+     
+      <section className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col  items-center  text-white">
         <LearningGrid />
         <ContactFormSection />
       </section>
