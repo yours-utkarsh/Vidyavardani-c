@@ -8,7 +8,7 @@ const ProfileDropdown = () => {
     <div className='text-white'>
       <button onClick={()=> navigate("/dashboard/my-profile")} >
 
-      Utkarsh
+      Utkarsh gupta
       </button>
     </div>
   )
