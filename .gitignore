@@ -27,3 +27,7 @@ lerna-debug.log*
 *.suo
 *.ntvs*
 todo
+
+*.log
+logs
+.env
