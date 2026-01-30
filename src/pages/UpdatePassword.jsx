@@ -81,6 +81,8 @@ const UpdatePassword = () => {
                 name="confirmPassword"
                 value={confirmPassword}
                 onChange={handleOnChange}
+                                className="form-style w-full !pr-10"
+
               />
                <span onClick={() => setShowConfirmPassword((prev) => !prev)} 
                  className="absolute right-3 top-[38px] z-[10] cursor-pointer"
