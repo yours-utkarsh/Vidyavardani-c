@@ -52,9 +52,10 @@ export function signup(
         throw new Error(response.data.message);
       }
       toast.success("Signup successful");
-      navigate("/dashboard");
+      navigate("/login");
     } catch (error) {
-      toast.error("signup failed");
+      console.log("SIGNUP API ERROR............", error);
+      toast.error(error.response?.data?.message || "Signup failed");
       navigate("/signup");
     }
 
