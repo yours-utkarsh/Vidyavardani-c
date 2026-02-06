@@ -121,7 +121,7 @@ const MyProfile = () => {
 
           <div className='w-full md:w-1/2'>
             <p className='mb-2 text-sm text-richblack-600'>Date of Birth</p>
-            <p className={`text-sm font-medium ${user?.additionalDetails?.dob ? 'text-richblack-5' : 'text-richblack-400'} `} >{user?.additionalDetails?.dob ? formattedDate(user?.additionalDetails?.dob) : 'Add Date of Birth'}</p>
+            <p className={`text-sm font-medium ${user?.additionalDetails?.dateOfBirth ? 'text-richblack-5' : 'text-richblack-400'} `} >{user?.additionalDetails?.dateOfBirth ? formattedDate(user?.additionalDetails?.dateOfBirth) : 'Add Date of Birth'}</p>
           </div>
         </div>
       </div>
