@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import { getUserDetails } from "./services/operations/profileAPI.js";
 import InstructorSection from "./components/core/HomePage/InstructorSection.jsx";
 import { ACCOUNT_TYPE } from "./Util/constants.js";
+import MyCourses from "./components/core/Dashboard/Mycourses.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -104,9 +105,9 @@ function App() {
           <Route path="dashboard/instructor" element={
             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? <InstructorSection /> : <Error />
           } />
-          {/* <Route path="dashboard/my-courses" element={
+          <Route path="dashboard/my-courses" element={
             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? <MyCourses /> : <Error />
-          } /> */}
+          } />
           {/* <Route path="dashboard/add-course" element={
             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? <AddCourse /> : <Error />
           } />
