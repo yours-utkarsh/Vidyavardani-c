@@ -58,11 +58,12 @@ export function updateProfile(token, formData) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
-      const userImage = response.data.updatedUserDetails.image
-        ? response.data.updatedUserDetails.image
-        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.updatedUserDetails.firstName} ${response.data.updatedUserDetails.lastName}`
+      const userImage = response.data.user.image
+        ? response.data.user.image
+        : `https://api.dicebear.com/5.x/initials/svg?seed=${encodeURIComponent(`${response.data.user.firstName} ${response.data.user.lastName}`)}`
+      
       dispatch(
-        setUser({ ...response.data.updatedUserDetails, image: userImage })
+        setUser({ ...response.data.user, image: userImage })
       )
       toast.success("Profile Updated Successfully")
     } catch (error) {
@@ -97,6 +98,7 @@ export async function changePassword(token, formData) {
 export function deleteProfile(token, navigate) {
   return async (dispatch) => {
     setLoading(true);
+    
     try {
       const response = await apiConnector("DELETE", DELETE_PROFILE_API, null, {
         Authorization: `Bearer ${token}`,
