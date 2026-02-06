@@ -25,10 +25,10 @@ export function getUserDetails(token, navigate) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
-      const userImage = response.data.data.image
-        ? response.data.data.image
-        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.data.firstName} ${response.data.data.lastName}`
-      dispatch(setUser({ ...response.data.data, image: userImage }))
+      const userImage = response.data.user.image
+        ? response.data.user.image
+        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
+      dispatch(setUser({ ...response.data.user, image: userImage }))
     } catch (error) {
       dispatch(logout(navigate))
       toast.error("Could Not Get User Details")
