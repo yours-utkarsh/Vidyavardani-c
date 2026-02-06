@@ -9,6 +9,31 @@ import IconBtn from "../../../common/IconBtn"
 const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
 
 const UpdateProfile = () => {
+
+    
+  const { user } = useSelector((state) => state.profile)
+  const { token } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const submitProfileForm = async (data) => {
+    // console.log("Form Data - ", data)
+    try {
+      setLoading(true)
+      dispatch(updateProfile(token, data))
+      setLoading(false)
+    } catch (error) {
+      console.log("ERROR MESSAGE - ", error.message)
+      setLoading(false)
+    }
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit(submitProfileForm)}>
