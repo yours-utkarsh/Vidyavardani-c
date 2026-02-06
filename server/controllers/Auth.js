@@ -71,6 +71,7 @@ exports.signUp = async (req, res) =>{
             otp
         } = req.body;
 
+        console.log("Signup request body:", { firstName, lastName, email, accountType, otp: otp ? "provided" : "missing" });
 
         // validation 
         if(!firstName || !lastName || !email || !password || !confirmPassword || !accountType  || !otp){
