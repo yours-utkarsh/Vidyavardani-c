@@ -92,7 +92,7 @@ export async function changePassword(token, formData) {
 }
 
 
-// , delete profile
+// delete profile
 
 export function deleteProfile(token, navigate) {
   return async (dispatch) => {
