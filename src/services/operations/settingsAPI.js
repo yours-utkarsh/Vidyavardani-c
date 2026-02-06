@@ -45,6 +45,8 @@ export function updateDisplayPicture(token, formData) {
   };
 }
 
+// update profile
+
 export function updateProfile(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
