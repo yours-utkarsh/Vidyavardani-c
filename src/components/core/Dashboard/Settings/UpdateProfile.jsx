@@ -1,4 +1,12 @@
-import React from 'react'
+import { useForm } from "react-hook-form"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+
+import { updateProfile } from "../../../../Service/Operation/SettingsAPI"
+
+import { useState } from "react"
+import IconBtn from "../../../common/IconBtn"
+const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
 
 const UpdateProfile = () => {
   return (
