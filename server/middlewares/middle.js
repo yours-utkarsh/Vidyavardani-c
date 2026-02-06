@@ -51,6 +51,7 @@ exports.isStudent = async (req, res, next) => {
         message: "This is a protected route for students only",
       });
     }
+    next();
   } catch (error) {
     return res.status(500).json({
       success: false,
