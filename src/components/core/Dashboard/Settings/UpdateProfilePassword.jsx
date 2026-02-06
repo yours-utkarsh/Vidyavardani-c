@@ -12,6 +12,7 @@ const UpdateProfilePassword = () => {
   const navigate = useNavigate()
   const [showOldPassword, setShowOldPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showNewConfirmPassword, setShowNewConfirmPassword] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const {
@@ -79,7 +80,7 @@ const UpdateProfilePassword = () => {
               <input
                 name='newPassword'
                 id='newPassword'
-                placeholder='Enter Current Password'
+                placeholder='Enter New Password'
                 type={showNewPassword ? 'text' : 'password'}
                 className='form-style !pr-12 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider'
                 {...register('newPassword', {
@@ -108,9 +109,43 @@ const UpdateProfilePassword = () => {
               }
             </div>
 
-            confirm pasword
+            {/* confirm password*/}
+
+                <div className='relative flex flex-col gap-x-2 w-full' >
+              <label htmlFor="confirmNewPassword" className='label-style uppercase tracking-wider mb-1' >confirm Password <span className='text-pink-100'>*</span></label>
+              <input
+                name='confirmNewPassword'
+                id='confirmNewPassword'
+                placeholder='Enter New Confirm Password'
+                type={showNewConfirmPassword ? 'text' : 'password'}
+                className='form-style !pr-12 placeholder:uppercase placeholder:text-sm placeholder:tracking-wider'
+                {...register('confirmNewPassword', {
+                  required: {
+                    value: true,
+                    message: 'Please enter your New Confirm Password'
+                  },
+                  minLength: {
+                    value: 6,
+                    message: 'Password length must be atleast 6'
+                  }
+                })}
+              />
+
+              <span onClick={() => setShowNewConfirmPassword(prev => !prev)} className='absolute right-3 top-[38px] cursor-pointer' >
+                {
+                  showNewConfirmPassword ?
+                    <AiOutlineEyeInvisible fontSize={24} fill='#AFB2BF' />
+                    :
+                    <AiOutlineEye fontSize={24} fill='#AFB2BF' />
+                }
+              </span>
+
+              {
+                errors.newConfirmPassword && <p className='input-error-style' >{errors.newConfirmPassword?.message}</p>
+              }
+            </div>
             
-          </div>
+                </div>
 
             </div>
 
