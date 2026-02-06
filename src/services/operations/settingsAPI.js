@@ -72,6 +72,8 @@ export function updateProfile(token, formData) {
   }
 }
 
+//  change password
+
 export async function changePassword(token, formData) {
   const toastId = toast.loading("Loading...")
   try {
@@ -88,6 +90,9 @@ export async function changePassword(token, formData) {
   }
   toast.dismiss(toastId)
 }
+
+
+
 
 export function deleteProfile(token, navigate) {
   return async (dispatch) => {
