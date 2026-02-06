@@ -3,8 +3,34 @@ import { useForm } from "react-hook-form"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { changePassword } from "../../../../services/operations/settingsAPI"
+import IconBtn from "../../../common/IconBtn"
 
 const UpdateProfilePassword = () => {
+
+     const { token } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
+  const [showOldPassword, setShowOldPassword] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const submitPasswordForm = async (data) => {
+    try {
+      setLoading(true)
+      await changePassword(token, data)
+      setLoading(false)
+    } catch (error) {
+      console.log("ERROR MESSAGE - ", error.message)
+      setLoading(false)
+    }
+  }
+
   return (
     <div>
 
@@ -81,6 +107,8 @@ const UpdateProfilePassword = () => {
                 errors.newPassword && <p className='input-error-style' >{errors.newPassword?.message}</p>
               }
             </div>
+
+            confirm pasword
             
           </div>
 
