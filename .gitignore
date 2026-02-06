@@ -31,3 +31,5 @@ todo
 *.log
 logs
 .env
+.vscode/
+.github
