@@ -90,12 +90,12 @@ const UpdateProfile = () => {
                 <p className='label-style uppercase tracking-wider mb-1' >Date of Birth <span className='text-pink-100'>*</span></p>
                 <input
                   type='date'
-                  name='dob'
+                  name='dateOfBirth'
                   max={new Date().toISOString().split('T')[0]}
-                  placeholder='Enter first name'
-                  defaultValue={user?.profile?.dob?.split('T')[0]}
+                  placeholder='Enter date of birth'
+                  defaultValue={user?.profile?.dateOfBirth?.split('T')[0]}
                   className='form-style w-full '
-                  {...register('dob', {
+                  {...register('dateOfBirth', {
                     required: {
                       value: true,
                       message: 'Please enter your Date of Birth'
@@ -108,7 +108,7 @@ const UpdateProfile = () => {
                 />
 
                 {
-                  errors.dob && <p className='input-error-style' >{errors.dob.message}</p>
+                  errors.dateOfBirth && <p className='input-error-style' >{errors.dateOfBirth.message}</p>
                 }
               </label>
 
