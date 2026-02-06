@@ -106,12 +106,12 @@ exports.signUp = async (req, res) =>{
         console.log('this is a generated otp' , response)
         // validate otp 
       
-if (!response || response.otp !== otp) {
-  return res.status(400).json({
-    success: false,
-    message: "The OTP is not valid",
-  });
-}
+        if (!response || response.otp.toString() !== otp.toString()) {
+          return res.status(400).json({
+            success: false,
+            message: "The OTP is not valid",
+          });
+        }
 
         // hash password
         const hashedPassword = await bcrypt.hash(password , 10);
@@ -143,9 +143,11 @@ if (!response || response.otp !== otp) {
     }
     catch(error){
         console.log("Error in signup controller" , error);
+        console.log("Error message:", error.message);
+        console.log("Error stack:", error.stack);
         return res.status(500).json({
             success: false,
-            message: "Error in signup",
+            message: error.message || "Error in signup",
         });
     }
 }
