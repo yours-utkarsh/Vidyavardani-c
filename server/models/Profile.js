@@ -7,7 +7,7 @@ const  profileSchema = new mongoose.Schema({
   contactNumber : {
 
     type: String,
-    required: true,
+    
   },
 
     dateOfBirth : {
