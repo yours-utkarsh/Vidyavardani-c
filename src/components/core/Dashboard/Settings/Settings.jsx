@@ -1,6 +1,8 @@
 import React from 'react'
 import ChangeProfilePicture from './ChangeProfilePicture'
 import DeleteAccount from './DeleteAccount'
+import UpdateProfilePassword from './UpdateProfilePassword'
+
 
 const Settings = () => {
   return (
@@ -8,8 +10,8 @@ const Settings = () => {
       <h1 className='font-medium text-richblack-5 text-3xl mb-5 uppercase tracking-wider lg:text-left text-center' >Edit Profile</h1>
 
       <ChangeProfilePicture/>
-
-
+      {/* <UpdateProfile/> */}
+      <UpdateProfilePassword/>
       <DeleteAccount/>
       
     </div>
