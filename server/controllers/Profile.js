@@ -36,10 +36,15 @@ exports.updateProfile = async (req , res) => {
 
         await profileDetails.save();
 
+        // Fetch updated user with populated profile
+        const updatedUser = await User.findById(userId)
+            .populate("additionalDetails")
+            .exec();
+
         return res.status(200).json({
             success: true,
             message: "Profile updated successfully",
-            data: profileDetails
+            user: updatedUser
         });
 
     }
