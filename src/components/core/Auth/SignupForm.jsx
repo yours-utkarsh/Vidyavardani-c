@@ -11,7 +11,7 @@ import Tab from "../../common/Tab";
 
 const SignupForm = () => {
 
-     const dispath = useDispatch()
+     const dispatch = useDispatch()
      const navigate = useNavigate()
     
         const [formData , setFormData] = useState({
@@ -48,10 +48,10 @@ const SignupForm = () => {
           confirmPassword
         };
         
-        dispath(setSignupData(signupData));
+        dispatch(setSignupData(signupData));
         
         // Send OTP to email
-        dispath(sendOtp(email, navigate));
+        dispatch(sendOtp(email, navigate));
 
         setFormData(
           {
