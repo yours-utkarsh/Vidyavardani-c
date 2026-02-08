@@ -102,7 +102,23 @@ exports.createCourse = async (req, res) => {
   }
 };
 
-
+exports.getInstructorCourses = async (req, res) => {
+  try{
+    const userId = req.user.id;
+    const instructorCourses = await Course.find({ instructor: userId });
+    return res.status(200).json({
+      success: true,
+      message: "Instructor courses fetched successfully",
+      instructorCourses,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Get instructor courses controller error",
+      error: error.message,
+    });
+  }
+};
 
 exports.getAllCourses = async (req, res) => {
   try {
@@ -198,6 +214,8 @@ exports.deleteCourse = async (req, res) => {
     });
   }
 };
+
+
 
 
 
