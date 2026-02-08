@@ -10,6 +10,7 @@ const {
     getAllCourses,
     getCourseDetails,
     deleteCourse,
+    getInstructorCourses,
 } = require("../controllers/Course");
 
 // categories Controllers Import
@@ -71,7 +72,7 @@ router.post("/deleteSubsection", auth, isInstructor, deleteSubsection);
 router.post("/addSubSection", auth, isInstructor, createSubsection);
 
 
-// router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
+router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
 
 router.get("/getAllCourses", getAllCourses);
 router.delete("/deleteCourse", auth, isInstructor, deleteCourse);
