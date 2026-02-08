@@ -108,7 +108,15 @@ const CourseInformationForm = () => {
         )}
       </div>
         {/* course tags  */}
-
+         <ChipInput
+        label="Tags"
+        name="courseTags"
+        placeholder="Enter Tags and press Enter"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        getValues={getValues}
+      />
         {/* Course thumbnail */}
 
         {/* benefits of course  */}
