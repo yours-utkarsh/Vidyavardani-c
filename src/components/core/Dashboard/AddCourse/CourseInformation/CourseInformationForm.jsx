@@ -146,6 +146,14 @@ const CourseInformationForm = () => {
       </div>
         {/* Requirement instruction  */}
 
+          <RequirementsField
+        name="courseRequirements"
+        label="Requirements/Instructions"
+        register={register}
+        setValue={setValue}
+        errors={errors}
+        getValues={getValues}
+      />
          {/* Next Button */}
 
     </form>
