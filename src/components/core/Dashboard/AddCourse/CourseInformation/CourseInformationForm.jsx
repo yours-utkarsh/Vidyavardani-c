@@ -118,7 +118,14 @@ const CourseInformationForm = () => {
         getValues={getValues}
       />
         {/* Course thumbnail */}
-
+          <Upload
+        name="courseImage"
+        label="Course Thumbnail"
+        register={register}
+        setValue={setValue}
+        errors={errors}
+        editData={editCourse ? course?.thumbnail : null}
+      />
         {/* benefits of course  */}
 
         {/* Requirement instruction  */}
