@@ -123,7 +123,25 @@ const Upload = ({
               className="flex w-full flex-col items-center p-6"
             >
             
+            {/* input  */}
+            <input {...getInputProps()} ref={inputRef} />
+            {/* icon  */}
 
+             <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
+              <FiUploadCloud className="text-2xl text-yellow-50" />
+            </div>
+
+            {/* paragraph  */}
+            <p className="mt-2 max-w-[200px] text-center text-xs text-richblack-200 uppercase tracking-wider">
+              Drag and drop an {!video ? "image" : "video"}, or click to{" "}
+              <span className="font-semibold text-yellow-50">Browse</span> a
+              file
+            </p>
+            {/* recommendation list  */}
+              <ul className="mt-10 flex list-disc justify-between space-x-12 text-center  text-xs text-richblack-200 uppercase tracking-wider">
+              <li>Aspect ratio 16:9</li>
+              <li>Recommended size 1024x576</li>
+            </ul>
             </div>
           )
         }
