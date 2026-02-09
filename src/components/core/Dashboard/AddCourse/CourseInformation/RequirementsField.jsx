@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const RequirementsField = ({
   name,
@@ -13,7 +13,39 @@ const RequirementsField = ({
   const [requirement, setRequirement] = useState("");
   const [requirementsList, setRequirementsList] = useState(
     editCourse ? course.requirements : []
-  );
+  ); 
+
+  useEffect(() => {
+    if(editCourse){
+      setRequirementsList(course?.requirements || []);
+    }
+    register(name , {
+      required: true,
+      validate: (value) => value.length > 0,
+    })
+  }, [editCourse, course]);
+
+  useEffect(() => {
+    setValue(name , requirementsList);
+  }, [requirementsList]);
+
+
+  const handleAddRequirement = () => {
+    if(requirement.trim() !== ""){
+      setRequirementsList((prev) => [...prev, requirement.trim()]);
+      setRequirement("");
+    }
+
+  }
+
+  const handleRemoveRequirement = (index) => {
+    // it is also one way to remove the requirement from the list by using filter method
+    // setRequirementsList((prev) => prev.filter((_, i) => i !== index));
+     const updatedRequirements = [...requirementsList]
+    updatedRequirements.splice(index, 1)
+    setRequirementsList(updatedRequirements)
+  }
+
 
   return (
     <div className="flex flex-col space-y-2">
