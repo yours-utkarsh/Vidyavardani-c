@@ -7,7 +7,7 @@ const Category = require("../models/Category");
 exports.createCourse = async (req, res) => {
   try {
     // fetch data from req.body
-    const { courseName, courseDescription, whatYouWillLearn, price , Tags = [], category } = req.body;
+    const { courseName, courseDescription, whatYouWillLearn, price , Tags = [], category , requirements = [] } = req.body;
     // add category to course
     const categoryDetails = await Category.findById(category);
     if(!categoryDetails){
@@ -64,7 +64,7 @@ exports.createCourse = async (req, res) => {
         instructor: instructorDetails._id,
         Tags,
         category: categoryDetails._id,
-        
+        requirements,
     })
 
     await User.findByIdAndUpdate(
@@ -190,7 +190,7 @@ exports.editCourse = async (req, res) => {
   try{
     // get data from req.body
 
-    const { courseId, courseName, courseDescription, whatYouWillLearn, price , Tags = [], category } = req.body;
+    const { courseId, courseName, courseDescription, whatYouWillLearn, price , Tags = [], category , requirements = []} = req.body;
 
      const categoryDetails = await Category.findById(category);
     if(!categoryDetails){
@@ -251,6 +251,7 @@ exports.editCourse = async (req, res) => {
         price,
         Tags,
          category: categoryDetails._id,
+        requirements,
         thumbnail: thumbnailImage.secure_url,
       },
       { new: true }
