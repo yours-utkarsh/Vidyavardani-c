@@ -43,9 +43,32 @@ const RequirementsField = ({
         requirementsList.length > 0 &&(
           <ul className="mt-2 list-inside list-disc">
            {
-            requirementsList.map(() => ())
+            requirementsList.map((requirement, index) => (
+
+              <li>
+                <span>{requirement}</span>
+
+                <button
+                type='button'
+                 className="ml-2 text-xs text-pure-greys-300 "
+                 onClick={() => handleRemoveRequirement(index)}
+                >
+                  Clear
+                </button>
+              </li>
+            ))
            }
           </ul>
+        )
+      }
+
+      {
+        errors[name] && (
+          <span
+          className="ml-2 text-xs tracking-wide text-pink-200"
+          >
+            {`${label} is required`}
+          </span>
         )
       }
       
