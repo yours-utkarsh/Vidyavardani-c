@@ -1,0 +1,43 @@
+import React from 'react'
+
+const RequirementsField = ({
+  name,
+  label,
+  register,
+  setValue,
+  errors,
+  getValues,
+}) => {
+
+  
+
+
+  return (
+    <div className="flex flex-col space-y-2">
+
+      <label className="text-sm text-richblack-5 uppercase tracking-wider" htmlFor={name}>{label}
+        <sup className="text-pink-200">*</sup>
+      </label>
+      
+      <div>
+        <input
+        type='text'
+        id={name}
+        value={requirement}
+        onChange={(e) => setRequirement(e.target.value)}
+         className="form-style w-full"
+        />
+        <button
+         type="button"
+          onClick={handleAddRequirement}
+          className="font-semibold text-yellow-50 uppercase tracking-wider"
+        >
+          Add
+        </button>
+      </div>
+      
+    </div>
+  )
+}
+
+export default RequirementsField
