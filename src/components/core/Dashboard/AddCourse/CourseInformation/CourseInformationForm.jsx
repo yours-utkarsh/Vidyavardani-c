@@ -39,9 +39,11 @@ useEffect(() => {
       setValue("courseTags", course.tag)
       setValue("courseBenefits", course.whatYouWillLearn)
       setValue("courseCategory", course.category)
-      setValue("courseRequirements", course.instructions)
+      setValue("courseRequirements", course.requirements)
       setValue("courseImage", course.thumbnail)
      }
+
+     getCategories();
 
 } , [])
 
