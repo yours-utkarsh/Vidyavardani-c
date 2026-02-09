@@ -9,8 +9,11 @@ const RequirementsField = ({
   getValues,
 }) => {
 
-  
-
+  const { editCourse , course } = useSelector((state) => state.course);
+  const [requirement, setRequirement] = useState("");
+  const [requirementsList, setRequirementsList] = useState(
+    editCourse ? course.requirements : []
+  );
 
   return (
     <div className="flex flex-col space-y-2">
