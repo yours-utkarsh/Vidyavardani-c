@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import {useForm} from "react-hook-form" 
 import Upload from '../Upload'
 import { useDispatch, useSelector } from 'react-redux';
-
+import {
+addCourseDetails,
+fetchCourseCategories
+} from "../../../../../services/operations/courseDetailsAPI"
 
 const CourseInformationForm = () => {
 const {
@@ -46,6 +49,19 @@ useEffect(() => {
      getCategories();
 
 } , [])
+
+
+const isFormUpdated = () =>{
+    // the way to fnd the intermediate value of form 
+    const currentValues = getValues()
+
+    if(
+
+    )
+        return true
+    else 
+        return false
+}
 
 
 
