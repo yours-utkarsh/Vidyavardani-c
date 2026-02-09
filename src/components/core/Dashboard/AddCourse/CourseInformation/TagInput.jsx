@@ -48,12 +48,21 @@ const TagInput = ({
     }
 
     const handleDeleteTag = (index) =>{
-        const newTags =
+        const newTags = tag.filter((_, i) => i !== index)
+        setTag(newTags)
     }
 
   return (
     <div>
       
+      {/* label  */}
+      
+      <label 
+      htmlFor={name}
+      >
+
+      </label>
+
     </div>
   )
 }
