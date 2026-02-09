@@ -38,6 +38,16 @@ const RequirementsField = ({
           Add
         </button>
       </div>
+
+      {
+        requirementsList.length > 0 &&(
+          <ul className="mt-2 list-inside list-disc">
+           {
+            requirementsList.map(() => ())
+           }
+          </ul>
+        )
+      }
       
     </div>
   )
