@@ -30,7 +30,26 @@ const TagInput = ({
         setValue(name , tag);
     }, [tag]);
 
-    const
+    const handleAddTag = (e) => {
+       if(e.key === "Enter" || e.key === ","){
+        e.preventDefault()
+
+        const tagValue = e.target.value.trim()
+        
+        if(tagValue && !tag.includes(tagValue) ){
+            const newTag = [...tag , tagValue]
+            setTag(newTag)
+            e.target.value = ""
+
+        }
+
+       }
+
+    }
+
+    const handleDeleteTag = (index) =>{
+        const newTags =
+    }
 
   return (
     <div>
