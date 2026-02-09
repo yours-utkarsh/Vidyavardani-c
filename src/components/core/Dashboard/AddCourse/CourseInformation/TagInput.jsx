@@ -26,7 +26,11 @@ const TagInput = ({
 
     } , [editCourse, course]);
 
-    useEffect(() => )
+    useEffect(() => {
+        setValue(name , tag);
+    }, [tag]);
+
+    const
 
   return (
     <div>
