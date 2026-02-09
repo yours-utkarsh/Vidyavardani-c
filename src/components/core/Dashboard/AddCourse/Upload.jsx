@@ -42,7 +42,7 @@ const Upload = ({
     }
   }
 
-  const {} = useDropzone({
+  const { getInputProps , getRootProps , isDragActive} = useDropzone({
     accept: !video
      ? { "image/*": [".jpeg", ".jpg", ".png"] }
       : { "video/*": [".mp4"] },
@@ -64,7 +64,11 @@ const Upload = ({
     <div>
        {/* label  */}
 
-      <label htmlFor=""></label>
+      <label className="text-sm text-richblack-5 uppercase tracking-wider" htmlFor={name}>
+        {label} {!viewData && 
+        <sup className="text-pink-200">*</sup>}
+      </label>
+
 
      {/* dropzone  */}
       <div
@@ -75,13 +79,52 @@ const Upload = ({
         {
           previewSource ?
           (
-            <div></div>
+             <div className="flex w-full flex-col p-6">
+              {
+                !video ? (
+                  <img
+                  src={previewSource}
+                  alt='Preview'
+                  className="h-full w-full rounded-md object-cover"
+                  />
+                )
+                :
+                (
+                  <Player
+                  aspectRatio='16:9' playsInline src={previewSource}
+
+                  />
+                )
+              }
+
+              {
+                !viewData && (
+                  <button
+                  type='button'
+                  onClick={() => {
+                    setPreviewSource("")
+                    setSelectedFile(null)
+                    setValue(name , null)
+                  }}
+                  className="mt-3 text-richblack-400 underline"
+                  >
+                    Cancel
+                  </button>
+                )
+              }
+            </div>
           )
 
           :
 
           (
-            <div></div>
+            <div
+            {...getRootProps()}
+              className="flex w-full flex-col items-center p-6"
+            >
+            
+
+            </div>
           )
         }
       </div>
