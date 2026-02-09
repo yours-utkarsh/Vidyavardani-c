@@ -17,6 +17,13 @@ const Upload = ({
   editData = null,
 }) => {
 
+  const [selectedFile , setSelectedFile] = useState(null)
+  const [previewSource , setPreviewSource] = useState(
+    viewData ? viewData : editData ? editData : ""
+  )
+
+ 
+
 
 
   return (
@@ -34,13 +41,13 @@ const Upload = ({
         {
           previewSource ?
           (
-
+            <div></div>
           )
 
           :
 
           (
-
+            <div></div>
           )
         }
       </div>
