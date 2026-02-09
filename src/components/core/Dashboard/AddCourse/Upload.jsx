@@ -43,8 +43,22 @@ const Upload = ({
   }
 
   const {} = useDropzone({
-    
+    accept: !video
+     ? { "image/*": [".jpeg", ".jpg", ".png"] }
+      : { "video/*": [".mp4"] },
+      onDrop
   })
+
+  useEffect(() => {
+    register(name , {required : true})
+
+  } , [register])
+
+
+  useEffect(() => {
+   setValue(name , selectedFile)
+
+  } , [selectedFile , setValue])
 
   return (
     <div>
