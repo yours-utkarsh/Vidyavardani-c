@@ -57,11 +57,45 @@ const TagInput = ({
       
       {/* label  */}
       
-      <label 
+      <label className="text-sm text-richblack-5 uppercase tracking-wider"
       htmlFor={name}
       >
-
+        {label}<sup className="text-pink-200">*</sup>
       </label>
+
+      {/* render field  */}
+      <div className="flex w-full flex-wrap gap-y-2">
+        {
+            tag.map((tag , index) => {
+                <div
+                key={index}
+                className="m-1 flex items-center rounded-full bg-yellow-400 px-2 py-1 text-sm text-richblack-5"
+                >
+                    {tag}
+                    <button
+                     type="button"
+              className="ml-2 focus:outline-none"
+              onClick={() => handleDeleteTag(index)}
+                    >
+                         <MdClose className="text-sm" />
+                    </button>
+
+                </div>
+            })
+        }
+
+       <input
+       id={name}
+       name = {name}
+       placeholder={placeholder}
+       onKeyDown={handleAddTag}
+        className="form-style w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
+       />
+      </div>
+
+      {
+        errors[name] && 
+      }
 
     </div>
   )
