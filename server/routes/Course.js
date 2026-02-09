@@ -10,6 +10,7 @@ const {
     getAllCourses,
     getCourseDetails,
     deleteCourse,
+    editCourse,
     getInstructorCourses,
 } = require("../controllers/Course");
 
@@ -55,6 +56,9 @@ router.post("/createCourse", auth, isInstructor, createCourse);
 
 // add section to course
 router.post("/addSection", auth, isInstructor, createSection);
+
+// edit course details
+router.post("/editCourse", auth, isInstructor, editCourse);
 
 // update a section 
 router.post("/updateSection", auth, isInstructor, updateSection);
