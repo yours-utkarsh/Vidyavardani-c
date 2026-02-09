@@ -42,6 +42,9 @@ const Upload = ({
     }
   }
 
+  const {} = useDropzone({
+    
+  })
 
   return (
     <div>
