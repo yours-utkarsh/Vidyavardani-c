@@ -61,7 +61,7 @@ const CourseInformationForm = () => {
       currentValues.courseBenefits !== course.whatYouWillLearn ||
       currentValues.courseCategory._id !== course.category._id ||
       currentValues.courseRequirements.toString() !==
-        course.instructions.toString() ||
+        course.requirements.toString() ||
       currentValues.courseImage !== course.thumbnail
     )
       return true;
