@@ -6,6 +6,7 @@ import {
 addCourseDetails,
 fetchCourseCategories
 } from "../../../../../services/operations/courseDetailsAPI"
+import toast from 'react-hot-toast';
 
 const CourseInformationForm = () => {
 const {
@@ -56,12 +57,47 @@ const isFormUpdated = () =>{
     const currentValues = getValues()
 
     if(
-
+        currentValues.CourseTitle !== course.courseName ||
+        currentValues.courseShortDesc !== course.courseDescription ||
+        currentValues.coursePrice !== course.price ||
+        currentValues.courseTags.toString() !== course.tag.toString() ||
+        currentValues.courseBenefits !== course.whatYouWillLearn ||
+        currentValues.courseCategory._id !== course.category._id ||
+         currentValues.courseRequirements.toString() !==
+      course.instructions.toString() ||
+      currentValues.courseImage !== course.thumbnail
     )
         return true
     else 
         return false
 }
+
+
+const onSubmit = async (data) => {
+    if(editCourse){
+        if(isFormUpdated()){
+
+        } else{
+        toast.error("No Changes made to the form")
+    }
+    return 
+    }
+
+    const formData = new FormData()
+    formData.append("courseName", data.courseTitle)
+    formData.append("courseDescription", data.courseShortDesc)
+    formData.append("price", data.coursePrice)
+    formData.append("tag", JSON.stringify(data.courseTags))
+    formData.append("whatYouWillLearn", data.courseBenefits)
+    formData.append("category", data.courseCategory)
+    formData.append("status", COURSE_STATUS.DRAFT)
+    formData.append("instructions", JSON.stringify(data.courseRequirements))
+    formData.append("thumbnailImage", data.courseImage)
+    setLoading(true)
+    
+    
+}
+
 
 
 
