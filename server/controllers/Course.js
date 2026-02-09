@@ -64,14 +64,14 @@ exports.createCourse = async (req, res) => {
         instructor: instructorDetails._id,
         Tags,
         category: categoryDetails._id,
-
+        
     })
 
     await User.findByIdAndUpdate(
         {_id : instructorDetails._id},
         {
             $push : {
-                courses: newCourse._id
+                courses: newCourse._id 
             }
         }
     )
@@ -185,7 +185,100 @@ exports.getCourseDetails = async (req, res) => {
   }
 }
 
-// delet course controller
+
+exports.editCourse = async (req, res) => {
+  try{
+    // get data from req.body
+
+    const { courseId, courseName, courseDescription, whatYouWillLearn, price , Tags = [], category } = req.body;
+
+     const categoryDetails = await Category.findById(category);
+    if(!categoryDetails){
+        return res.status(404).json({
+            success: false,
+            message: "Category not found"
+        });
+    }
+
+
+    // fetch thumbnail from req.files
+    const thumbnail = req.files.thumbnailImage;
+    // upload thumbnail to cloudinary
+    if(!thumbnail){
+        return res.status(400).json({
+            success: false,
+            message: "Thumbnail image is required"
+        });
+    }
+
+
+   
+
+    
+    if(!courseName || !courseDescription || !whatYouWillLearn || !price){
+        return res.status(400).json({
+            success: false,
+            message: "All fields are required"
+        });
+    }
+
+
+    
+    const userId = req.user.id;
+    const instructorDetails = await User.findById(userId);
+
+    if(!instructorDetails){
+        return res.status(404).json({
+            success: false,
+            message: "Instructor not found"
+        });
+    }
+
+
+    // upload thumbnail to cloudinary
+
+     const thumbnailImage = await uploadImageToCloudinary(
+        thumbnail, process.env.FOLDER_NAME, 200, 200
+    )
+
+    // find course by id and update
+    const updatedCourse = await Course.findByIdAndUpdate(
+      {_id: courseId},
+      {
+        courseName,
+        courseDescription,
+        whatYouWillLearn,
+        price,
+        Tags,
+         category: categoryDetails._id,
+        thumbnail: thumbnailImage.secure_url,
+      },
+      { new: true }
+    );
+
+    if(!updatedCourse){
+      return res.status(404).json({
+        success: false,
+        message: "Course not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Course updated successfully",
+      updatedCourse,
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Edit course controller error",
+      error: error.message,
+    });
+  }
+};
+
+// delete course controller
 
 exports.deleteCourse = async (req, res) => {
   try{
