@@ -1,141 +1,140 @@
-import React, { useEffect, useState } from 'react'
-import {useForm} from "react-hook-form" 
-import Upload from '../Upload'
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import Upload from "../Upload";
+import { useDispatch, useSelector } from "react-redux";
 import {
-addCourseDetails,
-fetchCourseCategories
-} from "../../../../../services/operations/courseDetailsAPI"
-import toast from 'react-hot-toast';
+  addCourseDetails,
+  fetchCourseCategories,
+} from "../../../../../services/operations/courseDetailsAPI";
+import toast from "react-hot-toast";
 
 const CourseInformationForm = () => {
-const {
+  const {
     register,
     handleSubmit,
     setValue,
     getValues,
-    formState :{errors}
-} = useForm();
+    formState: { errors },
+  } = useForm();
 
-const dispatch = useDispatch()
-const {token } = useSelector((state) => state.auth)
-const {course , editCourse} = useSelector((state) => state.course)
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+  const { course, editCourse } = useSelector((state) => state.course);
 
-const [loading , setLoading] = useState(false)
-const [courseCategories , setCourseCategories] = useState([])
+  const [loading, setLoading] = useState(false);
+  const [courseCategories, setCourseCategories] = useState([]);
 
-useEffect(() => {
-    
+  useEffect(() => {
     const getCategories = async () => {
-        setLoading(true)
+      setLoading(true);
 
-        const categories = await fetchCourseCategories()
-        if(categories.length >0){
-            setCourseCategories(categories)
-        }
-        setLoading(false)
+      const categories = await fetchCourseCategories();
+      if (categories.length > 0) {
+        setCourseCategories(categories);
+      }
+      setLoading(false);
+    };
+
+    if (editCourse) {
+      setValue("courseTitle", course.courseName);
+      setValue("courseShortDesc", course.courseDescription);
+      setValue("coursePrice", course.price);
+      setValue("courseTags", course.tag);
+      setValue("courseBenefits", course.whatYouWillLearn);
+      setValue("courseCategory", course.category);
+      setValue("courseRequirements", course.requirements);
+      setValue("courseImage", course.thumbnail);
     }
 
-     if(editCourse){
-        setValue("courseTitle", course.courseName)
-      setValue("courseShortDesc", course.courseDescription)
-      setValue("coursePrice", course.price)
-      setValue("courseTags", course.tag)
-      setValue("courseBenefits", course.whatYouWillLearn)
-      setValue("courseCategory", course.category)
-      setValue("courseRequirements", course.requirements)
-      setValue("courseImage", course.thumbnail)
-     }
+    getCategories();
+  }, []);
 
-     getCategories();
+  const isFormUpdated = () => {
+    // the way to fnd the intermediate value of form
+    const currentValues = getValues();
 
-} , [])
-
-
-const isFormUpdated = () =>{
-    // the way to fnd the intermediate value of form 
-    const currentValues = getValues()
-
-    if(
-        currentValues.CourseTitle !== course.courseName ||
-        currentValues.courseShortDesc !== course.courseDescription ||
-        currentValues.coursePrice !== course.price ||
-        currentValues.courseTags.toString() !== course.tag.toString() ||
-        currentValues.courseBenefits !== course.whatYouWillLearn ||
-        currentValues.courseCategory._id !== course.category._id ||
-         currentValues.courseRequirements.toString() !==
-      course.instructions.toString() ||
+    if (
+      currentValues.CourseTitle !== course.courseName ||
+      currentValues.courseShortDesc !== course.courseDescription ||
+      currentValues.coursePrice !== course.price ||
+      currentValues.courseTags.toString() !== course.tag.toString() ||
+      currentValues.courseBenefits !== course.whatYouWillLearn ||
+      currentValues.courseCategory._id !== course.category._id ||
+      currentValues.courseRequirements.toString() !==
+        course.instructions.toString() ||
       currentValues.courseImage !== course.thumbnail
     )
-        return true
-    else 
-        return false
-}
+      return true;
+    else return false;
+  };
 
-
-const onSubmit = async (data) => {
-    if(editCourse){
-        if(isFormUpdated()){
-
-        } else{
-        toast.error("No Changes made to the form")
-    }
-    return 
+  const onSubmit = async (data) => {
+    if (editCourse) {
+      if (isFormUpdated()) {
+      } else {
+        toast.error("No Changes made to the form");
+      }
+      return;
     }
 
-    const formData = new FormData()
-    formData.append("courseName", data.courseTitle)
-    formData.append("courseDescription", data.courseShortDesc)
-    formData.append("price", data.coursePrice)
-    formData.append("tag", JSON.stringify(data.courseTags))
-    formData.append("whatYouWillLearn", data.courseBenefits)
-    formData.append("category", data.courseCategory)
-    formData.append("status", COURSE_STATUS.DRAFT)
-    formData.append("instructions", JSON.stringify(data.courseRequirements))
-    formData.append("thumbnailImage", data.courseImage)
-    setLoading(true)
-    
-    
-}
+    const formData = new FormData();
+    formData.append("courseName", data.courseTitle);
+    formData.append("courseDescription", data.courseShortDesc);
+    formData.append("price", data.coursePrice);
+    formData.append("tag", JSON.stringify(data.courseTags));
+    formData.append("whatYouWillLearn", data.courseBenefits);
+    formData.append("category", data.courseCategory);
+    formData.append("status", COURSE_STATUS.DRAFT);
+    formData.append("instructions", JSON.stringify(data.courseRequirements));
+    formData.append("thumbnailImage", data.courseImage);
+    setLoading(true);
 
+    const result = await addCourseDetails(formData, token);
 
+    if (result) {
+      dispatch(setStep(2));
+      dispatch(setCourse(result));
+    }
 
+    setLoading(false);
+  };
 
   return (
-    <form action=""
+    <form
+      action=""
       className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6"
       onSubmit={handleSubmit(onSubmit)}
     >
+      {/* course title  */}
 
-        {/* course title  */}
+      <div className="flex flex-col space-y-2">
+        <label
+          htmlFor="courseTitle"
+          className="text-sm text-richblack-5 uppercase tracking-wider"
+        >
+          Course Title<sup className="text-pink-200">*</sup>
+        </label>
 
-        <div className="flex flex-col space-y-2">
-            <label htmlFor="courseTitle"
-            className="text-sm text-richblack-5 uppercase tracking-wider"
-            >Course Title<sup 
-            className="text-pink-200">*</sup></label>
+        <input
+          id="courseTitle"
+          placeholder="Enter course Title"
+          className="form-style w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
+          {...register("courseTitle", { required: true })}
+        >
+          {errors.CourseTitle && (
+            <span className="ml-2 text-xs tracking-wide text-pink-200">
+              Course title is required
+            </span>
+          )}
+        </input>
+      </div>
 
-            <input
-            id='courseTitle'
-            placeholder='Enter course Title'
-            className="form-style w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
-            {...register("courseTitle" , {required : true})}
-
-            >
-            {
-                errors.CourseTitle && (
-                     <span className="ml-2 text-xs tracking-wide text-pink-200">
-                        Course title is required 
-                    </span>
-                )
-            }
-            </input>
-
-        </div>
-
-        {/* Course discription  */}
-             <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5 uppercase tracking-wider" htmlFor="courseShortDesc">
+      {/* Course discription  */}
+      <div className="flex flex-col space-y-2">
+        <label
+          className="text-sm text-richblack-5 uppercase tracking-wider"
+          htmlFor="courseShortDesc"
+        >
           Course Description <sup className="text-pink-200">*</sup>
         </label>
         <textarea
@@ -151,9 +150,12 @@ const onSubmit = async (data) => {
         )}
       </div>
 
-        {/* Course price */}
-         <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5 uppercase tracking-wider" htmlFor="coursePrice">
+      {/* Course price */}
+      <div className="flex flex-col space-y-2">
+        <label
+          className="text-sm text-richblack-5 uppercase tracking-wider"
+          htmlFor="coursePrice"
+        >
           Course Price <sup className="text-pink-200">*</sup>
         </label>
         <div className="relative">
@@ -177,9 +179,12 @@ const onSubmit = async (data) => {
           </span>
         )}
       </div>
-        {/* course category  */}
-        <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5 uppercase tracking-wider" htmlFor="courseCategory">
+      {/* course category  */}
+      <div className="flex flex-col space-y-2">
+        <label
+          className="text-sm text-richblack-5 uppercase tracking-wider"
+          htmlFor="courseCategory"
+        >
           Course Category <sup className="text-pink-200">*</sup>
         </label>
         <select
@@ -204,8 +209,8 @@ const onSubmit = async (data) => {
           </span>
         )}
       </div>
-        {/* course tags  */}
-         <ChipInput
+      {/* course tags  */}
+      <ChipInput
         label="Tags"
         name="courseTags"
         placeholder="Enter Tags and press Enter"
@@ -214,8 +219,8 @@ const onSubmit = async (data) => {
         setValue={setValue}
         getValues={getValues}
       />
-        {/* Course thumbnail */}
-          <Upload
+      {/* Course thumbnail */}
+      <Upload
         name="courseImage"
         label="Course Thumbnail"
         register={register}
@@ -223,10 +228,13 @@ const onSubmit = async (data) => {
         errors={errors}
         editData={editCourse ? course?.thumbnail : null}
       />
-        {/* benefits of course  */}
+      {/* benefits of course  */}
 
-         <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5 uppercase tracking-wider" htmlFor="courseBenefits">
+      <div className="flex flex-col space-y-2">
+        <label
+          className="text-sm text-richblack-5 uppercase tracking-wider"
+          htmlFor="courseBenefits"
+        >
           Benefits of the course <sup className="text-pink-200">*</sup>
         </label>
         <textarea
@@ -241,9 +249,9 @@ const onSubmit = async (data) => {
           </span>
         )}
       </div>
-        {/* Requirement instruction  */}
+      {/* Requirement instruction  */}
 
-          <RequirementsField
+      <RequirementsField
         name="courseRequirements"
         label="Requirements/Instructions"
         register={register}
@@ -251,9 +259,9 @@ const onSubmit = async (data) => {
         errors={errors}
         getValues={getValues}
       />
-         {/* Next Button */}
+      {/* Next Button */}
 
-          <div className="flex justify-end gap-x-2">
+      <div className="flex justify-end gap-x-2">
         {editCourse && (
           <button
             onClick={() => dispatch(setStep(2))}
@@ -270,9 +278,8 @@ const onSubmit = async (data) => {
           <MdNavigateNext />
         </IconBtn>
       </div>
-
     </form>
-  )
-}
+  );
+};
 
-export default CourseInformationForm
+export default CourseInformationForm;
