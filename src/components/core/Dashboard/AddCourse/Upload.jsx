@@ -34,7 +34,13 @@ const Upload = ({
     }
   }
 
-  
+  const onDrop = () => {
+    const file = acceptedFiles[0]
+    if(file) {
+      previewFile(file)
+      setSelectedFile(file)
+    }
+  }
 
 
   return (
