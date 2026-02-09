@@ -23,7 +23,18 @@ const Upload = ({
   )
 
  
+ const inputRef = useRef(null)
 
+
+  const previewFile = (file) =>{
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () =>{
+      setPreviewSource(reader.result)
+    }
+  }
+
+  
 
 
   return (
