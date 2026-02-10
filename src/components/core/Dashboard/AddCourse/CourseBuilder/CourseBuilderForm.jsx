@@ -42,7 +42,11 @@ const CourseBuilderForm = () => {
 
   }
 
- 
+  const goBack = () => {
+    dispatch(setStep(1))
+    dispatch(setEditCourse(true))
+  }
+
   return (
     <div>
       <p>Course Builder</p>
