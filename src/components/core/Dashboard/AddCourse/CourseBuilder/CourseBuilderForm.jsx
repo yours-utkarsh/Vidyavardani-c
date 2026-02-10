@@ -59,7 +59,12 @@ const CourseBuilderForm = () => {
 
       {/* nested view  */}
 
-   
+      {
+        course.courseContent.length > 0 && (
+          <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
+        ) 
+      }
+      
       {/* Next prev button  */}
       
       <div>
