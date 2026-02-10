@@ -75,7 +75,13 @@ const CourseBuilderForm = () => {
           Back
         </button>
         
-       
+        <IconBtn
+        disabled={loading}
+        text="Next"
+        onClickHandler={goToNext}
+        >
+            <MdNavigateNext />
+        </IconBtn>
 
       </div>
 
