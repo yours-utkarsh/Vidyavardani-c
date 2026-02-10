@@ -20,6 +20,15 @@ import NestedView from "./NestedView"
 
 const CourseBuilderForm = () => {
 
+  const { register , handleSubmit , setValue , formState: { errors}} = useForm();
+
+  const { course } = useSelector((state) => state.course)
+  const {token} = useSelector((state) => state.auth)
+  const [loading , setLoading] = useState(false)
+  const [editSectionName , setEditSectionName] =  useState(null)
+  const dispatch = useDispatch()
+
+ 
 
  
   return (
