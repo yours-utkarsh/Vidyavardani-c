@@ -40,8 +40,9 @@ const RequirementsField = ({
   }
 
   const handleRemoveRequirement = (index) => {
-    // it is also one way to remove the requirement from the list by using filter method
-    // setRequirementsList((prev) => prev.filter((_, i) => i !== index));
+    //* it is also one way to remove the requirement from the list by using filter method
+
+    //!  setRequirementsList((prev) => prev.filter((_, i) => i !== index));
      const updatedRequirements = [...requirementsList]
     updatedRequirements.splice(index, 1)
     setRequirementsList(updatedRequirements)
