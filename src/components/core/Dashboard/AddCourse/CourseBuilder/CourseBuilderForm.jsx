@@ -28,7 +28,19 @@ const CourseBuilderForm = () => {
   const [editSectionName , setEditSectionName] =  useState(null)
   const dispatch = useDispatch()
 
- 
+  const goToNext = () => {
+     if (course.courseContent.length === 0) {
+      toast.error("Please add atleast one section")
+      return
+    }
+    
+    if(){
+
+    }
+
+    dispatch(setStep(3))
+
+  }
 
  
   return (
