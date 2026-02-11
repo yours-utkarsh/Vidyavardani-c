@@ -1,12 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import Upload from "../Upload";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
+import { toast } from "react-hot-toast"
+import { HiOutlineCurrencyRupee } from "react-icons/hi"
+import { MdNavigateNext } from "react-icons/md"
+import { useDispatch, useSelector } from "react-redux"
+
 import {
   addCourseDetails,
+  editCourseDetails,
   fetchCourseCategories,
-} from "../../../../../services/operations/courseDetailsAPI";
-import toast from "react-hot-toast";
+} from "../../../../../Service/Operation/courseDetailsAPI"
+import { setCourse, setStep } from "../../../../../Slice/courseSlice"
+import { COURSE_STATUS } from "../../../../../Util/constants"
+import IconBtn from "../../../../Common/IconBtn"
+import Upload from "../Upload"
+import ChipInput from "./ChipInput"
+import RequirementsField from "./RequirementsField"
 
 const CourseInformationForm = () => {
   const {
