@@ -29,13 +29,18 @@ const CourseBuilderForm = () => {
   const dispatch = useDispatch()
 
 
+  const cancelEdit = () => {
+    setEditSectionName(null)
+    setValue("sectionName", "")
+  }
+
   
   const onSubmit = async (data) => {
 
     setLoading(true)
 
     let result
-
+// & when we want to edit a section
     if (editSectionName) {
       result = await updateSection(
         {
@@ -46,7 +51,9 @@ const CourseBuilderForm = () => {
         token
       )
 
-    } else {
+    } 
+// & when we want to create a section
+    else {
       result = await createSection(
         {
           sectionName: data.sectionName,
