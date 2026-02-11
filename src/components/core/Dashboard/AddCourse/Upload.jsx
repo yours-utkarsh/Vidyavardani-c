@@ -34,7 +34,7 @@ const Upload = ({
     }
   }
 
-  const onDrop = () => {
+  const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0]
     if(file) {
       previewFile(file)
