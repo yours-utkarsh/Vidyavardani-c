@@ -28,14 +28,54 @@ const CourseBuilderForm = () => {
   const [editSectionName , setEditSectionName] =  useState(null)
   const dispatch = useDispatch()
 
+
+  
+  const onSubmit = async (data) => {
+
+    setLoading(true)
+
+    let result
+
+    if (editSectionName) {
+      result = await updateSection(
+        {
+          sectionName: data.sectionName,
+          sectionId: editSectionName,
+          courseId: course._id,
+        },
+        token
+      )
+
+    } else {
+      result = await createSection(
+        {
+          sectionName: data.sectionName,
+          courseId: course._id,
+        },
+        token
+      )
+    }
+    if (result) {
+
+      dispatch(setCourse(result))
+      setEditSectionName(null)
+      setValue("sectionName", "")
+    }
+    setLoading(false)
+  }
+
+
   const goToNext = () => {
      if (course.courseContent.length === 0) {
       toast.error("Please add atleast one section")
       return
     }
     
-    if(){
-
+    if (
+      course.courseContent.some((section) => section.subSection.length === 0)
+    ) {
+      toast.error("Please add atleast one lecture in each section")
+      return
     }
 
     dispatch(setStep(3))
