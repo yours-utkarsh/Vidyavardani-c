@@ -71,6 +71,15 @@ const CourseBuilderForm = () => {
     setLoading(false)
   }
 
+    const handleChangeEditSectionName = (sectionId, sectionName) => {
+    if (editSectionName === sectionId) {
+      cancelEdit()
+      return
+    }
+    setEditSectionName(sectionId)
+    setValue("sectionName", sectionName)
+  }
+
 
   const goToNext = () => {
      if (course.courseContent.length === 0) {
