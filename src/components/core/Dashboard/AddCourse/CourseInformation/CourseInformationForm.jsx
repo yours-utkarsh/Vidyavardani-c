@@ -12,9 +12,9 @@ import {
 } from "../../../../../Service/Operation/courseDetailsAPI"
 import { setCourse, setStep } from "../../../../../Slice/courseSlice"
 import { COURSE_STATUS } from "../../../../../Util/constants"
-import IconBtn from "../../../../Common/IconBtn"
+import IconBtn from "../../../../common/IconBtn"
 import Upload from "../Upload"
-import ChipInput from "./TagInput"
+import TagInput from "./TagInput"
 import RequirementsField from "./RequirementsField"
 
 const CourseInformationForm = () => {
