@@ -9,7 +9,7 @@ import {
   addCourseDetails,
   editCourseDetails,
   fetchCourseCategories,
-} from "../../../../../Service/Operation/courseDetailsAPI"
+} from "../../../../../services/operations/courseDetailsAPI"
 import { setCourse, setStep } from "../../../../../slices/courseSlice"
 import { COURSE_STATUS } from "../../../../../Util/constants"
 import IconBtn from "../../../../common/IconBtn"
