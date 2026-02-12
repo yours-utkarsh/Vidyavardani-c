@@ -61,10 +61,10 @@ const Upload = ({
   } , [selectedFile , setValue])
 
   return (
-    <div>
+    <div className="flex flex-col gap-1">
        {/* label  */}
 
-      <label className="text-sm text-richblack-5 uppercase tracking-wider" htmlFor={name}>
+      <label className="text-sm text-richblack-5 uppercase tracking-wide" htmlFor={name}>
         {label} {!viewData && 
         <sup className="text-pink-200">*</sup>}
       </label>
@@ -74,7 +74,7 @@ const Upload = ({
       <div
        className={`${
           isDragActive ? "bg-richblack-600" : "bg-richblack-700"
-        } flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted border-richblack-500`}
+        } flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted border-richblack-500 transition-colors`}
       >
         {
           previewSource ?
@@ -150,7 +150,7 @@ const Upload = ({
       {/* error handling  */}
       {
           errors[name] && (
-             <span className="ml-2 text-xs tracking-wide text-pink-200">
+             <span className="text-xs tracking-wide text-pink-200">
           {label} is required
         </span>
           )
