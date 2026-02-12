@@ -5,10 +5,10 @@ import Footer from "../../../common/Footer"
 const AddCourse = () => {
   return (
     
-      <div className="flex w-full gap-x-6 overflow-hidden">
+      <div className="flex w-full gap-x-4 overflow-hidden">
 
 
-        <div className="flex flex-1 flex-col min-w-0 px-6 py-10 lg:py-0 lg:px-0">
+        <div className="flex flex-1 flex-col min-w-0 px-4 py-6 md:px-6 md:py-10 lg:py-0 lg:px-0">
           <h1 className="mb-14 text-4xl font-bold text-yellow-50 uppercase tracking-wider lg:text-left text-center">
             Add Course
           </h1>
