@@ -50,13 +50,17 @@ const RequirementsField = ({
 
 
   return (
-    <div className="flex flex-col space-y-2">
+    <div className="flex flex-col gap-1">
 
-      <label className="text-sm text-richblack-5 uppercase tracking-wider" htmlFor={name}>{label}
+      <label 
+      
+      // className="text-sm text-richblack-5 uppercase tracking-wide" 
+      
+      htmlFor={name}>{label}
         <sup className="text-pink-200">*</sup>
       </label>
       
-      <div>
+      <div className="flex gap-2 items-end">
         <input
         type='text'
         id={name}
@@ -67,7 +71,7 @@ const RequirementsField = ({
         <button
          type="button"
           onClick={handleAddRequirement}
-          className="font-semibold text-yellow-50 uppercase tracking-wider"
+          className="font-semibold text-sm px-4 py-2 bg-yellow-50 text-richblack-900 rounded-lg hover:bg-yellow-100 transition-colors whitespace-nowrap"
         >
           Add
         </button>
@@ -75,19 +79,19 @@ const RequirementsField = ({
 
       {
         requirementsList.length > 0 &&(
-          <ul className="mt-2 list-inside list-disc">
+          <ul className="mt-1 list-inside list-disc space-y-1">
            {
             requirementsList.map((requirement, index) => (
 
-              <li>
+              <li key={index} className="text-sm text-richblack-200">
                 <span>{requirement}</span>
 
                 <button
                 type='button'
-                 className="ml-2 text-xs text-pure-greys-300 "
+                 className="ml-2 text-xs text-pink-200 hover:text-pink-100 transition-colors"
                  onClick={() => handleRemoveRequirement(index)}
                 >
-                  Clear
+                  Remove
                 </button>
               </li>
             ))
@@ -99,7 +103,7 @@ const RequirementsField = ({
       {
         errors[name] && (
           <span
-          className="ml-2 text-xs tracking-wide text-pink-200"
+          className="text-xs tracking-wide text-pink-200"
           >
             {`${label} is required`}
           </span>
