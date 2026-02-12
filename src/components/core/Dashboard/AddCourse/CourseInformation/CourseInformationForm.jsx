@@ -111,34 +111,37 @@ const CourseInformationForm = () => {
   return (
     <form
       action=""
-      className="space-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-5"
+      className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6"
       onSubmit={handleSubmit(onSubmit)}
     >
       {/* course title  */}
-      <div className="flex flex-col gap-1">
+
+      <div className="flex flex-col space-y-2">
         <label
           htmlFor="courseTitle"
-          className="text-sm text-richblack-5 uppercase tracking-wide"
+          className="text-sm text-richblack-5 uppercase tracking-wider"
         >
           Course Title<sup className="text-pink-200">*</sup>
         </label>
+
         <input
           id="courseTitle"
           placeholder="Enter course Title"
           className="form-style w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
           {...register("courseTitle", { required: true })}
-        />
-        {errors.courseTitle && (
-          <span className="text-xs text-pink-200 tracking-wide">
-            Course title is required
-          </span>
-        )}
+        >
+          {errors.CourseTitle && (
+            <span className="ml-2 text-xs tracking-wide text-pink-200">
+              Course title is required
+            </span>
+          )}
+        </input>
       </div>
 
       {/* Course discription  */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col space-y-2">
         <label
-          className="text-sm text-richblack-5 uppercase tracking-wide"
+          className="text-sm text-richblack-5 uppercase tracking-wider"
           htmlFor="courseShortDesc"
         >
           Course Description <sup className="text-pink-200">*</sup>
@@ -147,19 +150,19 @@ const CourseInformationForm = () => {
           id="courseShortDesc"
           placeholder="Enter Description"
           {...register("courseShortDesc", { required: true })}
-          className="form-style resize-none min-h-[100px] w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
+          className="form-style resize-x-none min-h-[130px] w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
         />
         {errors.courseShortDesc && (
-          <span className="text-xs text-pink-200 tracking-wide">
+          <span className="ml-2 text-xs tracking-wide text-pink-200">
             Course Description is required
           </span>
         )}
       </div>
 
       {/* Course price */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col space-y-2">
         <label
-          className="text-sm text-richblack-5 uppercase tracking-wide"
+          className="text-sm text-richblack-5 uppercase tracking-wider"
           htmlFor="coursePrice"
         >
           Course Price <sup className="text-pink-200">*</sup>
@@ -175,21 +178,20 @@ const CourseInformationForm = () => {
                 value: /^(0|[1-9]\d*)(\.\d+)?$/,
               },
             })}
-            className="form-style w-full !pl-10 placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
+            className="form-style w-full !pl-12 placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
           />
-          <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 -translate-y-1/2 text-xl text-richblack-400" />
+          <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richblack-400" />
         </div>
         {errors.coursePrice && (
-          <span className="text-xs text-pink-200 tracking-wide">
+          <span className="ml-2 text-xs tracking-wide text-pink-200">
             Course Price is required
           </span>
         )}
       </div>
-
       {/* course category  */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col space-y-2">
         <label
-          className="text-sm text-richblack-5 uppercase tracking-wide"
+          className="text-sm text-richblack-5 uppercase tracking-wider"
           htmlFor="courseCategory"
         >
           Course Category <sup className="text-pink-200">*</sup>
@@ -211,12 +213,11 @@ const CourseInformationForm = () => {
             ))}
         </select>
         {errors.courseCategory && (
-          <span className="text-xs text-pink-200 tracking-wide">
+          <span className="ml-2 text-xs tracking-wide text-pink-200">
             Course Category is required
           </span>
         )}
       </div>
-
       {/* course tags  */}
       <TagInput
         label="Tags"
@@ -227,7 +228,6 @@ const CourseInformationForm = () => {
         setValue={setValue}
         getValues={getValues}
       />
-
       {/* Course thumbnail */}
       <Upload
         name="courseImage"
@@ -237,11 +237,11 @@ const CourseInformationForm = () => {
         errors={errors}
         editData={editCourse ? course?.thumbnail : null}
       />
-
       {/* benefits of course  */}
-      <div className="flex flex-col gap-1">
+
+      <div className="flex flex-col space-y-2">
         <label
-          className="text-sm text-richblack-5 uppercase tracking-wide"
+          className="text-sm text-richblack-5 uppercase tracking-wider"
           htmlFor="courseBenefits"
         >
           Benefits of the course <sup className="text-pink-200">*</sup>
@@ -250,16 +250,16 @@ const CourseInformationForm = () => {
           id="courseBenefits"
           placeholder="Enter benefits of the course"
           {...register("courseBenefits", { required: true })}
-          className="form-style resize-none min-h-[100px] w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
+          className="form-style resize-x-none min-h-[130px] w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
         />
         {errors.courseBenefits && (
-          <span className="text-xs text-pink-200 tracking-wide">
+          <span className="ml-2 text-xs tracking-wide text-pink-200">
             Benefits of the course is required
           </span>
         )}
       </div>
-
       {/* Requirement instruction  */}
+
       <RequirementsField
         name="courseRequirements"
         label="Requirements/Instructions"
@@ -268,14 +268,14 @@ const CourseInformationForm = () => {
         errors={errors}
         getValues={getValues}
       />
-
       {/* Next Button */}
-      <div className="flex justify-end gap-3 pt-2">
+
+      <div className="flex justify-end gap-x-2">
         {editCourse && (
           <button
             onClick={() => dispatch(setStep(2))}
             disabled={loading}
-            className="flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-2 px-5 font-semibold text-richblack-900 hover:bg-richblack-200 transition-colors"
+            className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
           >
             Continue Without Saving
           </button>
