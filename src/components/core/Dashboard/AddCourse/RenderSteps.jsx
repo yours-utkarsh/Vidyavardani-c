@@ -78,11 +78,11 @@ const RenderSteps = () => {
         {step === 3 && "Publish Course"}
 
       </div>
-         {/* <div className="w-full overflow-hidden"> */}
+         <div className="w-full overflow-y-hidden">
         {step === 1 && <CourseInformationForm />}
         {step === 2 && <CourseBuilderForm />}
         {step === 3 && <PublishCourse />}
-      {/* </div> */}
+      </div>
 
      
     
