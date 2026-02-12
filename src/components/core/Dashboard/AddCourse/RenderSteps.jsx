@@ -25,7 +25,7 @@ const RenderSteps = () => {
   ];
 
   return (
-    <div>
+    <div className="w-full overflow-hidden">
       <div className="flex w-full justify-center mb-2">
         {steps.map((item) => (
           <Fragment key={item.id}>
@@ -72,16 +72,20 @@ const RenderSteps = () => {
         </div>
       </div>
 
-      <div className="md:hidden font-semibold mb-5 text-xl">
-        {step === 1 && "CourseInformationForm"}
-        {step === 2 && "CourseBuilderForm"}
-        {step === 3 && "PublishCourse"}
-      </div>
+      <div className="md:hidden font-semibold mb-5 text-xl text-richblack-5">
+        {step === 1 && "Course Information"}
+        {step === 2 && "Course Builder"}
+        {step === 3 && "Publish Course"}
 
-      {step === 1 && <CourseInformationForm />}
-      {step === 2 && <CourseBuilderForm />}
-      {step === 3 && <PublishCourse />}
-      
+      </div>
+         {/* <div className="w-full overflow-hidden"> */}
+        {step === 1 && <CourseInformationForm />}
+        {step === 2 && <CourseBuilderForm />}
+        {step === 3 && <PublishCourse />}
+      {/* </div> */}
+
+     
+    
     </div>
   );
 };
