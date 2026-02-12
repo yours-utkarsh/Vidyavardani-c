@@ -56,35 +56,37 @@ const TagInput = ({
     }
 
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       
       {/* label  */}
       
-      <label className="text-sm text-richblack-5 uppercase tracking-wider"
+      <label 
+      
+      // className="text-sm text-richblack-5 uppercase tracking-wide"
       htmlFor={name}
       >
         {label}<sup className="text-pink-200">*</sup>
       </label>
 
       {/* render field  */}
-      <div className="flex w-full flex-wrap gap-y-2">
+      <div className="flex w-full flex-wrap gap-2 items-start">
         {
-            tag.map((tag , index) => {
+            tag.map((tag , index) => (
                 <div
                 key={index}
-                className="m-1 flex items-center rounded-full bg-yellow-400 px-2 py-1 text-sm text-richblack-5"
+                className="flex items-center gap-2 rounded-full bg-yellow-50 px-3 py-1 text-sm text-richblack-900"
                 >
-                    {tag}
+                    <span>{tag}</span>
                     <button
                      type="button"
-              className="ml-2 focus:outline-none"
+              className="focus:outline-none hover:text-richblack-800 transition-colors"
               onClick={() => handleDeleteTag(index)}
                     >
                          <MdClose className="text-sm" />
                     </button>
 
                 </div>
-            })
+            ))
         }
 
        <input
@@ -92,13 +94,13 @@ const TagInput = ({
        name = {name}
        placeholder={placeholder}
        onKeyDown={handleAddTag}
-        className="form-style w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
+        className="form-style flex-1 min-w-[200px] placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
        />
       </div>
 
       {
         errors[name] && (
-            <span className="ml-2 text-xs tracking-wide text-pink-200">
+            <span className="text-xs tracking-wide text-pink-200">
           {label} is required
         </span>
         )
