@@ -4,59 +4,43 @@ import { useSelector } from "react-redux"
 const RequirementsField = ({
   name,
   label,
-  register,
   setValue,
   errors,
-  getValues,
 }) => {
 
   const { editCourse , course } = useSelector((state) => state.course);
   const [requirement, setRequirement] = useState("");
   const [requirementsList, setRequirementsList] = useState(
-    editCourse ? course.requirements : []
+    editCourse && course?.requirements ? course.requirements : []
   ); 
 
   useEffect(() => {
-    if(editCourse){
-      setRequirementsList(course?.requirements || []);
+    if(editCourse && course?.requirements){
+      setRequirementsList(course.requirements);
     }
-    register(name , {
-      required: true,
-      validate: (value) => value.length > 0,
-    })
   }, [editCourse, course]);
 
   useEffect(() => {
-    setValue(name , requirementsList);
-  }, [requirementsList]);
-
+    setValue(name, requirementsList);
+  }, [requirementsList, setValue, name]);
 
   const handleAddRequirement = () => {
     if(requirement.trim() !== ""){
       setRequirementsList((prev) => [...prev, requirement.trim()]);
       setRequirement("");
     }
-
   }
 
   const handleRemoveRequirement = (index) => {
-    //* it is also one way to remove the requirement from the list by using filter method
-
-    //!  setRequirementsList((prev) => prev.filter((_, i) => i !== index));
-     const updatedRequirements = [...requirementsList]
+    const updatedRequirements = [...requirementsList]
     updatedRequirements.splice(index, 1)
     setRequirementsList(updatedRequirements)
   }
 
-
   return (
     <div className="flex flex-col gap-1">
 
-      <label 
-      
-      // className="text-sm text-richblack-5 uppercase tracking-wide" 
-      
-      htmlFor={name}>{label}
+      <label htmlFor={name}>{label}
         <sup className="text-pink-200">*</sup>
       </label>
       
@@ -105,7 +89,7 @@ const RequirementsField = ({
           <span
           className="text-xs tracking-wide text-pink-200"
           >
-            {`${label} is required`}
+            {errors[name]?.message || `${label} is required`}
           </span>
         )
       }
