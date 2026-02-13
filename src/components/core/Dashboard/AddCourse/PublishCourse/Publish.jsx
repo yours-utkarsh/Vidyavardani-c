@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { editCourseDetails } from "../../../../../services/operations/courseDetailsAPI"
+import { updateCourseStatus } from "../../../../../services/operations/courseDetailsAPI"
 import { resetCourseState, setStep } from "../../../../../slices/courseSlice"
 import { COURSE_STATUS } from "../../../../../Util/constants"
 import IconBtn from "../../../../common/IconBtn"
@@ -45,14 +45,16 @@ export default function PublishCourse() {
       goToCourses()
       return
     }
+    
     const formData = new FormData()
     formData.append("courseId", course._id)
     const courseStatus = getValues("public")
       ? COURSE_STATUS.PUBLISHED
       : COURSE_STATUS.DRAFT
     formData.append("status", courseStatus)
+    
     setLoading(true)
-    const result = await editCourseDetails(formData, token)
+    const result = await updateCourseStatus(formData, token)
     if (result) {
       goToCourses()
     }
@@ -97,7 +99,7 @@ export default function PublishCourse() {
           >
             Back
           </button>
-          <IconBtn disabled={loading} text="Save Changes" />
+          <IconBtn disabled={loading} text="Save Changes" type="submit" />
         </div>
       </form>
     </div>
