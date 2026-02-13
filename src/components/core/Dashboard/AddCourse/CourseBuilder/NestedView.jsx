@@ -114,7 +114,8 @@ export default function NestedView({ handleChangeEditSectionName }) {
             <div className="px-6 pb-4">
               {/* Render All Sub Sections Within a Section */}
 
-              {section.subSection.map((data) => (
+              {section.subSection && section.subSection.length > 0 ? (
+                section.subSection.map((data) => (
 
                 <div
                   key={data?._id}
@@ -129,16 +130,10 @@ export default function NestedView({ handleChangeEditSectionName }) {
                     </p>
                   </div>
 
-// & subsection - 
-// * here event babbling concept used in which i stop the event propagation in this button so that it would not effect the parent element 
-
-// * Detailed explaination onClick={(e) => e.stopPropagation()} - Prevents the parent div's click event from triggering when you click these buttons (the parent has onClick={() => setViewSubSection(data)} which would open the view modal)
                   <div
                     onClick={(e) => e.stopPropagation()}
                     className="flex items-center gap-x-3"
                   >
-
-// & edit button
 
                     <button
                       onClick={() =>
@@ -147,8 +142,6 @@ export default function NestedView({ handleChangeEditSectionName }) {
                     >
                       <MdEdit className="text-xl text-richblack-300" />
                     </button>
-
-// & delet button
 
                     <button
                       onClick={() =>
@@ -170,7 +163,10 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
                 </div>
 
-              ))}
+              ))
+              ) : (
+                <p className="text-richblack-300 text-sm">No lectures added yet</p>
+              )}
 
               {/* Add New Lecture to Section */}
               <button
