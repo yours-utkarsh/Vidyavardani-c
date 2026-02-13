@@ -24,7 +24,13 @@ const CourseInformationForm = () => {
     setValue,
     getValues,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      courseTags: [],
+      courseRequirements: [],
+    }
+  });
 
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
@@ -44,33 +50,35 @@ const CourseInformationForm = () => {
       setLoading(false);
     };
 
-    if (editCourse) {
+    if (editCourse && course) {
       setValue("courseTitle", course.courseName);
       setValue("courseShortDesc", course.courseDescription);
       setValue("coursePrice", course.price);
-      setValue("courseTags", course.tag);
+      setValue("courseTags", course.Tags || []);
       setValue("courseBenefits", course.whatYouWillLearn);
       setValue("courseCategory", course.category);
-      setValue("courseRequirements", course.requirements);
+      setValue("courseRequirements", course.requirements || []);
       setValue("courseImage", course.thumbnail);
     }
 
     getCategories();
-  }, []);
+  }, [editCourse, course, setValue]);
 
   const isFormUpdated = () => {
-    // the way to fnd the intermediate value of form
+    if (!course) return false;
+    
+    // the way to find the intermediate value of form
     const currentValues = getValues();
 
     if (
-      currentValues.CourseTitle !== course.courseName ||
+      currentValues.courseTitle !== course.courseName ||
       currentValues.courseShortDesc !== course.courseDescription ||
       currentValues.coursePrice !== course.price ||
-      currentValues.courseTags.toString() !== course.tag.toString() ||
+      currentValues.courseTags.toString() !== (course.Tags || []).toString() ||
       currentValues.courseBenefits !== course.whatYouWillLearn ||
-      currentValues.courseCategory._id !== course.category._id ||
+      currentValues.courseCategory?._id !== course.category?._id ||
       currentValues.courseRequirements.toString() !==
-        course.requirements.toString() ||
+        (course.requirements || []).toString() ||
       currentValues.courseImage !== course.thumbnail
     )
       return true;
@@ -78,8 +86,53 @@ const CourseInformationForm = () => {
   };
 
   const onSubmit = async (data) => {
+    console.log("Form Data:", data);
+    console.log("Errors:", errors);
+
+    // Validation checks for manually handled fields
+    if (!data.courseImage) {
+      toast.error("Please upload a course thumbnail");
+      return;
+    }
+
+    if (!data.courseTags || data.courseTags.length === 0) {
+      toast.error("Please add at least one tag");
+      return;
+    }
+
+    if (!data.courseRequirements || data.courseRequirements.length === 0) {
+      toast.error("Please add at least one requirement");
+      return;
+    }
+
     if (editCourse) {
       if (isFormUpdated()) {
+        console.log("Form was updated");
+        const formData = new FormData();
+        formData.append("courseId", course._id);
+        formData.append("courseName", data.courseTitle);
+        formData.append("courseDescription", data.courseShortDesc);
+        formData.append("price", data.coursePrice);
+        formData.append("Tags", JSON.stringify(data.courseTags));
+        formData.append("whatYouWillLearn", data.courseBenefits);
+        formData.append("category", data.courseCategory);
+        formData.append("requirements", JSON.stringify(data.courseRequirements));
+        formData.append("thumbnailImage", data.courseImage);
+        
+        setLoading(true);
+        try {
+          const result = await editCourseDetails(formData, token);
+          if (result) {
+            dispatch(setCourse(result));
+            dispatch(setStep(2));
+            toast.success("Course updated successfully");
+          }
+        } catch (error) {
+          console.error("Error updating course:", error);
+          toast.error("Failed to update course");
+        } finally {
+          setLoading(false);
+        }
       } else {
         toast.error("No Changes made to the form");
       }
@@ -96,16 +149,32 @@ const CourseInformationForm = () => {
     formData.append("status", COURSE_STATUS.DRAFT);
     formData.append("instructions", JSON.stringify(data.courseRequirements));
     formData.append("thumbnailImage", data.courseImage);
+    
+    console.log("FormData prepared, making API call...");
     setLoading(true);
 
-    const result = await addCourseDetails(formData, token);
+    try {
+      const result = await addCourseDetails(formData, token);
+      console.log("API Response Result:", result);
 
-    if (result) {
-      dispatch(setStep(2));
-      dispatch(setCourse(result));
+      if (result) {
+        console.log("Result received, dispatching setStep(2)");
+        dispatch(setCourse(result));
+        // Dispatch setStep after a small delay to ensure state updates properly
+        setTimeout(() => {
+          dispatch(setStep(2));
+          console.log("Step set to 2");
+        }, 100);
+      } else {
+        console.error("No result returned from API");
+        toast.error("Failed to create course");
+      }
+    } catch (error) {
+      console.error("Error in onSubmit:", error);
+      toast.error("Error creating course");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
@@ -129,13 +198,12 @@ const CourseInformationForm = () => {
           placeholder="Enter course Title"
           className="form-style w-full placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
           {...register("courseTitle", { required: true })}
-        >
-          {errors.CourseTitle && (
-            <span className="ml-2 text-xs tracking-wide text-pink-200">
-              Course title is required
-            </span>
-          )}
-        </input>
+        />
+        {errors.courseTitle && (
+          <span className="ml-2 text-xs tracking-wide text-pink-200">
+            Course title is required
+          </span>
+        )}
       </div>
 
       {/* Course discription  */}
@@ -223,16 +291,13 @@ const CourseInformationForm = () => {
         label="Tags"
         name="courseTags"
         placeholder="Enter Tags and press Enter"
-        register={register}
         errors={errors}
         setValue={setValue}
-        getValues={getValues}
       />
       {/* Course thumbnail */}
       <Upload
         name="courseImage"
         label="Course Thumbnail"
-        register={register}
         setValue={setValue}
         errors={errors}
         editData={editCourse ? course?.thumbnail : null}
@@ -263,10 +328,8 @@ const CourseInformationForm = () => {
       <RequirementsField
         name="courseRequirements"
         label="Requirements/Instructions"
-        register={register}
         setValue={setValue}
         errors={errors}
-        getValues={getValues}
       />
       {/* Next Button */}
 
@@ -283,6 +346,8 @@ const CourseInformationForm = () => {
         <IconBtn
           disabled={loading}
           text={!editCourse ? "Next" : "Save Changes"}
+          type="submit"
+          customClasses="flex items-center gap-x-2"
         >
           <MdNavigateNext />
         </IconBtn>
