@@ -147,7 +147,14 @@ exports.getEnrolledCourses = async (req, res) => {
                 path: "courses",
                 populate: [
                     { path: "category", select: "name" },
+                    { path: "instructor", select: "firstName lastName image" },
                     { path: "ratingAndReviews" },
+                    {
+                        path: "courseContent",
+                        populate: {
+                            path: "subSection",
+                        }
+                    }
                 ],
             })
             .exec();
@@ -159,12 +166,16 @@ exports.getEnrolledCourses = async (req, res) => {
             });
         }
 
+        console.log("User enrolled courses:", user.courses);
+        console.log("Courses count:", user.courses?.length || 0);
+
         return res.status(200).json({
             success: true,
             message: "Enrolled courses fetched successfully",
             data: user.courses || [],
         });
     } catch (error) {
+        console.error("getEnrolledCourses error:", error);
         return res.status(500).json({
             success: false,
             message: "Get enrolled courses controller error",
