@@ -91,7 +91,7 @@ exports.createCourse = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Course created successfully",
-      newCourse,
+      data: newCourse,
     });
   } catch (error) {
     return res.status(500).json({
@@ -109,7 +109,7 @@ exports.getInstructorCourses = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Instructor courses fetched successfully",
-      instructorCourses,
+      data: instructorCourses,
     });
   } catch (error) {
     return res.status(500).json({
@@ -126,7 +126,7 @@ exports.getAllCourses = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Courses fetched successfully",
-      courses,
+      data: courses,
     });
 
 
@@ -172,7 +172,7 @@ exports.getCourseDetails = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Course details fetched successfully",
-      courseDetails,
+      data: courseDetails,
     });
 
   }
@@ -267,7 +267,7 @@ exports.editCourse = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Course updated successfully",
-      updatedCourse,
+      data: updatedCourse,
     });
 
   } catch (error) {
@@ -297,7 +297,7 @@ exports.deleteCourse = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Course deleted successfully",
-      deletedCourse,
+      data: deletedCourse,
     });
   }
   catch(error){
@@ -308,6 +308,47 @@ exports.deleteCourse = async (req, res) => {
     });
   }
 };
+
+// update course status
+exports.updateCourseStatus = async (req, res) => {
+  try{
+    const { courseId, status } = req.body;
+    
+    if(!courseId || !status){
+      return res.status(400).json({
+        success: false,
+        message: "Course ID and status are required",
+      });
+    }
+
+    const updatedCourse = await Course.findByIdAndUpdate(
+      courseId,
+      { status },
+      { new: true }
+    ).populate({path: 'courseContent', populate: { path: 'subSection' }}).exec();
+
+    if(!updatedCourse){
+      return res.status(404).json({
+        success: false,
+        message: "Course not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Course status updated successfully",
+      data: updatedCourse,
+    });
+  }
+  catch(error){
+    return res.status(500).json({
+      success: false,
+      message: "Update course status controller error",
+      error: error.message,
+    });
+  }
+};
+
 
 
 
