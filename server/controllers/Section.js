@@ -25,7 +25,7 @@ exports.createSection = async (req, res) =>{
         const updatedCourseDetails = await Course.findByIdAndUpdate(courseId, {
             $push: { courseContent: newSection._id }
         }, { new: true })
-        .populate({path: 'courseContent', populate: { path: 'subSections' }})
+        .populate({path: 'courseContent', populate: { path: 'subSection' }})
             .exec();
 
         return res.status(201).json({
@@ -50,7 +50,7 @@ exports.createSection = async (req, res) =>{
 exports.updateSection = async (req , res) => {
     try{
         // data from req.body
-        const {sectionId , sectionName} = req.body;
+        const {sectionId , sectionName, courseId} = req.body;
         // data validation
         if(!sectionId || !sectionName){
             return res.status(400).json({
@@ -64,10 +64,15 @@ exports.updateSection = async (req , res) => {
             sectionName
         }, { new: true });
 
+        // get updated course with populated sections
+        const updatedCourse = await Course.findById(courseId)
+            .populate({path: 'courseContent', populate: { path: 'subSection' }})
+            .exec();
+
         return res.status(200).json({
             success: true,
             message: "Section updated successfully",
-            data: section
+            data: updatedCourse
         });
     }
     catch(error){
@@ -82,8 +87,8 @@ exports.updateSection = async (req , res) => {
 
 exports.deleteSection = async (req , res ) =>{
     try{
-        // get ID - aasumption : sectionId from req.body
-        const { sectionId , courseId} = req.params;
+        // get ID from req.body
+        const { sectionId , courseId} = req.body;
 
         // validation
         if(!sectionId || !courseId){
@@ -102,7 +107,7 @@ exports.deleteSection = async (req , res ) =>{
             $pull : {courseContent : sectionId},
         },
         { new: true }
-        ).populate({'path': 'courseContent', 'populate': { 'path': 'subSections' }}).exec();
+        ).populate({'path': 'courseContent', 'populate': { 'path': 'subSection' }}).exec();
 
         return res.status(200).json({
             success: true,
