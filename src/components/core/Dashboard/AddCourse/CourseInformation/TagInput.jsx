@@ -6,48 +6,32 @@ const TagInput = ({
   label,
   name,
   placeholder,
-  register,
   errors,
   setValue,
-  getValues,
 }) => {
-
     const { editCourse , course } = useSelector((state) => state.course);
-    const [tag, setTag] = useState(editCourse ? course.tags : []);
-    
+    const [tag, setTag] = useState(editCourse && course?.tag ? course.tag : []);
+
     useEffect(() => {
-        if(editCourse){
-            setTag(course?.tags || []);
+        if(editCourse && course?.tag){
+            setTag(course.tag);
         }
-        register(name , {
-            required: true,
-            validate: (value) => value.length > 0,
-        })
-
-    } , [editCourse, course]);
-
-
-    
+    }, [editCourse, course]);
 
     useEffect(() => {
-        setValue(name , tag);
-    }, [tag]);
+        setValue(name, tag);
+    }, [tag, setValue, name]);
 
     const handleAddTag = (e) => {
        if(e.key === "Enter" || e.key === ","){
         e.preventDefault()
-
         const tagValue = e.target.value.trim()
         
-        if(tagValue && !tag.includes(tagValue) ){
-            const newTag = [...tag , tagValue]
-            setTag(newTag)
+        if(tagValue && !tag.includes(tagValue)){
+            setTag([...tag, tagValue])
             e.target.value = ""
-
         }
-
        }
-
     }
 
     const handleDeleteTag = (index) =>{
@@ -58,25 +42,18 @@ const TagInput = ({
   return (
     <div className="flex flex-col gap-1">
       
-      {/* label  */}
-      
-      <label 
-      
-      // className="text-sm text-richblack-5 uppercase tracking-wide"
-      htmlFor={name}
-      >
+      <label htmlFor={name}>
         {label}<sup className="text-pink-200">*</sup>
       </label>
 
-      {/* render field  */}
       <div className="flex w-full flex-wrap gap-2 items-start">
         {
-            tag.map((tag , index) => (
+            tag.map((tagItem , index) => (
                 <div
                 key={index}
                 className="flex items-center gap-2 rounded-full bg-yellow-50 px-3 py-1 text-sm text-richblack-900"
                 >
-                    <span>{tag}</span>
+                    <span>{tagItem}</span>
                     <button
                      type="button"
               className="focus:outline-none hover:text-richblack-800 transition-colors"
@@ -91,7 +68,7 @@ const TagInput = ({
 
        <input
        id={name}
-       name = {name}
+       name={name}
        placeholder={placeholder}
        onKeyDown={handleAddTag}
         className="form-style flex-1 min-w-[200px] placeholder:uppercase placeholder:tracking-wider placeholder:text-sm"
