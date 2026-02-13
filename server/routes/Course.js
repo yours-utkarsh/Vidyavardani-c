@@ -12,6 +12,7 @@ const {
     deleteCourse,
     editCourse,
     getInstructorCourses,
+    updateCourseStatus,
 } = require("../controllers/Course");
 
 // categories Controllers Import
@@ -59,6 +60,9 @@ router.post("/addSection", auth, isInstructor, createSection);
 
 // edit course details
 router.post("/editCourse", auth, isInstructor, editCourse);
+
+// update course status (publish/draft)
+router.post("/updateCourseStatus", auth, isInstructor, updateCourseStatus);
 
 // update a section 
 router.post("/updateSection", auth, isInstructor, updateSection);
