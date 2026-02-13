@@ -47,7 +47,7 @@ function CourseDetails() {
 
   const [avgReviewCount, setAvgReviewCount] = useState(0)
   useEffect(() => {
-    const count = GetAvgRating(response?.data?.courseDetails.ratingAndReviews)
+    const count = GetAvgRating(response?.data?.ratingAndReviews)
     setAvgReviewCount(count)
   }, [response])
 
@@ -68,7 +68,7 @@ function CourseDetails() {
   const [totalNoOfLectures, setTotalNoOfLectures] = useState(0)
   useEffect(() => {
     let lectures = 0
-    response?.data?.courseDetails?.courseContent?.forEach((sec) => {
+    response?.data?.courseContent?.forEach((sec) => {
       lectures += sec?.subSection?.length || 0
     })
     setTotalNoOfLectures(lectures)
@@ -84,7 +84,7 @@ function CourseDetails() {
   if (!response.success) {
     return <Error />
   }
-  if (!response.data?.courseDetails) {
+  if (!response.data) {
     return <Error />
   }
 
@@ -97,9 +97,9 @@ function CourseDetails() {
     courseContent,
     ratingAndReviews,
     instructor,
-    studentsEnroled,
+    studentsEnrolled,
     createdAt,
-  } = response.data?.courseDetails || {}
+  } = response.data || {}
 
   const handleBuyCourse = () => {
     if (token) {
@@ -150,7 +150,7 @@ function CourseDetails() {
                   {courseName}
                 </p>
               </div>
-              <p className={`text-richblack-200`}>
+              <div className={`text-richblack-200`}>
                 <ul style={{ listStyle: 'none', padding: 0 }} >
                   {courseDescription.split('\n').map((line, index) => (
                     <li key={index} style={{ display: 'flex', alignItems: 'flex-start' }}>
@@ -159,12 +159,12 @@ function CourseDetails() {
                     </li>
                   ))}
                 </ul>
-              </p>
+              </div>
               <div className="text-md flex flex-wrap items-center gap-2 lg:justify-start justify-center">
-                <span className="text-yellow-25">{avgReviewCount}</span>
-                <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
+                <span className="text-yellow-25">{avgReviewCount || 0}</span>
+                <RatingStars Review_Count={avgReviewCount || 0} Star_Size={24} />
                 <span>{`(${ratingAndReviews?.length || 0} reviews)`}</span>
-                <span>{`${studentsEnroled?.length || 0} students enrolled`}</span>
+                <span>{`${studentsEnrolled?.length || 0} students enrolled`}</span>
               </div>
               <div>
                 <p className="">
@@ -195,7 +195,7 @@ function CourseDetails() {
           {/* Courses Card */}
           <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
             <CourseDetailsCard
-              course={response?.data?.courseDetails}
+              course={response?.data}
               setConfirmationModal={setConfirmationModal}
               handleBuyCourse={handleBuyCourse}
             />
@@ -231,7 +231,6 @@ function CourseDetails() {
                   <span>
                     {totalNoOfLectures} {`lecture(s)`}
                   </span>
-                  <span>{response.data?.totalDuration}</span>
                 </div>
                 <div>
                   <button
