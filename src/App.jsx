@@ -115,11 +115,9 @@ function App() {
            <Route path="dashboard/add-course" element={
              user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? <AddCourse /> : <Error />
              } />
-             
-             {/*
-          <Route path="dashboard/edit-course/:courseId" element={
-            user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? <EditCourse /> : <Error />
-          } /> */}
+             <Route path="dashboard/edit-course/:courseId" element={
+            user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? <AddCourse /> : <Error />
+          } />
           
           {/* student Routes  */}
           <Route
