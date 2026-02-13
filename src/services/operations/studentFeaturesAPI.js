@@ -78,7 +78,10 @@ export async function BuyCourse(
         email: user_details.email,
       },
       handler: function (response) {
-        sendPaymentSuccessEmail(response, orderResponse.data.data.amount, token)
+        console.log("RAZORPAY PAYMENT SUCCESS HANDLER TRIGGERED", response)
+        console.log("SENDING TO VERIFY WITH COURSES:", courses)
+        console.log("Full bodyData being sent:", { ...response, courses })
+        // sendPaymentSuccessEmail(response, orderResponse.data.data.amount, token)
         verifyPayment({ ...response, courses }, token, navigate, dispatch)
       },
     }
@@ -91,7 +94,8 @@ export async function BuyCourse(
     })
   } catch (error) {
     console.log("PAYMENT API ERROR............", error)
-    toast.error("Could Not make Payment.")
+    const errorMessage = error?.response?.data?.message || "Could Not make Payment."
+    toast.error(errorMessage)
   }
   toast.dismiss(toastId)
 }
@@ -101,22 +105,32 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
   const toastId = toast.loading("Verifying Payment...")
   dispatch(setPaymentLoading(true))
   try {
+    console.log("VERIFY PAYMENT - SENDING DATA TO BACKEND:", bodyData)
+    console.log("VERIFY PAYMENT - Using endpoint:", COURSE_VERIFY_API)
     const response = await apiConnector("POST", COURSE_VERIFY_API, bodyData, {
       Authorization: `Bearer ${token}`,
     })
 
     console.log("VERIFY PAYMENT RESPONSE FROM BACKEND............", response)
+    console.log("VERIFY PAYMENT SUCCESS:", response.data.success)
+    console.log("VERIFY PAYMENT MESSAGE:", response.data.message)
 
     if (!response.data.success) {
-      throw new Error(response.data.message)
+      const errorMsg = response.data.message || "Payment verification failed"
+      console.error("PAYMENT VERIFICATION FAILED:", errorMsg)
+      throw new Error(errorMsg)
     }
 
     toast.success("Payment Successful. You are Added to the course ")
+    console.log("NAVIGATING TO ENROLLED COURSES")
     navigate("/dashboard/enrolled-courses")
     dispatch(resetCart())
   } catch (error) {
-    console.log("PAYMENT VERIFY ERROR............", error)
-    toast.error("Could Not Verify Payment.")
+    console.error("PAYMENT VERIFY ERROR - Full error:", error)
+    console.error("Error message:", error.message)
+    console.error("Error response:", error?.response?.data)
+    const errorMsg = error?.response?.data?.message || error.message || "Could Not Verify Payment."
+    toast.error(errorMsg)
   }
   toast.dismiss(toastId)
   dispatch(setPaymentLoading(false))
