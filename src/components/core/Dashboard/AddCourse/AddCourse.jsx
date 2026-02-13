@@ -1,8 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import RenderSteps from './RenderSteps'
 import Footer from "../../../common/Footer"
+import { setCourse, setEditCourse } from '../../../../slices/courseSlice'
+import { fetchCourseDetails } from '../../../../services/operations/courseDetailsAPI'
+import Spinner from '../../../common/Spinner'
 
 const AddCourse = () => {
+  const { courseId } = useParams()
+  const dispatch = useDispatch()
+  const { token } = useSelector((state) => state.auth)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (courseId) {
+      // Load existing course for editing
+      const loadCourse = async () => {
+        setLoading(true)
+        const courseDetails = await fetchCourseDetails({ courseId }, token)
+        if (courseDetails) {
+          dispatch(setCourse(courseDetails.data))
+          dispatch(setEditCourse(true))
+        }
+        setLoading(false)
+      }
+      loadCourse()
+    }
+  }, [courseId, token, dispatch])
+
+  if (loading) {
+    return <Spinner />
+  }
+
   return (
     
       <div className="flex w-full gap-x-4 overflow-hidden">
@@ -10,7 +40,7 @@ const AddCourse = () => {
 
         <div className="flex flex-1 flex-col min-w-0 px-4 py-6 md:px-6 md:py-10 lg:py-0 lg:px-0">
           <h1 className="mb-14 text-4xl font-bold text-yellow-50 uppercase tracking-wider lg:text-left text-center">
-            Add Course
+            {courseId ? "Edit Course" : "Add Course"}
           </h1>
 
           <div className="flex-1 min-w-0">
