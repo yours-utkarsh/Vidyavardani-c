@@ -96,7 +96,6 @@ export default function SubSectionModal({
   }
 
   const onSubmit = async (data) => {
-    // console.log(data)
     if (view) return
 
     if (edit) {
@@ -105,6 +104,17 @@ export default function SubSectionModal({
       } else {
         handleEditSubsection()
       }
+      return
+    }
+
+    // Validate video is uploaded for new lectures
+    if (!data.lectureVideo) {
+      toast.error("Please upload a lecture video")
+      return
+    }
+
+    if (!data.lectureTitle) {
+      toast.error("Please enter lecture title")
       return
     }
 
@@ -158,7 +168,6 @@ export default function SubSectionModal({
           <Upload
             name="lectureVideo"
             label="Lecture Video"
-            register={register}
             setValue={setValue}
             errors={errors}
             video={true}
@@ -209,6 +218,8 @@ export default function SubSectionModal({
               <IconBtn
                 disabled={loading}
                 text={loading ? "Loading.." : edit ? "Save Changes" : "Save"}
+                type="submit"
+                
               />
             </div>
           )}
