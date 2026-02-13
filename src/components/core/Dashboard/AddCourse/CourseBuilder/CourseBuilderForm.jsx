@@ -37,6 +37,11 @@ const CourseBuilderForm = () => {
   };
 
   const onSubmit = async (data) => {
+    if (!course || !course._id) {
+      toast.error("Course data not loaded. Please go back and try again.");
+      return;
+    }
+
     setLoading(true);
 
     let result;
@@ -79,7 +84,12 @@ const CourseBuilderForm = () => {
   };
 
   const goToNext = () => {
-    if (course.courseContent.length === 0) {
+    if (!course) {
+      toast.error("Course data not loaded. Please go back and try again.");
+      return;
+    }
+
+    if (!course?.courseContent || course.courseContent.length === 0) {
       toast.error("Please add atleast one section");
       return;
     }
@@ -126,7 +136,7 @@ const CourseBuilderForm = () => {
         <div className="flex items-end gap-x-4">
           <IconBtn
             type="submit"
-            disabled={loading}
+            disabled={loading || !course}
             text={editSectionName ? "Edit Section Name" : "Create Section"}
             outline={true}
           >
@@ -146,7 +156,7 @@ const CourseBuilderForm = () => {
 
       {/* // & nested view  */}
 
-      {course.courseContent.length > 0 && (
+      {course?.courseContent && course.courseContent.length > 0 && (
         <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
       )}
 
