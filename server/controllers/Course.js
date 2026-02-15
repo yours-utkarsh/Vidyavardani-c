@@ -9,7 +9,9 @@ exports.createCourse = async (req, res) => {
     // fetch data from req.body
     const { courseName, courseDescription, whatYouWillLearn, price , Tags = [], category , requirements = [] } = req.body;
     // add category to course
-    const categoryDetails = await Category.findById(category);
+    // Extract ID if category is an object, otherwise use as-is
+    const categoryId = typeof category === 'object' ? category?._id : category;
+    const categoryDetails = await Category.findById(categoryId);
     if(!categoryDetails){
         return res.status(404).json({
             success: false,
@@ -190,7 +192,9 @@ exports.editCourse = async (req, res) => {
 
     const { courseId, courseName, courseDescription, whatYouWillLearn, price , Tags = [], category , requirements = []} = req.body;
 
-     const categoryDetails = await Category.findById(category);
+    // Extract ID if category is an object, otherwise use as-is
+    const categoryId = typeof category === 'object' ? category?._id : category;
+    const categoryDetails = await Category.findById(categoryId);
     if(!categoryDetails){
         return res.status(404).json({
             success: false,
@@ -199,20 +203,7 @@ exports.editCourse = async (req, res) => {
     }
 
 
-    // fetch thumbnail from req.files
-    const thumbnail = req.files.thumbnailImage;
-    // upload thumbnail to cloudinary
-    if(!thumbnail){
-        return res.status(400).json({
-            success: false,
-            message: "Thumbnail image is required"
-        });
-    }
-
-
-   
-
-    
+    // Validate required fields
     if(!courseName || !courseDescription || !whatYouWillLearn || !price){
         return res.status(400).json({
             success: false,
@@ -220,8 +211,6 @@ exports.editCourse = async (req, res) => {
         });
     }
 
-
-    
     const userId = req.user.id;
     const instructorDetails = await User.findById(userId);
 
@@ -232,12 +221,25 @@ exports.editCourse = async (req, res) => {
         });
     }
 
+    // Get existing course to preserve thumbnail if not being changed
+    const existingCourse = await Course.findById(courseId);
+    if(!existingCourse){
+        return res.status(404).json({
+            success: false,
+            message: "Course not found",
+        });
+    }
 
-    // upload thumbnail to cloudinary
-
-     const thumbnailImage = await uploadImageToCloudinary(
-        thumbnail, process.env.FOLDER_NAME, 200, 200
-    )
+    // Handle thumbnail - only upload if a new one is provided
+    let thumbnailUrl = existingCourse.thumbnail;
+    
+    if(req.files && req.files.thumbnailImage){
+        const thumbnail = req.files.thumbnailImage;
+        const thumbnailImage = await uploadImageToCloudinary(
+            thumbnail, process.env.FOLDER_NAME, 200, 200
+        )
+        thumbnailUrl = thumbnailImage.secure_url;
+    }
 
     // find course by id and update
     const updatedCourse = await Course.findByIdAndUpdate(
@@ -248,9 +250,9 @@ exports.editCourse = async (req, res) => {
         whatYouWillLearn,
         price,
         Tags,
-         category: categoryDetails._id,
+        category: categoryDetails._id,
         requirements,
-        thumbnail: thumbnailImage.secure_url,
+        thumbnail: thumbnailUrl,
       },
       { new: true }
     );
