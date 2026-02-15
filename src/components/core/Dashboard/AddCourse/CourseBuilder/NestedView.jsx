@@ -31,8 +31,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
     const result = await deleteSection({
       sectionId,
       courseId: course._id,
-      token,
-    })
+    }, token)
     if (result) {
       dispatch(setCourse(result))
     }
@@ -40,7 +39,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
   }
 
   const handleDeleteSubSection = async (subSectionId, sectionId) => {
-    const result = await deleteSubSection({ subSectionId, sectionId, token })
+    const result = await deleteSubSection({ subSectionId, sectionId }, token)
     if (result) {
       // update the structure of course
       const updatedCourseContent = course.courseContent.map((section) =>
@@ -115,13 +114,12 @@ export default function NestedView({ handleChangeEditSectionName }) {
               {/* Render All Sub Sections Within a Section */}
 
               {section.subSection && section.subSection.length > 0 ? (
-                section.subSection.map((data) => (
-
-                <div
-                  key={data?._id}
-                  onClick={() => setViewSubSection(data)}
-                  className="flex cursor-pointer items-center justify-between gap-x-3 border-b-2 border-b-richblack-600 py-2"
-                >
+                section.subSection.map((data, index) => (
+                  <div
+                    key={data?._id || `subsection-${section._id}-${index}`}
+                    onClick={() => setViewSubSection(data)}
+                    className="flex cursor-pointer items-center justify-between gap-x-3 border-b-2 border-b-richblack-600 py-2"
+                  >
 
                   <div className="flex items-center gap-x-3 py-2 ">
                     <RxDropdownMenu className="text-2xl text-richblack-50" />
