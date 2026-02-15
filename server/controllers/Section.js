@@ -89,9 +89,12 @@ exports.deleteSection = async (req , res ) =>{
     try{
         // get ID from req.body
         const { sectionId , courseId} = req.body;
+        console.log("DELETE SECTION - Received sectionId:", sectionId, "courseId:", courseId);
+        console.log("DELETE SECTION - Full body:", req.body);
 
         // validation
         if(!sectionId || !courseId){
+            console.log("DELETE SECTION - Missing IDs. sectionId:", sectionId, "courseId:", courseId);
             return res.status(400).json({
                 success: false,
                 message: "Section ID and Course ID are required",
