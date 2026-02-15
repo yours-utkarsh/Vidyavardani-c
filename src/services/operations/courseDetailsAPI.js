@@ -231,6 +231,7 @@ export const deleteSection = async (data, token) => {
   let result = null
   const toastId = toast.loading("Loading...")
   try {
+    console.log("DELETE SECTION - Sending data:", data, "Token exists:", !!token)
     const response = await apiConnector("POST", DELETE_SECTION_API, data, {
       Authorization: `Bearer ${token}`,
     })
@@ -242,6 +243,7 @@ export const deleteSection = async (data, token) => {
     result = response?.data?.data?.course
   } catch (error) {
     console.log("DELETE SECTION API ERROR............", error)
+    console.log("DELETE SECTION - Error response data:", error.response?.data)
     toast.error(error.message)
   }
   toast.dismiss(toastId)
