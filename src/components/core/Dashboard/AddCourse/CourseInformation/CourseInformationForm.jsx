@@ -115,9 +115,14 @@ const CourseInformationForm = () => {
         formData.append("price", data.coursePrice);
         formData.append("Tags", JSON.stringify(data.courseTags));
         formData.append("whatYouWillLearn", data.courseBenefits);
-        formData.append("category", data.courseCategory);
+        // Extract ID if category is an object, otherwise use as-is
+        const categoryId = typeof data.courseCategory === 'object' ? data.courseCategory?._id : data.courseCategory;
+        formData.append("category", categoryId);
         formData.append("requirements", JSON.stringify(data.courseRequirements));
-        formData.append("thumbnailImage", data.courseImage);
+        // Only append thumbnail if it's a File object (newly uploaded), not if it's a string (existing URL)
+        if (data.courseImage instanceof File) {
+          formData.append("thumbnailImage", data.courseImage);
+        }
         
         setLoading(true);
         try {
@@ -145,7 +150,9 @@ const CourseInformationForm = () => {
     formData.append("price", data.coursePrice);
     formData.append("tag", JSON.stringify(data.courseTags));
     formData.append("whatYouWillLearn", data.courseBenefits);
-    formData.append("category", data.courseCategory);
+    // Extract ID if category is an object, otherwise use as-is
+    const categoryId = typeof data.courseCategory === 'object' ? data.courseCategory?._id : data.courseCategory;
+    formData.append("category", categoryId);
     formData.append("status", COURSE_STATUS.DRAFT);
     formData.append("instructions", JSON.stringify(data.courseRequirements));
     formData.append("thumbnailImage", data.courseImage);
