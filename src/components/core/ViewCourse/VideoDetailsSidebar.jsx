@@ -1,6 +1,5 @@
 
 
-
 const VideoDetailsSidebar = ({ setReviewModal }) => {
   const [activeStatus, setActiveStatus] = useState("");
   const [videoActive, setVideoActive] = useState("");
