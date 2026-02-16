@@ -1,12 +1,5 @@
-import React from 'react'
-import { useState } from 'react';
-import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
-import IconBtn from "../../Common/IconBtn"
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
+
+
 
 const VideoDetailsSidebar = ({ setReviewModal }) => {
   const [activeStatus, setActiveStatus] = useState("");
