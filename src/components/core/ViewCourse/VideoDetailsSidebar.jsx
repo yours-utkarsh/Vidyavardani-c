@@ -1,3 +1,4 @@
+import IconBtn from "../../Common/IconBtn"
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 const VideoDetailsSidebar = ({ setReviewModal }) => {
   const [activeStatus, setActiveStatus] = useState("");
