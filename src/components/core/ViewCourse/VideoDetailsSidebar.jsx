@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import IconBtn from "../../Common/IconBtn"
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 const VideoDetailsSidebar = ({ setReviewModal }) => {
