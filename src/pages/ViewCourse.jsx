@@ -22,6 +22,7 @@ export default function ViewCourse() {
     ; (async () => {
       const courseData = await getFullDetailsOfCourse(courseId, token)
 
+      dispatch(setCourseSectionData(courseData.courseDetails.courseContent))
    
   
     
