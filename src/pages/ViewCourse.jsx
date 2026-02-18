@@ -18,7 +18,16 @@ export default function ViewCourse() {
   const dispatch = useDispatch()
   const [reviewModal, setReviewModal] = useState(false)
 
+  useEffect(() => {
+    ; (async () => {
+
+   
   
+    
+     
+    })()
+
+  }, )
 
  
 }
