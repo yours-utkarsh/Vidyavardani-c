@@ -15,6 +15,7 @@ import {
 export default function ViewCourse() {
   const { courseId } = useParams()
   const { token } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
 
   
 
