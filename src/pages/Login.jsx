@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div>
       <Template
-    
+      title="Welcome Back"
     
     
 
