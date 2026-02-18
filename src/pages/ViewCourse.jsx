@@ -23,7 +23,8 @@ export default function ViewCourse() {
       const courseData = await getFullDetailsOfCourse(courseId, token)
 
       dispatch(setCourseSectionData(courseData.courseDetails.courseContent))
-   
+      dispatch(setEntireCourseData(courseData.courseDetails))
+      dispatch(setCompletedLectures(courseData.completedVideos))
   
     
      
