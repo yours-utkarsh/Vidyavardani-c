@@ -13,6 +13,8 @@ import {
 } from "../Slice/viewCourseSlice"
 
 export default function ViewCourse() {
+  const { courseId } = useParams()
+  const { token } = useSelector((state) => state.auth)
 
   
 
