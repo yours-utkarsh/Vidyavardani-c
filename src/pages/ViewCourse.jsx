@@ -12,4 +12,9 @@ import {
   setTotalNoOfLectures,
 } from "../Slice/viewCourseSlice"
 
+export default function ViewCourse() {
 
+  
+
+ 
+}
