@@ -34,5 +34,13 @@ export default function ViewCourse() {
 
   }, [courseId, token, dispatch])
 
+  return (
+    <>
+      <div className="relative flex min-h-[calc(100vh-3.5rem)]">
  
+        
+      </div>
+      
+    </>
+  )
 }
