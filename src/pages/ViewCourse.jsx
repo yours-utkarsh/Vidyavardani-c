@@ -29,10 +29,10 @@ export default function ViewCourse() {
       courseData?.courseDetails?.courseContent?.forEach((sec) => {
         lectures += sec.subSection.length
       })
-     
+      dispatch(setTotalNoOfLectures(lectures))
     })()
 
-  }, )
+  }, [courseId, token, dispatch])
 
  
 }
