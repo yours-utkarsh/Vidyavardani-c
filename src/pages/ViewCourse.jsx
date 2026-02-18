@@ -20,6 +20,7 @@ export default function ViewCourse() {
 
   useEffect(() => {
     ; (async () => {
+      const courseData = await getFullDetailsOfCourse(courseId, token)
 
    
   
