@@ -38,14 +38,24 @@ export default function RenderCartCourses() {
                   edit={false}
                   activeColor="#ffd700"
                   emptyIcon={<FaStar />}
-                  
                   fullIcon={<FaStar />}
                 />
-              
+                <span className="text-richblack-400">
+                  {course?.ratingAndReviews?.length} Ratings
+                </span>
               </div>
             </div>
           </div>
-          
+          <div className="flex flex-col items-end space-y-2">
+            <button
+              onClick={() => dispatch(removeFromCart(course._id))}
+              className="flex items-center gap-x-1 rounded-md border border-richblack-600 bg-richblack-700 py-3 px-[12px] text-pink-200"
+            >
+              <RiDeleteBin6Line />
+              <span>Remove</span>
+            </button>
+           
+          </div>
         </div>
       ))}
     </div>
