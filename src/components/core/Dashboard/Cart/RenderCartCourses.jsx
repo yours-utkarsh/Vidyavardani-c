@@ -54,7 +54,9 @@ export default function RenderCartCourses() {
               <RiDeleteBin6Line />
               <span>Remove</span>
             </button>
-           
+            <p className="mb-6 text-3xl font-medium text-yellow-100">
+              ₹ {course?.price}
+            </p>
           </div>
         </div>
       ))}
