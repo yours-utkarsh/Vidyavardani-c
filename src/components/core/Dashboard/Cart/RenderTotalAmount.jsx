@@ -19,6 +19,9 @@ export default function RenderTotalAmount() {
   }
 
   return (
-   
+    <div className="min-w-[280px] rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
+      <p className="mb-1 text-sm font-medium text-richblack-300">Total:</p>
+     
+    </div>
   )
 }
