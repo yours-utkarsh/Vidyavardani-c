@@ -16,7 +16,14 @@ export default function RenderCartCourses() {
             indx !== cart.length - 1 && "border-b border-b-richblack-400 pb-6"
           } ${indx !== 0 && "mt-6"} `}
         >
-         
+          <div className="flex flex-1 flex-col gap-4 xl:flex-row">
+            <img
+              src={course?.thumbnail}
+              alt={course?.courseName}
+              className="h-[148px] w-[220px] rounded-lg object-cover"
+            />
+          
+          </div>
           
         </div>
       ))}
