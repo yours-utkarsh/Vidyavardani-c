@@ -26,7 +26,9 @@ export default function RenderCartCourses() {
               <p className="text-lg font-medium text-richblack-5">
                 {course?.courseName}
               </p>
-             
+              <p className="text-sm text-richblack-300">
+                {course?.category?.name}
+              </p>
              
             </div>
           </div>
