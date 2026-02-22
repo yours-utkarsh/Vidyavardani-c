@@ -4,4 +4,7 @@ import ReactStars from "react-rating-stars-component"
 import { useDispatch, useSelector } from "react-redux"
 import { removeFromCart } from "../../../../slices/cartSlice"
 
-
+export default function RenderCartCourses() {
+ 
+ 
+}
