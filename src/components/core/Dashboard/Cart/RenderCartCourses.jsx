@@ -10,7 +10,15 @@ export default function RenderCartCourses() {
   return (
     <div className="flex flex-1 flex-col">
       {cart.map((course, indx) => (
-       
+        <div
+          key={course._id}
+          className={`flex w-full flex-wrap items-start justify-between gap-6 ${
+            indx !== cart.length - 1 && "border-b border-b-richblack-400 pb-6"
+          } ${indx !== 0 && "mt-6"} `}
+        >
+         
+          
+        </div>
       ))}
     </div>
   )
