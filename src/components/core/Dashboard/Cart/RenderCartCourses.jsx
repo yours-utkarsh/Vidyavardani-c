@@ -29,7 +29,20 @@ export default function RenderCartCourses() {
               <p className="text-sm text-richblack-300">
                 {course?.category?.name}
               </p>
-             
+              <div className="flex items-center gap-2">
+                <span className="text-yellow-5">4.5</span>
+                <ReactStars
+                  count={5}
+                  value={course?.ratingAndReviews?.length}
+                  size={20}
+                  edit={false}
+                  activeColor="#ffd700"
+                  emptyIcon={<FaStar />}
+                  
+                  fullIcon={<FaStar />}
+                />
+              
+              </div>
             </div>
           </div>
           
