@@ -12,4 +12,10 @@ export default function RenderTotalAmount() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  
+  const handleBuyCourse = () => {
+   
+
+  return (
+   
+  )
+}
