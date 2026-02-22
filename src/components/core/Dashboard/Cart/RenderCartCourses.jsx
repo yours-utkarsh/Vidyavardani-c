@@ -9,7 +9,9 @@ export default function RenderCartCourses() {
   const dispatch = useDispatch()
   return (
     <div className="flex flex-1 flex-col">
-     
+      {cart.map((course, indx) => (
+       
+      ))}
     </div>
   )
 }
