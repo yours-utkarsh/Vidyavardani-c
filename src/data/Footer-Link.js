@@ -1,7 +1,12 @@
 export const FooterLink2 = [
   {
     title: "Subjects",
-  
+    links: [
+      { title: "Al", link: "/al" },
+      { title: "Ruby", link: "/ruby" },
+      { title: "SQL", link: "/sql" },
+      // { title: "Swift", link: "/swift" },
+    ],
   },
   {
     title: "Career building",
