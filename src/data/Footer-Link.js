@@ -1,7 +1,7 @@
 export const FooterLink2 = [
  
   {
-  
+    title: "Career building",
     links: [
         {title: "Career paths", link: "/career-paths"},
         {title: "Career services", link: "/career-services"},
