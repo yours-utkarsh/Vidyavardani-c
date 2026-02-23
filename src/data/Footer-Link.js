@@ -3,6 +3,16 @@ export const FooterLink2 = [
     title: "Subjects",
     links: [
       { title: "Al", link: "/al" },
+      { title: "Web Design", link: "/web-design" },
+      { title: "Web Development", link: "/web-development" },
+    ],
+  },
+  {
+    title: "Languages",
+    links: [
+      // { title: "Bash", link: "/bash" },
+      { title: "C++", link: "/c++" },
+      // { title: "C#", link: "/csharp" },
       { title: "Go", link: "/go" },
       { title: "HTML & CSS", link: "/html-css" },
       { title: "Java", link: "/java" },
