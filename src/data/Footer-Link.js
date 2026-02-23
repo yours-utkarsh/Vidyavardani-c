@@ -1,5 +1,8 @@
 export const FooterLink2 = [
- 
+  {
+    title: "Subjects",
+  
+  },
   {
     title: "Career building",
     links: [
