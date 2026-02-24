@@ -145,6 +145,9 @@ const Navbar = () => {
                   <div className="flex flex-col gap-2">
                     <p className="text-richblack-5 font-semibold">{link.title}</p>
                     <div className="flex flex-col gap-2 ml-4 text-richblack-300">
+                      {Array.isArray(sublinks) && sublinks.length > 0 ?: (
+                        <p className="text-sm">Loading...</p>
+                      )}
                     </div>
                   </div>
                 ) : (
