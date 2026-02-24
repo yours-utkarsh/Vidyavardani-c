@@ -147,7 +147,9 @@ const Navbar = () => {
             {token === null && (
               <>
                 <Link to="/login" onClick={() => setIsMenuModalOpen(false)}>
-                  
+                  <button className="w-full border border-richblack-700 bg-richblack-800 px-4 py-2 text-richblack-100 rounded-md hover:bg-richblack-700 transition">
+                    Log in
+                  </button>
                 </Link>
                
               </>
