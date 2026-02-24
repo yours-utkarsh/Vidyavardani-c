@@ -142,7 +142,9 @@ const Navbar = () => {
 
           {/* Mobile Auth Buttons */}
           <div className="flex flex-col gap-4 mt-8 border-t border-richblack-700 pt-6">
-           
+            {user && user?.accountType !== "Instructor" && (
+            
+            )}
 
             {token === null && (
               <>
