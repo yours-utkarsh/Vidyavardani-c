@@ -8,6 +8,7 @@ import { apiConnector } from "../../services/apiconnector";
 import { categories } from "../../services/apis";
 import ProfileDropdown from "../core/Auth/ProfileDropdown";
 import { IoIosArrowDown } from "react-icons/io";
+import HamburgerMenu from "./HamburgerMenu";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
