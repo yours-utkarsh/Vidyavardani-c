@@ -143,7 +143,9 @@ const Navbar = () => {
               <li key={index}>
                 {link.title === "Catalog" ? (
                   <div className="flex flex-col gap-2">
-                   
+                    <p className="text-richblack-5 font-semibold">{link.title}</p>
+                    <div className="flex flex-col gap-2 ml-4 text-richblack-300">
+                    </div>
                   </div>
                 ) : (
                   <Link to={link?.path}>
