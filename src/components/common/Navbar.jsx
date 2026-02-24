@@ -4,6 +4,7 @@ import { Link, matchPath, useLocation } from "react-router-dom";
 import logo from "../../asset/Logo/Logo-full-white.png";
 import { useSelector } from "react-redux";
 import { IoCartOutline } from "react-icons/io5";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { apiConnector } from "../../services/apiconnector";
 import { categories } from "../../services/apis";
 import ProfileDropdown from "../core/Auth/ProfileDropdown";
@@ -139,7 +140,7 @@ const Navbar = () => {
       <HamburgerMenu isMenuModalOpen={isMenuModalOpen} setIsMenuModalOpen={setIsMenuModalOpen}>
         <div className="p-6">
           {/* Mobile Navigation Links */}
-
+          
           <ul className="flex flex-col gap-y-4">
             {NavbarLinks.map((link, index) => (
               <li key={index}>
