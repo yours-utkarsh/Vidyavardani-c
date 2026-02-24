@@ -135,7 +135,21 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <HamburgerMenu isMenuModalOpen={isMenuModalOpen} setIsMenuModalOpen={setIsMenuModalOpen}>
-       
+        <div className="p-6">
+          {/* Mobile Navigation Links */}
+
+          
+
+          {/* Mobile Auth Buttons */}
+          <div className="flex flex-col gap-4 mt-8 border-t border-richblack-700 pt-6">
+           
+
+           
+
+           
+          </div>
+
+        </div>
       </HamburgerMenu>
     </div>
   );
