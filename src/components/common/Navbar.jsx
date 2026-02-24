@@ -143,7 +143,15 @@ const Navbar = () => {
               <li key={index}>
                : (
                   <Link to={link?.path}>
-                   
+                    <p
+                      className={`${
+                        matchRoute(link?.path)
+                          ? "text-yellow-25 font-semibold"
+                          : "text-richblack-25"
+                      }`}
+                    >
+                      {link.title}
+                    </p>
                   </Link>
                 )}
               </li>
