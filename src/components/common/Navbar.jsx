@@ -147,7 +147,9 @@ const Navbar = () => {
            
 
             {token != null && (
-              
+              <div onClick={() => setIsMenuModalOpen(false)}>
+                <ProfileDropdown />
+              </div>
             )}
           </div>
 
