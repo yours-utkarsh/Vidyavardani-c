@@ -139,7 +139,9 @@ const Navbar = () => {
           {/* Mobile Navigation Links */}
 
           <ul className="flex flex-col gap-y-4">
-            
+            {NavbarLinks.map((link, index) => (
+              
+            ))}
           </ul>
 
           {/* Mobile Auth Buttons */}
