@@ -146,7 +146,9 @@ const Navbar = () => {
 
             {token === null && (
               <>
-               
+                <Link to="/login" onClick={() => setIsMenuModalOpen(false)}>
+                  
+                </Link>
                
               </>
             )}
