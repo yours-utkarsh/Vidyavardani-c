@@ -151,7 +151,11 @@ const Navbar = () => {
                     Log in
                   </button>
                 </Link>
-               
+                <Link to="/signup" onClick={() => setIsMenuModalOpen(false)}>
+                  <button className="w-full border border-richblack-700 bg-richblack-800 px-4 py-2 text-richblack-100 rounded-md hover:bg-richblack-700 transition">
+                    Sign Up
+                  </button>
+                </Link>
               </>
             )}
 
