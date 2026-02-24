@@ -4,10 +4,12 @@ import { Link, matchPath, useLocation } from "react-router-dom";
 import logo from "../../asset/Logo/Logo-full-white.png";
 import { useSelector } from "react-redux";
 import { IoCartOutline } from "react-icons/io5";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { apiConnector } from "../../services/apiconnector";
 import { categories } from "../../services/apis";
 import ProfileDropdown from "../core/Auth/ProfileDropdown";
 import { IoIosArrowDown } from "react-icons/io";
+import HamburgerMenu from "./HamburgerMenu";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
@@ -16,6 +18,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const [sublinks, setSublinks] = useState([]);
+  const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
 
   const fetchSublinks = async () => {
     try {
@@ -134,7 +137,87 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-     
+      <HamburgerMenu isMenuModalOpen={isMenuModalOpen} setIsMenuModalOpen={setIsMenuModalOpen}>
+        <div className="p-6">
+          {/* Mobile Navigation Links */}
+          
+          <ul className="flex flex-col gap-y-4">
+            {NavbarLinks.map((link, index) => (
+              <li key={index}>
+                {link.title === "Catalog" ? (
+                  <div className="flex flex-col gap-2">
+                    <p className="text-richblack-5 font-semibold">{link.title}</p>
+                    <div className="flex flex-col gap-2 ml-4 text-richblack-300">
+                      {Array.isArray(sublinks) && sublinks.length > 0 ? (
+                        sublinks.map((cat, idx) => (
+                          <Link key={idx} to={`/catalog/${cat._id}`}>
+                            <p className="text-sm hover:text-yellow-25 transition-colors">
+                              {cat.name}
+                            </p>
+                          </Link>
+                        ))
+                      ) : (
+                        <p className="text-sm">Loading...</p>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <Link to={link?.path}>
+                    <p
+                      className={`${
+                        matchRoute(link?.path)
+                          ? "text-yellow-25 font-semibold"
+                          : "text-richblack-25"
+                      }`}
+                    >
+                      {link.title}
+                    </p>
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {/* Mobile Auth Buttons */}
+          <div className="flex flex-col gap-4 mt-8 border-t border-richblack-700 pt-6">
+            {user && user?.accountType !== "Instructor" && (
+              <Link to="/dashboard/cart" onClick={() => setIsMenuModalOpen(false)}>
+                <div className="flex items-center gap-2 text-richblack-25 hover:text-yellow-25">
+                  <IoCartOutline />
+                  <span>Cart</span>
+                  {totalItems > 0 && (
+                    <span className="bg-yellow-25 text-richblack-900 rounded-full px-2 py-1 text-xs font-semibold">
+                      {totalItems}
+                    </span>
+                  )}
+                </div>
+              </Link>
+            )}
+
+            {token === null && (
+              <>
+                <Link to="/login" onClick={() => setIsMenuModalOpen(false)}>
+                  <button className="w-full border border-richblack-700 bg-richblack-800 px-4 py-2 text-richblack-100 rounded-md hover:bg-richblack-700 transition">
+                    Log in
+                  </button>
+                </Link>
+                <Link to="/signup" onClick={() => setIsMenuModalOpen(false)}>
+                  <button className="w-full border border-richblack-700 bg-richblack-800 px-4 py-2 text-richblack-100 rounded-md hover:bg-richblack-700 transition">
+                    Sign Up
+                  </button>
+                </Link>
+              </>
+            )}
+
+            {token != null && (
+              <div onClick={() => setIsMenuModalOpen(false)}>
+                <ProfileDropdown />
+              </div>
+            )}
+          </div>
+
+        </div>
+      </HamburgerMenu>
     </div>
   );
 };
