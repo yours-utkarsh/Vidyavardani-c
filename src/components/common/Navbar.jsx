@@ -141,7 +141,11 @@ const Navbar = () => {
           <ul className="flex flex-col gap-y-4">
             {NavbarLinks.map((link, index) => (
               <li key={index}>
-               : (
+                {link.title === "Catalog" ? (
+                  <div className="flex flex-col gap-2">
+                   
+                  </div>
+                ) : (
                   <Link to={link?.path}>
                     <p
                       className={`${
