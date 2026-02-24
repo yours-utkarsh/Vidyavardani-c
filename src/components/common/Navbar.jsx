@@ -16,6 +16,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const [sublinks, setSublinks] = useState([]);
+  const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
 
   const fetchSublinks = async () => {
     try {
@@ -148,7 +149,9 @@ const Navbar = () => {
                       {Array.isArray(sublinks) && sublinks.length > 0 ? (
                         sublinks.map((cat, idx) => (
                           <Link key={idx} to={`/catalog/${cat._id}`}>
-                          
+                            <p className="text-sm hover:text-yellow-25 transition-colors">
+                              {cat.name}
+                            </p>
                           </Link>
                         ))
                       ) : (
