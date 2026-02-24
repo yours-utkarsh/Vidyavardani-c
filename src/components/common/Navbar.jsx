@@ -147,7 +147,9 @@ const Navbar = () => {
                     <div className="flex flex-col gap-2 ml-4 text-richblack-300">
                       {Array.isArray(sublinks) && sublinks.length > 0 ? (
                         sublinks.map((cat, idx) => (
-                         
+                          <Link key={idx} to={`/catalog/${cat._id}`}>
+                          
+                          </Link>
                         ))
                       ) : (
                         <p className="text-sm">Loading...</p>
