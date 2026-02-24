@@ -138,7 +138,9 @@ const Navbar = () => {
         <div className="p-6">
           {/* Mobile Navigation Links */}
 
-          
+          <ul className="flex flex-col gap-y-4">
+            
+          </ul>
 
           {/* Mobile Auth Buttons */}
           <div className="flex flex-col gap-4 mt-8 border-t border-richblack-700 pt-6">
