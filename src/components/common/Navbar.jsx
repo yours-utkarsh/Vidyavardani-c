@@ -134,7 +134,9 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-     
+      <HamburgerMenu isMenuModalOpen={isMenuModalOpen} setIsMenuModalOpen={setIsMenuModalOpen}>
+       
+      </HamburgerMenu>
     </div>
   );
 };
