@@ -144,7 +144,12 @@ const Navbar = () => {
           <div className="flex flex-col gap-4 mt-8 border-t border-richblack-700 pt-6">
            
 
-           
+            {token === null && (
+              <>
+               
+               
+              </>
+            )}
 
             {token != null && (
               <div onClick={() => setIsMenuModalOpen(false)}>
