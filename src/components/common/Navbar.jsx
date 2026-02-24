@@ -145,6 +145,7 @@ const Navbar = () => {
             {user && user?.accountType !== "Instructor" && (
               <Link to="/dashboard/cart" onClick={() => setIsMenuModalOpen(false)}>
                 <div className="flex items-center gap-2 text-richblack-25 hover:text-yellow-25">
+                  <IoCartOutline />
                  
                 </div>
               </Link>
