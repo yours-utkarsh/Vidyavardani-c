@@ -142,7 +142,9 @@ const Navbar = () => {
             {NavbarLinks.map((link, index) => (
               <li key={index}>
                : (
-                  
+                  <Link to={link?.path}>
+                   
+                  </Link>
                 )}
               </li>
             ))}
