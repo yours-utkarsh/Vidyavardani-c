@@ -9,7 +9,10 @@ const Stats = [
 
 const StatsComponenet = () => {
   return (
-   
+    <div className="bg-richblack-700 mb-16">
+      {/* Stats */}
+     
+    </div>
   );
 };
 
