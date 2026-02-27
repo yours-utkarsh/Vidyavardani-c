@@ -12,7 +12,8 @@ import { apiConnector } from "../../services/apiconnector";
 import { ratingsEndpoints } from "../../services/apis";
 
 function ReviewSlider() {
- 
+  const [reviews, setReviews] = useState([]);
+  const truncateWords = 15;
 
  
   return (
