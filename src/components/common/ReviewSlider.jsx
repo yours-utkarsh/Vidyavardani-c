@@ -31,7 +31,23 @@ function ReviewSlider() {
   }, []);
 
   return (
-   
+    <div className="text-white">
+      <div className="my-[50px] h-[184px] max-w-[100vw] lg:max-w-maxContent p-1">
+        <Swiper
+          slidesPerView={reviews.length < 4 ? reviews.length % 4 : 4}
+          spaceBetween={14}
+          loop={true}
+          freeMode={true}
+          autoplay={{
+            delay: 1000,
+            disableOnInteraction: false,
+          }}
+          modules={[FreeMode, Pagination, Autoplay]}
+          className="w-full"
+        >
+          
+      </div>
+    </div>
   );
 }
 
