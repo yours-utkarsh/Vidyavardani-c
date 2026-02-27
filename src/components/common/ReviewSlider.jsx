@@ -47,7 +47,13 @@ function ReviewSlider() {
         >
           {reviews.map((review, index) => (
             <SwiperSlide key={index}>
-             
+              <div className="bg-richblack-800 p-4 text-richblack-25 rounded-lg">
+                <div className="flex items-center gap-4">
+                 
+                </div>
+              
+               
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
