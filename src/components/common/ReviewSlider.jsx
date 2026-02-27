@@ -69,7 +69,18 @@ function ReviewSlider() {
                           .join(" ")} ...`
                       : `${review?.review}`}
                   </p>
-               
+                <div className="flex items-center mt-3 gap-2">
+                  <h3 className="font-semibold text-yellow-400">{review.rating.toFixed(1)}</h3>
+                  <ReactStars
+                    count={5}
+                    value={review.rating}
+                    size={20}
+                    edit={false}
+                    activeColor="#ffd700"
+                    emptyIcon={<FaStar />}
+                    fullIcon={<FaStar />}
+                  />
+                </div>
               </div>
             </SwiperSlide>
           ))}
