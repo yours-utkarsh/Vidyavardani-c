@@ -49,7 +49,12 @@ function ReviewSlider() {
             <SwiperSlide key={index}>
               <div className="bg-richblack-800 p-4 text-richblack-25 rounded-lg">
                 <div className="flex items-center gap-4">
-                 
+                  <img
+                    src={review?.user?.image ? review?.user?.image : `https://api.dicebear.com/5.x/initials/svg?seed=${review?.user?.firstName} ${review?.user?.lastName}`}
+                    alt={`${review?.user?.firstName} ${review?.user?.lastName}`}
+                    className="h-12 w-12 rounded-full object-cover"
+                  />
+               
                 </div>
               
                
