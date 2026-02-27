@@ -45,7 +45,12 @@ function ReviewSlider() {
           modules={[FreeMode, Pagination, Autoplay]}
           className="w-full"
         >
-          
+          {reviews.map((review, index) => (
+            <SwiperSlide key={index}>
+             
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );
