@@ -5,8 +5,11 @@ const useOnClickOutside = (ref, handler) => {
    
    
     
-  
-  }, []);
+    return () => {
+    
+     
+    };
+  }, [ref, handler]);
 };
 
 export default useOnClickOutside;
