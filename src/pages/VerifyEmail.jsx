@@ -54,7 +54,26 @@ const VerifyEmail = () => {
           <p className="text-[1.125rem] leading-[1.625rem] my-4 text-richblack-100">
             A verification code has been sent to you. Enter the code below
           </p>
-        
+          <form action="" onSubmit={handleOnSubmit} >
+            <OTPInput
+              value={otp}
+              onChange={setOtp}
+              numInputs={6}
+              renderInput={(props) => ( <input
+                  {...props}
+                  placeholder="-"
+                  style={{
+                    boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                  }}
+                  className="w-[48px] lg:w-[60px] border-0 bg-richblack-800 rounded-[0.5rem] text-richblack-5 aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50"
+                />)}
+                 containerStyle={{
+                justifyContent: "space-between",
+                gap: "0 6px",
+              }}
+            />
+          
+          </form>
          
 
         </div>
