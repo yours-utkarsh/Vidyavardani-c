@@ -9,6 +9,10 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { BiArrowBack } from "react-icons/bi";
 
 const VerifyEmail = () => {
+  const { loading, signupData  } = useSelector((state) => state.auth);
+  const [otp, setOtp] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   
 
   
