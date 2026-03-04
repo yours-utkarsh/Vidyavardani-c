@@ -83,7 +83,13 @@ const VerifyEmail = () => {
                 <BiArrowBack/> Back To Signup
               </p>
             </Link>
-          
+            <button
+              className="flex items-center text-blue-100 gap-x-2"
+              onClick={() => dispatch(sendOtp(signupData.email))} 
+            >
+              <RxCountdownTimer />
+              Resend it
+            </button>
           </div>
 
         </div>
