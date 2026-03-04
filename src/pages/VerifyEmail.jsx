@@ -44,7 +44,11 @@ const VerifyEmail = () => {
   }
   return (
      <div className="min-h-[calc(100vh-3.5rem)] grid place-items-center">
-     
+      {loading ? (
+        <Spinner></Spinner>
+      ) : (
+         
+      )}
     </div>
   );
 };
