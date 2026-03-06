@@ -47,6 +47,9 @@ const CoursesTable = ({ courses, setCourses }) => {
 
 
               
+                <Td className="text-sm font-medium text-richblack-100 mb-1 tracking-wider uppercase">
+                  ₹{course.price}
+                </Td>
 
                 <Td className="text-sm font-medium text-richblack-100 tracking-wider uppercase">
                   <button
