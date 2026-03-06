@@ -48,7 +48,31 @@ const CoursesTable = ({ courses, setCourses }) => {
 
               
 
-            
+                <Td className="text-sm font-medium text-richblack-100 tracking-wider uppercase">
+                
+                  <button
+                    disabled={loading}
+                    onClick={() => {
+                      setConfirmationModal({
+                        text1: "Do you want to delete this course?",
+                        text2:
+                          "All the data related to this course will be deleted",
+                        btn1Text: !loading ? "Delete" : "Loading...  ",
+                        btn2Text: "Cancel",
+                        btn1Handler: !loading
+                          ? () => handleCourseDelete(course._id)
+                          : () => { },
+                        btn2Handler: !loading
+                          ? () => setConfirmationModal(null)
+                          : () => { },
+                      })
+                    }}
+                    title="Delete"
+                    className="px-1 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]"
+                  >
+                    <RiDeleteBin6Line size={20} />
+                  </button>
+                </Td>
                 
               </Tr>
             ))
