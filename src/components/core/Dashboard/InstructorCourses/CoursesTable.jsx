@@ -35,6 +35,10 @@ const CoursesTable = ({ courses, setCourses }) => {
            
 
             <Th className="text-left text-sm font-medium uppercase text-richblack-100">
+              Duration
+            </Th>
+
+            <Th className="text-left text-sm font-medium uppercase text-richblack-100">
               Price
             </Th>
 
