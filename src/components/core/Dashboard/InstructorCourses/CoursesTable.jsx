@@ -50,7 +50,9 @@ const CoursesTable = ({ courses, setCourses }) => {
                    
 
 
-                  
+                    <p className="text-[12px] text-white tracking-widest uppercase lg:text-left text-center">
+                      Created: {formatDate(course?.createdAt || course?.updatedAt)}
+                    </p>
                     {course.status === COURSE_STATUS.DRAFT ? (
                       <div className="flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-pink-100 uppercase tracking-wider">
                         <HiClock size={14} />
