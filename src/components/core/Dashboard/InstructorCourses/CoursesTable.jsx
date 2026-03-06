@@ -49,7 +49,16 @@ const CoursesTable = ({ courses, setCourses }) => {
               
 
                 <Td className="text-sm font-medium text-richblack-100 tracking-wider uppercase">
-                
+                  <button
+                    disabled={loading}
+                    onClick={() => {
+                      navigate(`/dashboard/edit-course/${course._id}`);
+                    }}
+                    title="Edit"
+                    className="pr-2 transition-all duration-200 hover:scale-110 hover:text-caribbeangreen-300 mr- mb-"
+                  >
+                    <FiEdit2 size={20} />
+                  </button>
                   <button
                     disabled={loading}
                     onClick={() => {
