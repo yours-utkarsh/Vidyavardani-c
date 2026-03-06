@@ -46,7 +46,9 @@ const CoursesTable = ({ courses, setCourses }) => {
                 <Td colSpan={1} className="flex flex-1 gap-x-4 p-3">
                 
                   <div className="flex flex-col gap-1 justify-between">
-                  
+                    <p className="text-lg font-semibold text-richblack-5 mt-3 uppercase truncate tracking-wide">
+                      {course.courseName}
+                    </p>
                     <ul style={{ listStyle: 'none', padding: 0 }} className="tracking-wider">
                       {course.courseDescription.split('\n').splice(0, 1).map((line, index) => (
                         <li key={index} style={{ display: 'flex', alignItems: 'flex-start' }} className="text-xs text-richblack-300">
