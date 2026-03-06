@@ -44,7 +44,11 @@ const CoursesTable = ({ courses, setCourses }) => {
               >
 
                 <Td colSpan={1} className="flex flex-1 gap-x-4 p-3">
-                
+                  <img
+                    src={course?.thumbnail}
+                    alt={course?.courseName}
+                    className="md:h-[148px] md:w-[220px] aspect-video rounded-lg object-cover"
+                  />
                   <div className="flex flex-col gap-1 justify-between">
                     <p className="text-lg font-semibold text-richblack-5 mt-3 uppercase truncate tracking-wide">
                       {course.courseName}
