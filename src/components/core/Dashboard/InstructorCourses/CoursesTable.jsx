@@ -51,7 +51,15 @@ const CoursesTable = ({ courses, setCourses }) => {
 
 
                   
-                   
+                    {course.status === COURSE_STATUS.DRAFT ? (
+                    
+                    ) : (
+                      <div className="flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-yellow-100 uppercase tracking-wider">
+                       
+                        Published
+                      </div>
+                    )}
+                  </div>
                 </Td>
 
 
