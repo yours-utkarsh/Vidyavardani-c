@@ -31,6 +31,31 @@ const CoursesTable = ({ courses, setCourses }) => {
 
 
 
+        <Tbody>
+        {
+        
+          :
+          (
+
+             courses?.map((course) => (
+              <Tr
+                key={course?._id}
+                className="flex gap-x-10 border-b border-richblack-800 px-6 py-8 gap-4"
+              >
+
+               
+
+
+              
+
+            
+                
+              </Tr>
+            ))
+
+          )
+        }
+        </Tbody>
 
       </Table>
        {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
