@@ -29,6 +29,13 @@ const CoursesTable = ({ courses, setCourses }) => {
       <Table>
 
 
+        <Thead >
+          <Tr className="flex gap-x-10 rounded-t-md border-b border-b-richblack-800 px-6 py-2 text-richblack-100">
+            
+           
+
+          </Tr>
+        </Thead>
 
 
         <Tbody>
