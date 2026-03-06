@@ -33,7 +33,13 @@ const CoursesTable = ({ courses, setCourses }) => {
 
         <Tbody>
         {
-        
+          courses?.length === 0 ?(
+            <Tr>
+              <Td className="py-10 text-center text-2xl font-medium text-richblack-100">
+                No courses found
+              </Td>
+            </Tr>
+          )
           :
           (
 
