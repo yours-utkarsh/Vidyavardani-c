@@ -23,6 +23,12 @@ const CoursesTable = ({ courses, setCourses }) => {
   
  
 
+  if (loading) {
+    return (
+      <Spinner/>
+    )
+  }
+
 
   return (
     <div>
