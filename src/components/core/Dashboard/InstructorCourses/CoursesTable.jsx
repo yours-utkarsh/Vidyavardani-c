@@ -26,7 +26,13 @@ const CoursesTable = ({ courses, setCourses }) => {
 
   return (
     <div>
-     
+      <Table>
+
+
+
+
+
+      </Table>
        {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </div>
   )
