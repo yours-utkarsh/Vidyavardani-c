@@ -22,6 +22,12 @@ const CoursesTable = ({ courses, setCourses }) => {
 
   
  
+    if (result) {
+      setCourses(result)
+    }
+    setConfirmationModal(null)
+    setLoading(false)
+  }
 
   if (loading) {
     return (
