@@ -46,7 +46,15 @@ const CoursesTable = ({ courses, setCourses }) => {
                
 
 
-              
+                <Td className="text-sm font-medium text-richblack-100 mb-1 tracking-wider uppercase">
+                  {course?.courseContent?.reduce((acc, sec) => {
+                    sec?.subSection?.forEach(sub => {
+                      acc += parseFloat(sub?.timeDuration) || 0;
+                    });
+                    return convertSecondsToDuration(acc);
+                  }, 0)}
+                </Td>
+
                 <Td className="text-sm font-medium text-richblack-100 mb-1 tracking-wider uppercase">
                   ₹{course.price}
                 </Td>
