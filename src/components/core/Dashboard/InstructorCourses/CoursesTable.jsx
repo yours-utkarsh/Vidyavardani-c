@@ -21,7 +21,11 @@ import Spinner from "../../../common/Spinner"
 const CoursesTable = ({ courses, setCourses }) => {
 
   
- 
+  const navigate = useNavigate()
+  const { token } = useSelector((state) => state.auth)
+  const [loading, setLoading] = useState(false)
+  const [confirmationModal, setConfirmationModal] = useState(null)
+
   const handleCourseDelete = async (courseId) => {
     setLoading(true)
     await deleteCourse({ courseId: courseId }, token)
