@@ -47,7 +47,14 @@ const CoursesTable = ({ courses, setCourses }) => {
                 
                   <div className="flex flex-col gap-1 justify-between">
                   
-                   
+                    <ul style={{ listStyle: 'none', padding: 0 }} className="tracking-wider">
+                      {course.courseDescription.split('\n').splice(0, 1).map((line, index) => (
+                        <li key={index} style={{ display: 'flex', alignItems: 'flex-start' }} className="text-xs text-richblack-300">
+                          <span style={{ marginRight: '0.5em' }}>{index + 1}.</span>
+                          <span>{line.trim().substring(line.indexOf('.') + 1).trim()}</span>
+                        </li>
+                      ))}
+                    </ul>
 
 
                     <p className="text-[12px] text-white tracking-widest uppercase lg:text-left text-center">
