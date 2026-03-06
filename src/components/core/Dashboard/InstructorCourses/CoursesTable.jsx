@@ -43,7 +43,16 @@ const CoursesTable = ({ courses, setCourses }) => {
                 className="flex gap-x-10 border-b border-richblack-800 px-6 py-8 gap-4"
               >
 
-               
+                <Td colSpan={1} className="flex flex-1 gap-x-4 p-3">
+                
+                  <div className="flex flex-col gap-1 justify-between">
+                  
+                   
+
+
+                  
+                   
+                </Td>
 
 
                 <Td className="text-sm font-medium text-richblack-100 mb-1 tracking-wider uppercase">
